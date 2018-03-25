@@ -1,0 +1,216 @@
+<div id="chat">
+
+
+	<div class="row">
+	
+		<div class="left_section col-lg-3">
+
+			<!-- The Header Card of the Related Section -->	
+			<mat-card class="header">
+
+
+			<h5 class="text-center">
+				
+				Related	
+
+			</h5>
+
+			<!-- Buttons to switch between topics and localchat -->
+
+			<mat-card-actions class="chat-type-switches">
+
+			    <button mat-button class="float-left">
+			    TOPICS
+			    </button>
+				
+
+			    <button mat-button class="float-right">
+			    LOCAL CHATS
+			    </button>
+
+			    <div style="clear:both;"></div>
+
+  			</mat-card-actions>
+
+
+			</mat-card>
+
+			<!-- Search For the Header section -->
+
+			<mat-form-field class="search-chats">
+
+  			<textarea matInput placeholder="Search" matTextareaAutosize matAutosizeMinRows="1"
+            matAutosizeMaxRows="5"></textarea>
+
+			</mat-form-field>
+
+
+			<!-- Chat Cards (uses a separate NgComponent) -->
+
+			<div class="related-chats">
+
+			<app-chat-card> </app-chat-card>
+
+			<app-chat-card> </app-chat-card>
+			<app-chat-card> </app-chat-card>
+
+
+			</div>
+
+
+
+			
+
+
+
+		</div>
+
+
+		<div class="middle_section col-lg-6">
+
+
+			<!-- Chatbox Header -->
+			<mat-card class="header chatbox-header">
+
+			<h5> Elon Musk's Compensation Deal</h5>
+
+			<h6 class="text-secondary">Elon Musk</h6>
+			
+			</mat-card>
+
+
+			<mat-card class="chatbox-content">
+
+
+				<div class="chatbox-content-body">
+
+				
+					
+					<!-- Message compoennt plugged in here -->
+					<app-message> </app-message>
+
+					
+
+
+				</div>
+
+
+			
+			</mat-card>
+
+
+
+
+			<!-- The message form is here -->
+			<div class="send-message">
+			
+				<mat-form-field class="float-left message-input">
+	   				
+	   				<textarea matInput placeholder="Write a message" matTextareaAutosize matAutosizeMinRows="1"
+	            	matAutosizeMaxRows="5"></textarea>
+
+
+
+	  			</mat-form-field>
+
+
+	  			<div class="float-left send-message-actions">
+
+	  			<button mat-button [matMenuTriggerFor]="menu">OPTIONS</button>
+				
+
+				<mat-menu #menu="matMenu">
+				  <button mat-menu-item>Photo</button>
+				  <button mat-menu-item>Video</button>
+				</mat-menu>
+
+	  			</div>
+
+			</div>
+
+	
+			</div>
+
+
+		<div class="right_section col-lg-3">
+
+			<mat-card class="header">
+
+
+				<h5 class="text-center">
+				
+				Info	
+
+				</h5>
+
+
+			</mat-card>
+
+			<div class="info-cards">
+
+				<!-- Admin Related Info add later-->
+
+
+				<!-- Avatar + Action buttons -->
+
+
+				<!-- About -->
+
+				<mat-card class="info-card about">
+					<mat-card-header>
+
+						<mat-card-title>
+						
+							<span class="font-weight-bold">
+							About
+							</span>
+
+						</mat-card-title>
+
+					</mat-card-header>
+
+					<mat-card-content>
+
+						<p>What Elon Musk's Compensation Deal Means for Tesla Motors</p>
+
+					</mat-card-content>
+				
+						
+				</mat-card>
+
+
+				<!-- Participants -->
+
+				<mat-card class="info-card participants">
+					<mat-card-header>
+
+						<mat-card-title>
+						
+							<span class="font-weight-bold">
+							Participants
+							</span>
+
+						</mat-card-title>
+
+					</mat-card-header>
+
+					<mat-card-content>
+
+					</mat-card-content>
+				
+						
+				</mat-card>
+
+
+				<!-- Media -->
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+
+</div>

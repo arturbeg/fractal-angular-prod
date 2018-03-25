@@ -1,0 +1,64 @@
+.chatgroup-info-container {
+
+
+	width: 80%;
+	margin: auto;
+	margin-top: 40px;
+	padding: 0px;
+	max-width: 500px;
+
+	img {
+		width: 20%;
+		height: auto;
+	}
+
+}
+
+.chatgroup-info {
+
+	width: 80%;
+	padding: 5px;
+
+}
+
+.chatgroup-name {
+	width: 70%;
+
+}
+
+.actions {
+	width: 30%;
+
+
+	button {
+		
+		width: 100%;
+
+	}
+}
+
+
+// Stats related SCSS
+
+
+.stats {
+
+
+	
+	button {
+
+		width: 33.3%;
+		float: left;
+		//font-size: 14px;
+		//padding: 3px;
+
+		// Need media queries for smaller screen sizes
+		// Just use icons for smaller screens, that will fix the issues
+	}
+
+}
+
+
+.chatgroup-about {
+	margin-top: 10px;
+}

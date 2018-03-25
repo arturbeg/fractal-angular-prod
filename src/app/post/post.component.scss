@@ -1,0 +1,49 @@
+.post {
+
+  margin-top: 30px;
+  max-width: 690px;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  margin-top: 40px;
+
+}
+
+
+.post-actions {
+  margin-left: 45px;
+}
+
+.username {
+	//font-weight: 500;
+	margin-left: 15px;
+}
+
+.chatgroup {margin-left: 3px;}
+
+
+.post-text {
+	margin-left: 45px;
+}
+
+.comments {
+  margin-left: 45px;
+}
+
+
+.comment-form-field {
+  
+  margin-left: 45px;
+  margin-top: 10px;
+  width: 100%;
+
+}
+/*
+Might use
+@media screen and (max-width: 480px) {
+  .context {
+    display: none;
+  }
+} 
+
+*/

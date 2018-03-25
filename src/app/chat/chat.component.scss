@@ -1,0 +1,104 @@
+#chat {
+	margin-top: 50px;
+
+}
+
+.header {
+
+	height: 110px;
+}
+
+@media screen and (max-width:992px) {
+  .left_section {
+    display: none;
+  }
+
+  .right_section {
+    display: none;
+  }
+}
+
+
+.chatbox-header {
+
+	text-align: center;
+
+}
+
+.chatbox-content {
+
+	margin-top: 10px;
+	overflow: none;
+	position: relative;
+	width: 100%;
+	padding: 0px;
+	height: 500px;
+
+}
+
+.chatbox-content-body {
+
+	overflow: auto;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	max-height: 500px;
+	padding: 20px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+.send-message {
+  
+
+  margin-top: 10px;
+
+}
+
+.message-input {
+
+  width: 80%;
+
+}
+
+.send-message-actions {
+
+  width: 15%;
+  margin-top: 10px;
+}
+
+// SCSS related to the Related Section
+
+
+.chat-type-switches {
+
+	button  {
+		padding: 0px;
+	}
+}
+
+.search-chats {
+	width: 100%;
+	margin-top:3px;
+}
+
+.related-chats {
+	
+	height: 500px;
+	overflow-y: scroll;
+}
+
+
+
+// Later can split the SCSS for related/chat/info
+
+
+.info-card {
+	margin-top: 10px;
+}
+
+
+.info-cards {
+	height: 500px;
+	overflow-y: scroll;
+}
