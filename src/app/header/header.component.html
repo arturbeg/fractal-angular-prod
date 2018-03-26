@@ -1,14 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Fractal</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <div class="container">
+    <a class="navbar-brand" href="#">Fractal</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
 
         <!-- Chats List Item -->
-      
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Chats
@@ -16,18 +16,16 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" routerLink="/home">Trending</a>
             <a class="dropdown-item" href="#">New</a>
-            
             <a class="dropdown-item" href="#">Top</a>
           </div>
         </li>
-      
+
         <!-- Recent Activity List Item -->
         <li class="nav-item">
           <a routerLink="/recentactivity" class="nav-link" href="#">Recent Activity</a>
         </li>
 
         <!-- New Chat Creation List Item -->
-
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             New
@@ -35,13 +33,11 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#">Topic</a>
             <a class="dropdown-item" href="#">LocalChat</a>
-            
             <a class="dropdown-item" href="#">ChatGroup</a>
           </div>
         </li>
 
         <!-- Profile List Item -->
-
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Profile
@@ -49,28 +45,24 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" routerLink="/profile">My Profile</a>
             <a class="dropdown-item" href="#">Log Out</a>
-            
+
             <a class="dropdown-item" href="#">Settings</a>
           </div>
         </li>
-
 
         <!-- Notifications List Item -->
         <li class="nav-item">
           <a class="nav-link" href="#">Notifications</a>
         </li>
-
-
       </ul>
 
-    <!-- The Search Box Item -->  
-    
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+      <!-- The Search Box Item -->
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
 
 
+    </div>
   </div>
 </nav>
-
