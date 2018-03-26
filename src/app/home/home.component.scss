@@ -1,0 +1,29 @@
+.content {
+  .mat-list {
+    .mat-list-item {
+      display: flex !important;
+      border-bottom: 1px solid rgba(0,0,0,.12);
+      overflow: hidden;
+      height: 120px;
+
+      img {
+        height: 100%;
+        width: auto;
+        border-radius: 0;
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+    }
+  }
+}
+
+.sidebar {
+  .mat-card {
+    float:right;
+    position: relative;
+    clear: both;
+    width: 19.25rem;
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
+}

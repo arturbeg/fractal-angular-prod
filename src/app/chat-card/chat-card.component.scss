@@ -1,89 +1,60 @@
-.chat-card { 
-	
-	
+.chat-card {
 	max-width: 690px;
 	margin: auto;
 	margin-top: 50px;
-
-
 }
 
 
 .card-avatar {
-	
 	float: left;
 	width: 20%;
-
-
 	height: 100%;
-
 }
 
 
 .card-avatar {
-	
 	img {
-
-  		
-
   		max-width: 100%;
-
   		max-height: 100px;
 	}
 }
 
 
 .card-content-top {
-	
 	float: left;
 	width: 80%;
-
-
 	height: 100%;
 }
 
-
 .card-title {
-	
 	height: 60%;
-
 	.card-chatgroup-name {
-
 		margin-bottom: 0px;
-
 	}
-	
+
 }
 
 
 .card-recent-message {
-	
 	padding-left: 7px;
 }
 
 .card-user-avatar {
 	float: left;
-
 	width: 7%;
-
 	height: 100%;
 }
 
 .card-user-avatar {
-	
 	img {
-
 		height: auto;
 		width: 30px;
-
 	}
 }
 
 
 .card-user-message {
-	
 	float: left;
-
 	width: 93%;
 	height: 100%;
 	overflow-x: hidden;
@@ -93,20 +64,15 @@
 }
 
 .chat-card-actions {
-
 	margin: 0px;
 	padding: 0px;
 	margin-top: 10px;
-	
 }
 
 .chat-card-actions {
-	
 	.left-side {
-		
 	}
 }
 
 // Stop displaying some card features
 // for the related section
-
