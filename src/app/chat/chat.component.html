@@ -1,17 +1,68 @@
+<div class="row">
+  <div class="col-lg-3 border border-top-0">
+    <button mat-button class="float-left">
+    TOPICS
+    </button>
+    <button mat-button class="float-right">
+    LOCAL CHATS
+    </button>
+  </div>
+  <div class="col-lg-6 border-bottom">
+    Elon Musk's Compensation Deal
+    <br>
+    Elon Musk
+  </div>
+  <div class="col-lg-3 border border-top-0">
+    Info
+  </div>
+</div>
+<div class="row" style="height:1000px;">
+  <div class="col-lg-3 border border-top-0">
+    <mat-form-field>
+      <input matInput placeholder="Search">
+    </mat-form-field>
+    <app-chat-card> </app-chat-card>
+  </div>
+  <div class="col-lg-6 border-bottom">
+    <app-message> </app-message>
+    <div class="align-bottom">
+      <mat-form-field class="float-left message-input">
+          <textarea matInput placeholder="Write a message" matTextareaAutosize matAutosizeMinRows="1"
+              matAutosizeMaxRows="5">
+          </textarea>
+      </mat-form-field>
+      <div class="float-left send-message-actions">
+        <button mat-button [matMenuTriggerFor]="menu">OPTIONS</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Photo</button>
+          <button mat-menu-item>Video</button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 border border-top-0">
+    About
+    <br>
+    What Elon Musk's Compensation Deal Means for Tesla Motors
+    <br>
+    Participants
+  </div>
+</div>
+
 <div id="chat">
 
 
 	<div class="row">
-	
+
 		<div class="left_section col-lg-3">
 
-			<!-- The Header Card of the Related Section -->	
+			<!-- The Header Card of the Related Section -->
 			<mat-card class="header">
 
 
 			<h5 class="text-center">
-				
-				Related	
+
+				Related
 
 			</h5>
 
@@ -22,7 +73,7 @@
 			    <button mat-button class="float-left">
 			    TOPICS
 			    </button>
-				
+
 
 			    <button mat-button class="float-right">
 			    LOCAL CHATS
@@ -59,7 +110,7 @@
 
 
 
-			
+
 
 
 
@@ -75,7 +126,7 @@
 			<h5> Elon Musk's Compensation Deal</h5>
 
 			<h6 class="text-secondary">Elon Musk</h6>
-			
+
 			</mat-card>
 
 
@@ -84,18 +135,18 @@
 
 				<div class="chatbox-content-body">
 
-				
-					
+
+
 					<!-- Message compoennt plugged in here -->
 					<app-message> </app-message>
 
-					
+
 
 
 				</div>
 
 
-			
+
 			</mat-card>
 
 
@@ -103,9 +154,9 @@
 
 			<!-- The message form is here -->
 			<div class="send-message">
-			
+
 				<mat-form-field class="float-left message-input">
-	   				
+
 	   				<textarea matInput placeholder="Write a message" matTextareaAutosize matAutosizeMinRows="1"
 	            	matAutosizeMaxRows="5"></textarea>
 
@@ -117,7 +168,7 @@
 	  			<div class="float-left send-message-actions">
 
 	  			<button mat-button [matMenuTriggerFor]="menu">OPTIONS</button>
-				
+
 
 				<mat-menu #menu="matMenu">
 				  <button mat-menu-item>Photo</button>
@@ -128,7 +179,7 @@
 
 			</div>
 
-	
+
 			</div>
 
 
@@ -138,8 +189,8 @@
 
 
 				<h5 class="text-center">
-				
-				Info	
+
+				Info
 
 				</h5>
 
@@ -160,7 +211,7 @@
 					<mat-card-header>
 
 						<mat-card-title>
-						
+
 							<span class="font-weight-bold">
 							About
 							</span>
@@ -174,8 +225,8 @@
 						<p>What Elon Musk's Compensation Deal Means for Tesla Motors</p>
 
 					</mat-card-content>
-				
-						
+
+
 				</mat-card>
 
 
@@ -185,7 +236,7 @@
 					<mat-card-header>
 
 						<mat-card-title>
-						
+
 							<span class="font-weight-bold">
 							Participants
 							</span>
@@ -197,8 +248,8 @@
 					<mat-card-content>
 
 					</mat-card-content>
-				
-						
+
+
 				</mat-card>
 
 
