@@ -4,7 +4,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand" href="">Fractal</a>
+    <a class="navbar-brand" routerLink="" routerLinkActive="active">Fractal</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -18,15 +18,30 @@
             Chats
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" routerLink="/home">Trending</a>
-            <a class="dropdown-item" href="#">New</a>
-            <a class="dropdown-item" href="#">Top</a>
+            <a 
+            class="dropdown-item" routerLink="/" routerLinkActive="active">Trending
+            </a>
+            <a 
+            class="dropdown-item" 
+            href="#">
+            New
+            </a>
+            <a 
+            class="dropdown-item"
+            href="#">
+            Top
+            </a>
           </div>
         </li>
 
         <!-- Recent Activity List Item -->
         <li class="nav-item">
-          <a routerLink="/recentactivity" class="nav-link" href="#">Recent Activity</a>
+          <a 
+          routerLink="/recentactivity" routerLinkActive="active" 
+          class="nav-link" 
+          href="#">
+          Recent Activity
+          </a>
         </li>
 
         <!-- New Chat Creation List Item -->

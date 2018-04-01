@@ -6,25 +6,27 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChatComponent } from './chat/chat.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
-import { ChatgroupComponent } from './chatgroup/chatgroup.component';
 import { RecentActivityComponent } from './recent-activity/recent-activity.component';
 import { ResultsComponent } from './results/results.component';
-
+import { PageNotFoundComponent } from './not-found/not-found.component'
 const routes: Routes = [
 
   { path: '', component: HomeComponent },
-  { path: 'chat', component: ChatComponent },
-  { path: 'profile', component: ProfileComponent },
-  { path: 'chatgroup', component: ChatgroupComponent },
+  { path: 'chat', component: ChatComponent }, // chat has 2 parameters (type and label) -> later can merge them
+  { path: 'profile/:username', component: ProfileComponent },
   { path: 'recentactivity', component: RecentActivityComponent },
   { path: 'results', component: ResultsComponent },
+  { path: '**', component: PageNotFoundComponent },
 
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(
+        routes,
+        { enableTracing: true } // <-- debugging purposes only
+      ),
   ],
 
   exports: [ RouterModule ],

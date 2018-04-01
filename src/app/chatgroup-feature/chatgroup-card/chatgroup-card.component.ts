@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './chatgroup-card.component.html',
   styleUrls: ['./chatgroup-card.component.scss']
 })
-export class ChatgroupCardComponent implements OnInit {
+export class ChatGroupCardComponent implements OnInit {
 
   constructor() { }
 
