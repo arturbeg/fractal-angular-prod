@@ -17,15 +17,3 @@ const chatgroupRoutes: Routes = [
   ]
 })
 export class ChatGroupRoutingModule { }
-
-
-
-
-
-
-
-
-
-
-
-
