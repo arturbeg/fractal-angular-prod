@@ -1,31 +1,37 @@
 <div class="row">
   <div class="col-lg-3 border border-top-0">
-    <button mat-button class="float-left">
-    TOPICS
-    </button>
-    <button mat-button class="float-right">
-    LOCAL CHATS
-    </button>
+    <h5 class="float-left">Topics</h5>
+    <h5 class="float-right">Local</h5>
   </div>
   <div class="col-lg-6 border-bottom">
-    Elon Musk's Compensation Deal
-    <br>
-    Elon Musk
+    <h5>Elon Musk's Compensation Deal</h5>
   </div>
   <div class="col-lg-3 border border-top-0">
-    Info
+    <h5>Info</h5>
   </div>
 </div>
-<div class="row" style="height:1000px;">
+
+<div class="row" style="height:600px;">
   <div class="col-lg-3 border border-top-0">
-    <mat-form-field>
-      <input matInput placeholder="Search">
-    </mat-form-field>
-    <app-chat-card> </app-chat-card>
+    <form class="example-form">
+
+      <mat-form-field style="min-width: 250px;">
+        <span matPrefix>&nbsp;</span>
+        <input type="tel" matInput placeholder="Search">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+    </form>
+    <div style="height: 500px; overflow-y: scroll;">
+      <app-chat-card> </app-chat-card>
+      <app-chat-card> </app-chat-card>
+      <app-chat-card> </app-chat-card>
+    </div>
   </div>
   <div class="col-lg-6 border-bottom">
-    <app-message> </app-message>
-    <div class="align-bottom">
+    <div style="position: absolute; bottom: 0;">
+      <!-- Message compoennt plugged in here -->
+      <app-message> </app-message>
       <mat-form-field class="float-left message-input">
           <textarea matInput placeholder="Write a message" matTextareaAutosize matAutosizeMinRows="1"
               matAutosizeMaxRows="5">
@@ -41,22 +47,51 @@
     </div>
   </div>
   <div class="col-lg-3 border border-top-0">
-    About
-    <br>
-    What Elon Musk's Compensation Deal Means for Tesla Motors
-    <br>
-    Participants
+    <div class="row border-bottom">
+      <strong>About</strong>
+      <br>
+      What Elon Musk's Compensation Deal Means for Tesla Motors
+    </div>
+    <div class="row border-bottom">
+      <strong>Participants</strong>
+    </div>
+    <mat-list>
+      <mat-list-item>
+        <img matListAvatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png/220px-Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png" alt="...">
+        <h3 matLine> Supreme Leader </h3>
+        <p matLine>
+          <span> Kim Jong Un </span>
+          <span class="demo-2"> sent a message at 10:00 </span>
+        </p>
+      </mat-list-item>
+      <mat-list-item>
+        <img matListAvatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png/220px-Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png" alt="...">
+        <h3 matLine> Supreme Leader </h3>
+        <p matLine>
+          <span> Kim Jong Un </span>
+          <span class="demo-2"> sent a message at 10:00 </span>
+        </p>
+      </mat-list-item>
+      <mat-list-item>
+        <img matListAvatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png/220px-Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png" alt="...">
+        <h3 matLine> Supreme Leader </h3>
+        <p matLine>
+          <span> Kim Jong Un </span>
+          <span class="demo-2"> sent a message at 10:00 </span>
+        </p>
+      </mat-list-item>
+    </mat-list>
+
   </div>
 </div>
 
+<!--
 <div id="chat">
-
 
 	<div class="row">
 
 		<div class="left_section col-lg-3">
 
-			<!-- The Header Card of the Related Section -->
 			<mat-card class="header">
 
 
@@ -66,7 +101,6 @@
 
 			</h5>
 
-			<!-- Buttons to switch between topics and localchat -->
 
 			<mat-card-actions class="chat-type-switches">
 
@@ -86,7 +120,6 @@
 
 			</mat-card>
 
-			<!-- Search For the Header section -->
 
 			<mat-form-field class="search-chats">
 
@@ -96,7 +129,6 @@
 			</mat-form-field>
 
 
-			<!-- Chat Cards (uses a separate NgComponent) -->
 
 			<div class="related-chats">
 
@@ -108,19 +140,12 @@
 
 			</div>
 
-
-
-
-
-
-
 		</div>
 
 
 		<div class="middle_section col-lg-6">
 
 
-			<!-- Chatbox Header -->
 			<mat-card class="header chatbox-header">
 
 			<h5> Elon Musk's Compensation Deal</h5>
@@ -137,7 +162,6 @@
 
 
 
-					<!-- Message compoennt plugged in here -->
 					<app-message> </app-message>
 
 
@@ -152,7 +176,6 @@
 
 
 
-			<!-- The message form is here -->
 			<div class="send-message">
 
 				<mat-form-field class="float-left message-input">
@@ -199,13 +222,6 @@
 
 			<div class="info-cards">
 
-				<!-- Admin Related Info add later-->
-
-
-				<!-- Avatar + Action buttons -->
-
-
-				<!-- About -->
 
 				<mat-card class="info-card about">
 					<mat-card-header>
@@ -230,8 +246,6 @@
 				</mat-card>
 
 
-				<!-- Participants -->
-
 				<mat-card class="info-card participants">
 					<mat-card-header>
 
@@ -253,15 +267,13 @@
 				</mat-card>
 
 
-				<!-- Media -->
-
 			</div>
 
 		</div>
 
+
 	</div>
 
 
-
-
 </div>
+-->
