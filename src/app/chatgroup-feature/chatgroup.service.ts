@@ -7,7 +7,7 @@ import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError, retry } from 'rxjs/operators';
 
 
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { ChatGroupInterface } from './chatgroup';
 
@@ -25,7 +25,6 @@ const httpOptions = {
 @Injectable()
 export class ChatGroupService {
 
-
 	chatgroupApiUrl = ''; // url to web api
 	private handleHttpError: HandleError;
 
@@ -36,7 +35,6 @@ export class ChatGroupService {
 	}
 
 	
-
 	addChatGroup (chatgroup: ChatGroupInterface): Observable<ChatGroupInterface> {
 	return this.http.post<ChatGroupInterface>(this.chatgroupApiUrl, chatgroup, httpOptions)
 	  .pipe(
@@ -49,26 +47,71 @@ export class ChatGroupService {
 		return this.http.get<ChatGroupInterface>(this.chatgroupApiUrl)
 				.pipe(
 					retry(3), // retry the failed request up to 3 times
-					catchError(this.handleError)	
+					catchError(this.handleHttpError('getChatGroup'))	
 				);
 	}
 
-	private handleError(error: HttpErrorResponse) {
-		if(error.error instanceof ErrorEvent) {
-			// A client-side or network error occured
-			// Handle accordingly
 
-			console.error('An error occured: ', error.error.message);
+	deleteChatGroup(label: string): Observable<{}> {
 
-		} else {
-			// The backend returned an unsuccessful response code
-			// The response body may contain 
+		const url = '' // DELETE api/chatgroups/label
+		return this.http.delete(url, httpOptions)
+			.pipe(
 
-			console.error(
-      		`Backend returned code ${error.status}, ` +
-      		`body was: ${error.error}`);
-  				}			
+				catchError(this.handleHttpError('deleteChatGroup'))
+			);
 
-  		return new ErrorObservable('Something went wrong; please try again later.')		
-		}
+		/* The ChatGroup component will initiate the	
+		DELETE operation by subscribing to the Observable
+		returned by this service method
+		*/
+	}
+
+
+	updateChatGroup(chatgroup:ChatGroupInterface): Observable<ChatGroupInterface> {
+		return this.http.put<ChatGroupInterface>(this.chatgroupApiUrl, chatgroup, httpOptions)
+			.pipe(
+
+				catchError(this.handleHttpError('updateChatGroup', chatgroup))
+			);
+	}
+
+
+	searchChatGroup(term:string): Observable<ChatGroupInterface[]> {
+
+		term = term.trim();
+
+		const options = term ?
+
+		{ params: new HttpParams().set('name', term) } : {};
+
+		return this.http.get<ChatGroupInterface[]>(this.chatgroupApiUrl, options)
+			.pipe(
+
+				catchError(this.handleHttpError<ChatGroupInterface[]>('searchChatGroup', []))
+
+			);
+	}
+
+
+
+
+	// private handleError(error: HttpErrorResponse) {
+	// 	if(error.error instanceof ErrorEvent) {
+	// 		// A client-side or network error occured
+	// 		// Handle accordingly
+
+	// 		console.error('An error occured: ', error.error.message);
+
+	// 	} else {
+	// 		// The backend returned an unsuccessful response code
+	// 		// The response body may contain 
+
+	// 		console.error(
+ //      		`Backend returned code ${error.status}, ` +
+ //      		`body was: ${error.error}`);
+ //  				}			
+
+ //  		return new ErrorObservable('Something went wrong; please try again later.')		
+	// 	}
 	}
