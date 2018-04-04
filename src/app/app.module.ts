@@ -30,6 +30,15 @@ import { ChatGroupModule }          from './chatgroup-feature/chatgroup.module';
 
 import { HttpClientModule }         from '@angular/common/http';
 
+import { HttpErrorHandler }         from './http-error-handler.service' 
+
+import { MessageService }           from './message.service' 
+
+import { httpInterceptorProviders } from './http-interceptors/index';
+
+import { AuthService }          from './auth.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +72,11 @@ import { HttpClientModule }         from '@angular/common/http';
     ChatCardComponent
   ],
 
-  providers: [],
+  providers: [AuthService,
+              HttpErrorHandler,
+              MessageService,
+              httpInterceptorProviders,
+              ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
