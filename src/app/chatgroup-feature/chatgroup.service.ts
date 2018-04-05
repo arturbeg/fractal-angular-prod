@@ -25,7 +25,7 @@ const httpOptions = {
 @Injectable()
 export class ChatGroupService {
 
-	chatgroupApiUrl = ''; // url to web api
+	chatgroupApiUrl = 'http://localhost:8000/api/chatgroups/warwick-economics-summit/?format=json'; // url to web api
 	private handleHttpError: HandleError;
 
 

@@ -26,7 +26,7 @@ export class ChatGroupComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
-		private chatgroupService: ChatGroupService,	
+		private chatGroupService: ChatGroupService,	
 		// private service: ChatGroupService
 	) 
 	{ }
@@ -35,19 +35,43 @@ export class ChatGroupComponent implements OnInit {
 		// this.hero$ = this.route.paramMap
   		//.switchMap((params: ParamMap) =>
   		//this.service.getHero(params.get('id')));
+  		this.getChatGroup();
 	}
 
 	getChatGroup() {
 
-		this.chatgroupService.getChatGroup()
-			.subscribe(
-				// weird syntax	
-				data => this.chatgroup = { ...data }, // success path
-				error => this.error = error // error path
+		this.chatGroupService.getChatGroup().subscribe(
+
+			data => this.chatgroup = {
+
+				id: data['id'],
+				name: data['name'],
+				about: data['about'],
+				description: data['description'],
+				label: data['label'],
+				followers_count: data['followers_count'],
+			}
 
 			);
 
 	}
+
+
+	getChatGroupFollowers() {
+
+	}
+
+
+	getChatGroupLocalChats() {
+
+	}
+
+
+	getChatGroupTopics() {
+
+	}
+
+
 
 	// getChatGroupResponse() {
 

@@ -13,7 +13,7 @@
 		<div class="chatgroup-info float-left">
 
 			<h5 class="chatgroup-name float-left">
-			Warwick Economics Summit
+			{{chatgroup.name}}
 			</h5>
 
 			<!-- Actions -->
@@ -36,7 +36,7 @@
 
 				<button 
 				mat-button>
-				<span>2</span>
+				<span>{{chatgroup.followers_count}}</span>
 				FOLLOWERS
 				</button>
 
@@ -73,7 +73,10 @@
 
 
 			<p>
-			The Warwick Economics Summit (WES) is the largest student-run summit in Europe</p>
+			
+			{{chatgroup.about}}
+			
+			</p>
 			
 
 

@@ -5,6 +5,10 @@ export class ChatGroup {
 	description: string;
 	label: string;
 	
+	// topics_count: number;
+	// localChats_count: number;
+
+	
 	// timestamp: string; 		// necessary manipulations done on the server (or can use  date-time library)	
 	// owner: string; 			// profile object	
 	// avatar: string;			// a link to the avatar
@@ -18,7 +22,8 @@ export interface ChatGroupInterface {
 	name: string;
 	about: string;
 	description: string;
-	label: string;	
+	label: string;
+	followers_count: number;	
 }
 
 

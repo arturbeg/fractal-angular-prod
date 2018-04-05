@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChatGroupComponent }    from './chatgroup/chatgroup.component';
 
 const chatgroupRoutes: Routes = [
-  { path: 'chatgroup/:label', component: ChatGroupComponent },
+  { path: 'chatgroup', component: ChatGroupComponent },
 ];
 
 
