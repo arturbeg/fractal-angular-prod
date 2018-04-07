@@ -1,71 +1,81 @@
-// import { Injectable } from '@angular/core';
-
-
-// // Mock client-side auth service 
-
-// @Injectable()
-// export class AuthService {
-// 	getAuthorizationToken() {
-// 		return 'some-auth-token' // find out way to store it; cache?
-// 	}
-// }
-
-
-
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
+import { finalize, tap } from 'rxjs/operators';
+import { catchError, retry } from 'rxjs/operators';
+import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 
 
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+  })
+};
 
 @Injectable()
 export class AuthService {
-    public token: string;
+    public token = '';
     private restAuthUrlLogin = 'http://localhost:8000/rest-auth/login/';
     private restAuthUrlLogout = 'http://localhost:8000/rest-auth/logout/';
+    private restAuthUrlSignup = 'http://localhost:8000/rest-auth/registration/';
+    private restAuthUrlChangePassword = 'http://localhost:8000/rest-auth/password/change';
+    
+    private handleHttpError: HandleError;
 
- 
-    constructor(private http: Http) {
-        // set token if saved in local storage
-        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        this.token = currentUser && currentUser.token;
+    constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) {
+
+        this.handleHttpError = httpErrorHandler.createHandleError('AuthService');                                
+
     }
 
-    login(): Observable<boolean> { //username: string, password: string
-        return this.http.post(this.restAuthUrlLogin, JSON.stringify({ username: "artur", password: "somepwd" }))
-            .map((response: Response) => {
-                // login successful if there's a jwt token in the response
-                let token = response.json() && response.json().token;
-                if (token) {
-                    // set token property
-                    this.token = token;
- 
-                    // store username and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify({ username: 'artur', token: token }));
- 
-                    // return true to indicate successful login
-                    return true;
-                } else {
-                    // return false to indicate failed login
-                    return false;
-                }
-            });
+    public login(username:string, password:string) {
+        console.log("User login");
+        return this.http.post(this.restAuthUrlLogin, { username: username, email: "", password: password }, httpOptions)
+                    .map(
+                        data => this.token = data['token']
+                        );
     }
 
-    logout(): void {
-        // clear token remove user from local storage to log user out
-        this.token = null;
-        localStorage.removeItem('currentUser');
-        //return this.http.post(this.restAuthUrlLogout, JSON.stringify({Content-Type: 'application/json'}))
-    }
-
-    getAuthorizationToken() {
-        return this.token;
+    public logout(): void {
+        this.token = "";
+        console.log("User logged out")
     }
 
 
+    public signup(username:string, email: string, password1: string, password2: string) {
+        console.log("Sign Up")
+        var signupObject = {
+            username: username,
+            email: email,
+            password1: password1,
+            password2: password2
+        }
+        return this.http.post(this.restAuthUrlSignup, signupObject, httpOptions).pipe(
+                //retry(1), // retry the failed request once
+                catchError(this.handleHttpError('signup'))
+            )
+    }
+
+    public changePassword(new_password1: string, new_password2: string) {
+
+        console.log("Change Password")
+        var changePasswordObject = {
+            new_password1: new_password1,
+            new_password2: new_password2,
+        }
+
+        return this.http.post(this.restAuthUrlChangePassword, changePasswordObject, httpOptions).pipe(
+            catchError(this.handleHttpError('changepassword'))
+        )
 
 
+    }
+
+
+    public getAuthToken() {
+        return this.token
+    }
 
 }    

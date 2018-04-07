@@ -10,8 +10,8 @@ import { LoggingInterceptor } from './logging-interceptor';
 export const httpInterceptorProviders = [
 
 	// the purpose of the provide statement..
-	{provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true},
-	{provide: HTTP_INTERCEPTORS, useClass: TrimNameInterceptor, multi: true},
+	// {provide: HTTP_INTERCEPTORS, useClass: NoopInterceptor, multi: true},
+	// {provide: HTTP_INTERCEPTORS, useClass: TrimNameInterceptor, multi: true},
 	{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
 	{ provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
 

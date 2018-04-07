@@ -14,22 +14,29 @@ import { UserCardComponent }    from './user-card/user-card.component';
 // External Components used by this module (import app module now because it has chat-card)
 //import { AppModule }            from '../app.module';
 import { MaterialModule }          from '../material.module';
+import { ProfileRoutingModule }    from './profile-routing.module';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { ChangePasswordComponent } from './changepassword/changepassword.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    ProfileRoutingModule
   ],
   declarations: [
      ProfileComponent,
-     UserCardComponent
+     UserCardComponent,
+     LoginComponent,
+     SignupComponent,
+     ChangePasswordComponent
 
   ],
   providers: [ ], // add later
 
   exports: [
-
       // add later
     ],
 })

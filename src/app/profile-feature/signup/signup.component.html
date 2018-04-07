@@ -1,0 +1,67 @@
+
+
+<form (ngSubmit)="onSubmit()">
+<!-- Username -->
+
+<mat-form-field>
+    
+    <input
+    matInput 
+    placeholder="Username"
+    [(ngModel)]="username" name="username">
+    
+
+</mat-form-field>
+
+
+<!-- Email -->
+
+<mat-form-field>
+    
+    <input
+    matInput 
+    placeholder="Email"
+    [(ngModel)]="email" name="email">
+    
+
+</mat-form-field>
+
+
+<!-- Password1-->	
+
+<mat-form-field>
+
+    <input
+    matInput 
+    placeholder="Password"
+    [(ngModel)]="password1" name="password1">
+
+</mat-form-field>
+
+
+<!-- Password2 -->	
+
+<mat-form-field>
+
+    <input
+    matInput 
+    placeholder="Repeat Password"
+    [(ngModel)]="password2" name="password2">
+
+</mat-form-field>
+
+
+<button type="submit"> Submit </button>
+
+
+<ul>
+		
+	<li>{{username}}</li>
+	<li>{{email}}</li>				
+	<li>{{password1}}</li>		
+	<li>{{password2}}</li>		
+	
+</ul>
+</form>
+
+

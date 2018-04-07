@@ -1,0 +1,37 @@
+
+
+<form (ngSubmit)="onSubmit()">
+<!-- Username -->
+
+<mat-form-field>
+    
+    <input
+    matInput 
+    placeholder="Username"
+    [(ngModel)]="username" name="username">
+    
+
+</mat-form-field>
+
+
+<!-- Password -->	
+
+<mat-form-field>
+
+    <input
+    matInput 
+    placeholder="Password"
+    [(ngModel)]="password" name="password">
+
+</mat-form-field>
+
+
+<button type="submit"> Submit </button>
+
+
+<p>
+ AuthToken: {{getToken()}}
+</p>
+</form>
+
+

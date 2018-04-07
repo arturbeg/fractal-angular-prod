@@ -63,7 +63,9 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" routerLink="/profile">My Profile</a>
-            <a class="dropdown-item" href="#">Log Out</a>
+            <a class="dropdown-item" (click)="logout()">Log Out</a>
+            <a class="dropdown-item" routerLink="/signup">Sign Up</a>
+            <a class="dropdown-item" routerLink="/changepassword">Change Password</a>
 
             <a class="dropdown-item" href="#">Settings</a>
           </div>
