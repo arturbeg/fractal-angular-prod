@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
 
 // Components
 import { AppRoutingModule } from './app-routing.module';
@@ -46,6 +47,7 @@ import { httpInterceptorProviders } from './http-interceptors/index';
 
 import { AuthService }          from './auth.service';
 
+import { ModalComponent } from './modal/modal.component'
 
 @NgModule({
   declarations: [
@@ -53,9 +55,12 @@ import { AuthService }          from './auth.service';
     HeaderComponent,
     HomeComponent,
     ResultsComponent,
-    PageNotFoundComponent 
+    PageNotFoundComponent,
+    ModalComponent
   ],
   imports: [
+    // ReactiveFormsModule,
+    // FormsModule,
     ChatGroupModule,
     ChatModule,
     PostModule,
@@ -76,6 +81,8 @@ import { AuthService }          from './auth.service';
               MessageService,
               httpInterceptorProviders,
               ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
+  entryComponents: [ModalComponent],
 })
 export class AppModule { }

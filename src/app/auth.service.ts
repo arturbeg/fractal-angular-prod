@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
+
 import { finalize, tap } from 'rxjs/operators';
 import { catchError, retry } from 'rxjs/operators';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
@@ -16,7 +17,7 @@ const httpOptions = {
 
 @Injectable()
 export class AuthService {
-    public token = '';
+    // public token = '';
     private restAuthUrlLogin = 'http://localhost:8000/rest-auth/login/';
     private restAuthUrlLogout = 'http://localhost:8000/rest-auth/logout/';
     private restAuthUrlSignup = 'http://localhost:8000/rest-auth/registration/';
@@ -30,17 +31,38 @@ export class AuthService {
 
     }
 
+    // login(email:string, password:string ) {
+    //     return this.http.post<User>('/api/login', {email, password})
+    //         // this is just the HTTP call, 
+    //         // we still need to handle the reception of the token
+    //         .shareReplay();
+    // }
+
+
     public login(username:string, password:string) {
         console.log("User login");
         return this.http.post(this.restAuthUrlLogin, { username: username, email: "", password: password }, httpOptions)
                     .map(
-                        data => this.token = data['token']
-                        );
+
+                        data => localStorage.setItem('token', data['token'])
+
+                    )
     }
 
+
+    // private setSession(authResult) {
+    //     // localStorage.setItem('id_token', authResult.idToken);
+    //     // localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
+    //     localStorage.setItem('token', authResult.token)
+
+    // }
+
+
+
+
+
     public logout(): void {
-        this.token = "";
-        console.log("User logged out")
+        localStorage.removeItem('token')
     }
 
 
@@ -75,7 +97,7 @@ export class AuthService {
 
 
     public getAuthToken() {
-        return this.token
+        return localStorage.getItem('token')
     }
 
 }    

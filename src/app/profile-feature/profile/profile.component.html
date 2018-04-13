@@ -1,4 +1,4 @@
-<div class="profile">
+<div *ngIf="profile$ | async as profile"class="profile">
 
 	<div class="row">
 
@@ -12,13 +12,14 @@
 
 			<!-- Username -->
 
-			<h2 class="username text-center"> 
-			{{profile$}}</h2>
+			<h2 class="username text-center">
+			{{profile.label}}
+			</h2>
 
 
 			<!-- User about --> 
 
-			<h4 class="user-about text-center">Sometimes I make stupid jokes</h4>
+			<h4 class="user-about text-center">{{profile.about}}</h4>
 
 
 			<!-- Edit Profile -->
@@ -43,22 +44,26 @@
 	<div class="user-stats col-lg-12"> 
 	
 		<button mat-button>
-			<span>47</span>
+			<span>A few</span>
 			<span> posts </span>
 		</button>
 
-		<button mat-button>
-			<span>12</span>
+
+		<button mat-raised-button 
+		(click)="openDialog()">
+
+			<span>{{profile.chatgroups_count}}</span>
 			<span> chat groups </span>
+
 		</button>
 
 		<button mat-button>
-			<span>34</span>
+			<span>{{profile.followers_count}}</span>
 			<span> followers </span>
 		</button>
 
 		<button mat-button>
-			<span>45</span>	
+			<span>{{profile.following_count}}</span>	
 			<span> posts </span>
 		</button>
 	

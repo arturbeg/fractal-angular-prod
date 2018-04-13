@@ -1,7 +1,32 @@
+<form [formGroup]="form">
+    <fieldset>
+        <legend>Login</legend>
+        <div class="form-field">
+            <label>Username:</label>
+            <input name="username" formControlName="username">
+        </div>
+        <div class="form-field">
+            <label>Password:</label>
+            <input name="password" formControlName="password" 
+                   type="password">
+        </div>
+    </fieldset>
+    <div class="form-buttons">
+        <button class="button button-primary" (click)="login()">Login</button>
+    </div>
+</form>
 
+
+
+<!-- <p>  {{getToken()}}   </p> -->
+
+
+
+
+<!-- 
 
 <form (ngSubmit)="onSubmit()">
-<!-- Username -->
+
 
 <mat-form-field>
     
@@ -14,7 +39,7 @@
 </mat-form-field>
 
 
-<!-- Password -->	
+
 
 <mat-form-field>
 
@@ -34,4 +59,4 @@
 </p>
 </form>
 
-
+ -->

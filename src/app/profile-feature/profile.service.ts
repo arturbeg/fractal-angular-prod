@@ -26,11 +26,13 @@ const httpOptions = {
 export class UserService {
     
 	private handleHttpError: HandleError;
-	private rootApiUrl = 'http://localhost:8000/api/profiles/'
+	private rootApiUrl = 'http://localhost:8000/api/profiles'
 
 
     constructor(
-        private authService: AuthService, httpErrorHandler: HttpErrorHandler, private http: HttpClient) {
+        private authService: AuthService, httpErrorHandler: HttpErrorHandler, private http: HttpClient) 
+
+    {
 
     	this.handleHttpError = httpErrorHandler.createHandleError('UserService');								
     }
@@ -38,9 +40,23 @@ export class UserService {
 
     getProfile(username) {
     	// receives a profile object by the username
-    	const profileApiUrl = this.rootApiUrl + '/' + username
+        console.log("Retreiving the user: " + username)
+    	const profileApiUrl = this.rootApiUrl + '/' + username + '?fromat=json'
     	return this.http.get<Profile>(profileApiUrl)
+                // .pipe(
+                //     retry(3), // retry the failed request up to 3 times
+                //     catchError(this.handleHttpError('getProfile'))    
+                // );
     }
+
+    getFollowers(username) {
+
+        console.log("Getting the followers of: " + username)
+        const followersApiUrl = this.rootApiUrl + '/' + username + '/followers?fromat=json'
+        return this.http.get<User[]>(followersApiUrl)
+
+    }
+
 
     
 }

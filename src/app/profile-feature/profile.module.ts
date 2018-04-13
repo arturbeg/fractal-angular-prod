@@ -1,7 +1,7 @@
 // Angular Modules
 import { NgModule }       			from '@angular/core';
 import { CommonModule }   			from '@angular/common';
-import { FormsModule }    			from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
 // Components
 import { ProfileComponent }		from './profile/profile.component';
 import { UserCardComponent }    from './user-card/user-card.component';
@@ -18,26 +18,35 @@ import { ProfileRoutingModule }    from './profile-routing.module';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ChangePasswordComponent } from './changepassword/changepassword.component';
+import { UserService } from './profile.service'
+import { ChatGroupModule } from '../chatgroup-feature/chatgroup.module';
+import { ProfileModalComponent } from './profile-modal/profile-modal.component'
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
-    ProfileRoutingModule
+    ProfileRoutingModule,
+    ChatGroupModule
   ],
   declarations: [
      ProfileComponent,
+     ProfileModalComponent,
      UserCardComponent,
      LoginComponent,
      SignupComponent,
-     ChangePasswordComponent
+     ChangePasswordComponent,
+     
 
   ],
-  providers: [ ], // add later
+  providers: [ UserService ],
 
   exports: [
       // add later
     ],
+
+  entryComponents: [ ProfileModalComponent ]  
 })
 export class ProfileModule {}
