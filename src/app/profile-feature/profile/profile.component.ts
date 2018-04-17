@@ -8,7 +8,6 @@ import { Observable } from 'rxjs/Observable';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ProfileModalComponent } from '../profile-modal/profile-modal.component'
 import { ChatGroupComponent }	from '../../chatgroup-feature/chatgroup/chatgroup.component'
-import { ModalComponent } from  '../..//modal/modal.component'
 
 @Component({
   selector: 'app-profile',
