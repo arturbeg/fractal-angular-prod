@@ -21,7 +21,7 @@
 			<div class="actions float-left">
 
 				<button 
-				mat-button>
+				mat-raised-button (click)="follow()">
 				FOLLOW
 				</button>
 			
@@ -42,13 +42,13 @@
 
 				<button 
 				mat-button>
-				<span>4</span>
+				<span>{{chatgroup.localchats_count}}</span>
 				LOCAL CHATS
 				</button>
 
 				<button 
 				mat-button>
-				<span>3</span>
+				<span>{{chatgroup.topics_count}}</span>
 				TOPICS
 				</button>
 			

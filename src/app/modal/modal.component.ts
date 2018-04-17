@@ -4,6 +4,7 @@ import { UserService }       from '../profile-feature/profile.service';
 import { Profile }       from '../profile-feature/profile';
 import { User }       from '../profile-feature/profile';
 import { Observable } from 'rxjs/Observable';
+import { ChatGroup } from '../chatgroup-feature/chatgroup'
 
 @Component({
   selector: 'app-modal',
@@ -12,8 +13,8 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ModalComponent implements OnInit {
 
-	followers: any // convert to profile later on Python Side
-
+	// followers$: Observable<User[]> // convert to profile later on Python Side
+	chatgroups: ChatGroup;
 
 	constructor(private matDialogRef: MatDialogRef<ModalComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
 				private userService: UserService) { }
@@ -27,7 +28,7 @@ export class ModalComponent implements OnInit {
 
 	getFollowers() {
 
-			this.followers = this.userService.getFollowers(this.data.username).subscribe()
+			// this.followers$ = this.userService.getFollowers(this.data.username)
 
 	}
 

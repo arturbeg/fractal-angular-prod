@@ -24,6 +24,8 @@ export interface ChatGroupInterface {
 	description: string;
 	label: string;
 	followers_count: number;	
+	topics_count: number;
+	localchats_count: number;
 }
 
 

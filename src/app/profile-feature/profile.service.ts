@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { catchError, retry } from 'rxjs/operators';
+import { catchError, retry, tap, map } from 'rxjs/operators';
 
 
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -12,21 +12,17 @@ import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 
 import { AuthService } from '../auth.service';
 import { User, Profile } from './profile';
+import { ChatGroup } from '../chatgroup-feature/chatgroup'
 
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json'
-    // 'Authorization': 'my-auth-token' 
-  })
-};
+import {Http, Response, Headers, RequestOptions} from "@angular/http";
 
 
 @Injectable()
 export class UserService {
     
 	private handleHttpError: HandleError;
-	private rootApiUrl = 'http://localhost:8000/api/profiles'
+	private rootApiUrl = 'http://localhost:8000/api/profiles/'
+    private rootApiUrlUser = 'http://localhost:8000/rest-auth/user/'
 
 
     constructor(
@@ -41,22 +37,116 @@ export class UserService {
     getProfile(username) {
     	// receives a profile object by the username
         console.log("Retreiving the user: " + username)
-    	const profileApiUrl = this.rootApiUrl + '/' + username + '?fromat=json'
+    	const profileApiUrl = this.rootApiUrl + username + '/'  //+ '?fromat=json'
     	return this.http.get<Profile>(profileApiUrl)
-                // .pipe(
-                //     retry(3), // retry the failed request up to 3 times
-                //     catchError(this.handleHttpError('getProfile'))    
-                // );
+            // .map(
+            //     data => {
+            //         console.log(data)
+            //     }
+            // )
+
     }
+
+
+    editProfile(username, newUsername, newAbout) {
+
+        console.log("Editing the profile: " + username)
+        console.log("New Username: " + newUsername + 'New About: ' + newAbout)
+
+        // edit profile object
+        return this.http.patch(this.rootApiUrl + username + '/', {label: newUsername, about: newAbout})
+
+        
+
+        // this.http.patch(this.rootApiUrlUser, {username: newUsername})
+
+
+
+    }
+
+    editUserObject(username, newUsername) {
+        // edit user object
+
+        return this.http.patch(this.rootApiUrlUser, {username: newUsername})
+    }
+
+
+
+    deleteProfile(username) {
+
+    }
+
 
     getFollowers(username) {
 
         console.log("Getting the followers of: " + username)
-        const followersApiUrl = this.rootApiUrl + '/' + username + '/followers?fromat=json'
+        const followersApiUrl = this.rootApiUrl + username + '/followers?fromat=json'
         return this.http.get<User[]>(followersApiUrl)
+                .pipe(
+                    catchError(this.handleHttpError('getProfileFollowers'))
+                )
+
+    }
+
+
+    getChatGroups(username) {
+
+        console.log("Getting chatgroups of: " + username)
+        const chatGroupsApiUrl = this.rootApiUrl + username + '/chatgroups/'    
+
+        return this.http.get<ChatGroup[]>(chatGroupsApiUrl)
+                        // .pipe(
+                        //         catchError(this.handleHttpError('getProfileFollowers'))
+                        //     )
+    }
+
+    follow(username) {
+
+        console.log("Follow a profile: " + username)
+        const followApiUrl = this.rootApiUrl + username + '/follow/'
+
+
+        return this.http.get(followApiUrl)
+            // .map(
+            //     data => console.log(data)
+            // )
+
+    }
+
+    verifyToken() {
+
+        this.authService.verifyToken().subscribe()
 
     }
 
 
     
 }
+
+
+
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Accept': 'application/json',
+    //     'Content-Type':  'application/json',
+
+    //   })
+    // };
+
+
+
+    // jwtHeaders(): object {    
+    //     const httpOptions = {
+    //     headers: new HttpHeaders({
+    //         'Content-Type': 'application/json',
+    //         // 'Authorization': 'Token ' + localStorage.getItem('token'),
+    //     })
+    //     };
+    //     return httpOptions;
+    // }
+
+
+                // .pipe(
+                //     retry(3), // retry the failed request up to 3 times
+                //     catchError(this.handleHttpError('getProfile'))    
+                // );

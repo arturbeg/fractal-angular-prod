@@ -1,4 +1,4 @@
-<div *ngIf="profile$ | async as profile"class="profile">
+<div *ngIf="profile$ | async as profile" class="profile">
 
 	<div class="row">
 
@@ -23,10 +23,10 @@
 
 
 			<!-- Edit Profile -->
-			<button mat-button>EDIT PROFILE</button>
+			<button mat-raised-button (click)="editProifle()">EDIT PROFILE</button>
 			
 			<!-- Follow -->
-			<button mat-button>FOLLOW</button>
+			<button mat-button (click)="follow()">FOLLOW</button>
 
 
 
@@ -43,9 +43,9 @@
 	
 	<div class="user-stats col-lg-12"> 
 	
-		<button mat-button>
-			<span>A few</span>
-			<span> posts </span>
+		<button mat-raised-button (click)="verifyToken()">
+			<span>0</span>
+			<span> Verify Token </span>
 		</button>
 
 
@@ -57,14 +57,14 @@
 
 		</button>
 
-		<button mat-button>
+		<button mat-raised-button>
 			<span>{{profile.followers_count}}</span>
 			<span> followers </span>
 		</button>
 
-		<button mat-button>
+		<button mat-raised-button>
 			<span>{{profile.following_count}}</span>	
-			<span> posts </span>
+			<span> following </span>
 		</button>
 	
 	</div>

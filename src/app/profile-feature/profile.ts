@@ -1,4 +1,4 @@
-export class User {
+export interface User {
     username: string;
     password: string;
     email: string;
@@ -10,12 +10,13 @@ export class User {
 // add profile model later
 
 
-export class Profile {
+export interface Profile {
 	id: number;
 	about: string;
 	label: string; // <-- same as the username
 	followers_count: number;
 	following_count: number;
 	chatgroups_count: number;
+	///user: User;
 	// timestamp, avatar, followers
 }

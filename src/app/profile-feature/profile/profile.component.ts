@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ProfileModalComponent } from '../profile-modal/profile-modal.component'
 import { ChatGroupComponent }	from '../../chatgroup-feature/chatgroup/chatgroup.component'
-
+import { ModalComponent } from  '../..//modal/modal.component'
 
 @Component({
   selector: 'app-profile',
@@ -18,13 +18,14 @@ import { ChatGroupComponent }	from '../../chatgroup-feature/chatgroup/chatgroup.
 export class ProfileComponent {
 
 	profile$: Observable<Profile>;
+	username: string;
 	//profile: Profile;
 
 	constructor(
 			  private userService: UserService,
 			  private route: ActivatedRoute,
 			  private router: Router,
-			  public  dialog: MatDialog
+			  public  dialog: MatDialog,
 			  ) { }
 
 
@@ -32,22 +33,48 @@ export class ProfileComponent {
 
 		this.getProfile()
 
+		this.username = this.route.snapshot.paramMap.get('username');
+
 	}
 
 
 	openDialog() {
 		
-		const dialogRef = this.dialog.open(ProfileModalComponent, config: {
-			data: {name: 'Profile Modal'}
+		const dialogRef = this.dialog.open(ProfileModalComponent, {
+			data: {username: this.username,
+				   modalType: 'showChatGroups'},
+			height: '500px',
+			width: '500px'
 		});
 
 		dialogRef.afterClosed().subscribe(result => {
 
 			console.log(`Dialog result: ${result}`);
 			
-			});
+		});
 	}
 
+
+	editProifle() {
+
+		const dialogRef = this.dialog.open(ProfileModalComponent, {
+			data: {username: this.username,
+				   modalType: 'editProfile'},
+			height: '500px',
+			width: '500px'
+		});
+
+
+		dialogRef.afterClosed().subscribe(result => {
+
+			console.log(result);
+			this.profile$ = result
+			// update the profile object (Observable)
+
+			
+		});
+
+	}
 
 
 	getProfile() {
@@ -57,6 +84,18 @@ export class ProfileComponent {
        		this.userService.getProfile(params.get('username')));
 	}
 
+
+	follow() {
+
+		this.userService.follow(this.username).subscribe()
+		
+	}
+
+	verifyToken() {
+
+		this.userService.verifyToken()
+		
+	}
 
 
   

@@ -3,26 +3,21 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map'
 
-import { finalize, tap } from 'rxjs/operators';
+import { finalize, tap, map} from 'rxjs/operators';
 import { catchError, retry } from 'rxjs/operators';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
 
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-  })
-};
 
 @Injectable()
 export class AuthService {
-    // public token = '';
     private restAuthUrlLogin = 'http://localhost:8000/rest-auth/login/';
     private restAuthUrlLogout = 'http://localhost:8000/rest-auth/logout/';
     private restAuthUrlSignup = 'http://localhost:8000/rest-auth/registration/';
-    private restAuthUrlChangePassword = 'http://localhost:8000/rest-auth/password/change';
-    
+    private restAuthUrlChangePassword = 'http://localhost:8000/rest-auth/password/change/';
+    private restAuthUrlLoginNew = 'http://localhost:8000/api/auth/token/';
+    private restAuthUrlVerifyToken = 'http://localhost:8000/api-token-verify/';
     private handleHttpError: HandleError;
 
     constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) {
@@ -31,39 +26,38 @@ export class AuthService {
 
     }
 
-    // login(email:string, password:string ) {
-    //     return this.http.post<User>('/api/login', {email, password})
-    //         // this is just the HTTP call, 
-    //         // we still need to handle the reception of the token
-    //         .shareReplay();
-    // }
+    verifyToken() {
 
+       return this.http.post(this.restAuthUrlVerifyToken, {token: localStorage.getItem('token')})
+           .map(
+               data => console.log(data)
+            )
 
-    public login(username:string, password:string) {
-        console.log("User login");
-        return this.http.post(this.restAuthUrlLogin, { username: username, email: "", password: password }, httpOptions)
-                    .map(
-
-                        data => localStorage.setItem('token', data['token'])
-
-                    )
     }
 
 
-    // private setSession(authResult) {
-    //     // localStorage.setItem('id_token', authResult.idToken);
-    //     // localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
-    //     localStorage.setItem('token', authResult.token)
+    login(username: string, password: string) {
 
-    // }
-
-
-
+        return this.http.post(this.restAuthUrlLoginNew, JSON.stringify({ username: username, password: password }))
+                    .map(
+                        data => localStorage.setItem('token', data['token']),
+                    )
+    }
 
 
     public logout(): void {
         localStorage.removeItem('token')
     }
+
+
+    isAuthenticated(): boolean {
+        if (localStorage.getItem('token')) {
+            return true;
+        } else {
+            return false;
+        };
+    }
+
 
 
     public signup(username:string, email: string, password1: string, password2: string) {
@@ -74,7 +68,7 @@ export class AuthService {
             password1: password1,
             password2: password2
         }
-        return this.http.post(this.restAuthUrlSignup, signupObject, httpOptions).pipe(
+        return this.http.post(this.restAuthUrlSignup, signupObject).pipe(
                 //retry(1), // retry the failed request once
                 catchError(this.handleHttpError('signup'))
             )
@@ -88,16 +82,60 @@ export class AuthService {
             new_password2: new_password2,
         }
 
-        return this.http.post(this.restAuthUrlChangePassword, changePasswordObject, httpOptions).pipe(
+        return this.http.post(this.restAuthUrlChangePassword, changePasswordObject).pipe(
             catchError(this.handleHttpError('changepassword'))
         )
 
 
     }
 
-
     public getAuthToken() {
         return localStorage.getItem('token')
     }
 
-}    
+}  
+
+
+
+
+
+    
+// const httpOptions = {
+//     headers: new HttpHeaders({
+//     'Accept': 'application/json',
+//     'Content-Type':  'application/json',
+//     })
+// };
+
+// const httpOptions = {
+//     headers: new HttpHeaders({
+//     'Accept': 'application/json',
+//     'Content-Type':  'application/json',
+//     'Authorization': localStorage.getItem('token')
+
+//     })
+// };
+    // private setSession(authResult) {
+    //     // localStorage.setItem('id_token', authResult.idToken);
+    //     // localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
+    //     localStorage.setItem('token', authResult.token)
+
+    // }
+
+    // login(email:string, password:string ) {
+    //     return this.http.post<User>('/api/login', {email, password})
+    //         // this is just the HTTP call, 
+    //         // we still need to handle the reception of the token
+    //         .shareReplay();
+    // }
+
+
+    // public login(username:string, password:string) {
+    //     console.log("User login");
+    //     return this.http.post(this.restAuthUrlLogin, { username: username, email: "", password: password }, httpOptions)
+    //                 .map(
+
+    //                     data => localStorage.setItem('token', data['token'])
+
+    //                 )
+    // }  

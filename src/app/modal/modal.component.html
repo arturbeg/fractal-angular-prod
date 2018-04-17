@@ -1,6 +1,7 @@
-<div class="modal">
+<div class="modal" *ngIf="followers$ | async as followers">
 
-	<p *ngFor="let follower of followers"> some followers {{follower.username}} </p>
+	<h2>Followers</h2>
+	<p *ngFor="let follower of followers"> {{follower}} </p>
 
 
 </div>

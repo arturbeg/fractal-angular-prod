@@ -14,18 +14,11 @@ import { ChatGroupInterface } from './chatgroup';
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json'
-    // 'Authorization': 'my-auth-token' 
-  })
-};
-
 
 @Injectable()
 export class ChatGroupService {
 
-	chatgroupApiUrl = 'http://localhost:8000/api/chatgroups/warwick-economics-summit/?format=json'; // url to web api
+	chatgroupApiUrl = 'http://localhost:8000/api/chatgroups/'; // url to web api
 	private handleHttpError: HandleError;
 
 
@@ -36,26 +29,34 @@ export class ChatGroupService {
 
 	
 	addChatGroup (chatgroup: ChatGroupInterface): Observable<ChatGroupInterface> {
-	return this.http.post<ChatGroupInterface>(this.chatgroupApiUrl, chatgroup, httpOptions)
+	return this.http.post<ChatGroupInterface>(this.chatgroupApiUrl, chatgroup)
 	  .pipe(
 	    catchError(this.handleHttpError('addChatGroup', chatgroup))
 	  );
 	}
 
-	getChatGroup() {
+	getChatGroup(label: string) {
 
-		return this.http.get<ChatGroupInterface>(this.chatgroupApiUrl)
-				.pipe(
-					retry(3), // retry the failed request up to 3 times
-					catchError(this.handleHttpError('getChatGroup'))	
-				);
+		return this.http.get<ChatGroupInterface>(this.chatgroupApiUrl + label + '/')
+				// .pipe(
+				// 	retry(3), // retry the failed request up to 3 times
+				// 	catchError(this.handleHttpError('getChatGroup'))	
+				// );
+
+	}
+
+	follow(label:string) {
+
+		const followApiUrl = this.chatgroupApiUrl + label + '/follow/'
+		return this.http.get(followApiUrl)
+
 	}
 
 
 	deleteChatGroup(label: string): Observable<{}> {
 
 		const url = '' // DELETE api/chatgroups/label
-		return this.http.delete(url, httpOptions)
+		return this.http.delete(url)
 			.pipe(
 
 				catchError(this.handleHttpError('deleteChatGroup'))
@@ -69,7 +70,7 @@ export class ChatGroupService {
 
 
 	updateChatGroup(chatgroup:ChatGroupInterface): Observable<ChatGroupInterface> {
-		return this.http.put<ChatGroupInterface>(this.chatgroupApiUrl, chatgroup, httpOptions)
+		return this.http.put<ChatGroupInterface>(this.chatgroupApiUrl, chatgroup)
 			.pipe(
 
 				catchError(this.handleHttpError('updateChatGroup', chatgroup))

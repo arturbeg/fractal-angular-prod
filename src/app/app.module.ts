@@ -47,7 +47,9 @@ import { httpInterceptorProviders } from './http-interceptors/index';
 
 import { AuthService }          from './auth.service';
 
-import { ModalComponent } from './modal/modal.component'
+import { ModalComponent } from './modal/modal.component';
+
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,8 @@ import { ModalComponent } from './modal/modal.component'
     NgbModule.forRoot(),
     MaterialModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule
   ],
 
   exports: [

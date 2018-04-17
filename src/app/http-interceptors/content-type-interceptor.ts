@@ -5,21 +5,21 @@ import {
 
 import { Observable } from 'rxjs/Observable';
 
-import { AuthService } from '../auth.service';
+
 
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor {
+export class ContentTypeInterceptor implements HttpInterceptor {
 
-	constructor(private authService:AuthService) {}
+	constructor() {}
 
 	intercept(req: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>> {
 	
-		const authReq = req.clone({
-			headers: req.headers.append('Authorization', 'JWT ' + localStorage.getItem('token'))
+		const contentTypeReq = req.clone({
+			headers: req.headers.set('Content-Type', 'application/json')
 		})
 
-		return next.handle(authReq)
+		return next.handle(contentTypeReq)
 
 	}
 }
