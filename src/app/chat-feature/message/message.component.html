@@ -10,17 +10,17 @@
 		<h5 class="msg-content">
 
 			<!-- Username -->
-			<span class="font-weight-bold">arturbegyan</span>
+			<span class="font-weight-bold"> {{message.from.label}} </span>
 
 			<!-- Timestamp -->
 
-			<span class="text-secondary timestamp"> 5h ago </span>
+			<span class="text-secondary timestamp"> {{ message.timestamp }}</span>
 
 			<!-- Text/Image/Video/Link -->
 
 			<p class="msg-text">
 				
-				I think that we should do something I think that we should do something I think that we should do somethingI think that we should do somethingI think that we should do something
+				{{message.content}}
 
 			</p>
 
@@ -32,8 +32,8 @@
 
 	<div class="float-left msg-related-actions">
 
-	<button mat-button>LIKE </button>
-	<button mat-button>SHARE</button>
+	<button mat-button>LIKE #</button>
+	<button mat-button>SHARE #</button>
 
 
 	</div>

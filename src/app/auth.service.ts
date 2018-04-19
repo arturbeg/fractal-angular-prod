@@ -40,13 +40,24 @@ export class AuthService {
 
         return this.http.post(this.restAuthUrlLoginNew, JSON.stringify({ username: username, password: password }))
                     .map(
-                        data => localStorage.setItem('token', data['token']),
+                        data => {
+                            
+                            localStorage.setItem('token', data['token'])
+
+                            if (localStorage.getItem('token')) {
+                                localStorage.setItem('username', username)
+                            }
+                        
+                        },
                     )
+
+            
     }
 
 
     public logout(): void {
         localStorage.removeItem('token')
+        localStorage.removeItem('username')
     }
 
 

@@ -5,4 +5,5 @@ export interface Message {
     from?: Profile;
     content?: any;
     action?: Action;
+    timestamp: string;
 }

@@ -1,91 +1,3 @@
-<div class="row">
-  <div class="col-lg-3 border border-top-0">
-    <h5 class="float-left">Topics</h5>
-    <h5 class="float-right">Local</h5>
-  </div>
-  <div class="col-lg-6 border-bottom">
-    <h5>Elon Musk's Compensation Deal</h5>
-  </div>
-  <div class="col-lg-3 border border-top-0">
-    <h5>Info</h5>
-  </div>
-</div>
-
-<div class="row" style="height:600px;">
-  <div class="col-lg-3 border border-top-0">
-    <form class="example-form">
-
-      <mat-form-field style="min-width: 250px;">
-        <span matPrefix>&nbsp;</span>
-        <input type="tel" matInput placeholder="Search">
-        <mat-icon matSuffix>search</mat-icon>
-      </mat-form-field>
-
-    </form>
-    <div style="height: 500px; overflow-y: scroll;">
-      <app-chat-card> </app-chat-card>
-      <app-chat-card> </app-chat-card>
-      <app-chat-card> </app-chat-card>
-    </div>
-  </div>
-  <div class="col-lg-6 border-bottom">
-    <div style="position: absolute; bottom: 0;">
-      <!-- Message compoennt plugged in here -->
-      <app-message> </app-message>
-      <mat-form-field class="float-left message-input">
-          <textarea matInput placeholder="Write a message" matTextareaAutosize matAutosizeMinRows="1"
-              matAutosizeMaxRows="5">
-          </textarea>
-      </mat-form-field>
-      <div class="float-left send-message-actions">
-        <button mat-button [matMenuTriggerFor]="menu">OPTIONS</button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item>Photo</button>
-          <button mat-menu-item>Video</button>
-        </mat-menu>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-3 border border-top-0">
-    <div class="row border-bottom">
-      <strong>About</strong>
-      <br>
-      What Elon Musk's Compensation Deal Means for Tesla Motors
-    </div>
-    <div class="row border-bottom">
-      <strong>Participants</strong>
-    </div>
-    <mat-list>
-      <mat-list-item>
-        <img matListAvatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png/220px-Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png" alt="...">
-        <h3 matLine> Supreme Leader </h3>
-        <p matLine>
-          <span> Kim Jong Un </span>
-          <span class="demo-2"> sent a message at 10:00 </span>
-        </p>
-      </mat-list-item>
-      <mat-list-item>
-        <img matListAvatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png/220px-Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png" alt="...">
-        <h3 matLine> Supreme Leader </h3>
-        <p matLine>
-          <span> Kim Jong Un </span>
-          <span class="demo-2"> sent a message at 10:00 </span>
-        </p>
-      </mat-list-item>
-      <mat-list-item>
-        <img matListAvatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png/220px-Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png" alt="...">
-        <h3 matLine> Supreme Leader </h3>
-        <p matLine>
-          <span> Kim Jong Un </span>
-          <span class="demo-2"> sent a message at 10:00 </span>
-        </p>
-      </mat-list-item>
-    </mat-list>
-
-  </div>
-</div>
-
-<!--
 <div id="chat">
 
 	<div class="row">
@@ -94,12 +6,11 @@
 
 			<mat-card class="header">
 
+				<h5 class="text-center">
 
-			<h5 class="text-center">
+					Related
 
-				Related
-
-			</h5>
+				</h5>
 
 
 			<mat-card-actions class="chat-type-switches">
@@ -156,23 +67,11 @@
 
 
 			<mat-card class="chatbox-content">
-
-
 				<div class="chatbox-content-body">
-
-
-
-					<app-message> </app-message>
-
-
-
-
+					<!-- Messages in here -->
+					<app-message *ngFor="let message of messages" [message]="message"> </app-message>
 				</div>
-
-
-
 			</mat-card>
-
 
 
 
@@ -180,8 +79,21 @@
 
 				<mat-form-field class="float-left message-input">
 
-	   				<textarea matInput placeholder="Write a message" matTextareaAutosize matAutosizeMinRows="1"
-	            	matAutosizeMaxRows="5"></textarea>
+						 <textarea 
+						 matInput 
+						 placeholder="Type your message" 
+						 matTextareaAutosize 
+						 matAutosizeMinRows="1"
+						 matAutosizeMaxRows="5"
+						 #inputMessage
+						 maxLength="140"
+						 [(ngModel)]="messageContent"
+						 (keyup.enter)="sendMessage(messageContent)" 
+						 >
+			
+						</textarea>
+
+						<mat-hint align="end">{{inputMessage.value.length}}/140</mat-hint>
 
 
 
@@ -276,4 +188,95 @@
 
 
 </div>
--->
+
+
+
+<!--
+
+<div class="row">
+  <div class="col-lg-3 border border-top-0">
+    <h5 class="float-left">Topics</h5>
+    <h5 class="float-right">Local</h5>
+  </div>
+  <div class="col-lg-6 border-bottom">
+    <h5>Elon Musk's Compensation Deal</h5>
+  </div>
+  <div class="col-lg-3 border border-top-0">
+    <h5>Info</h5>
+  </div>
+</div>
+
+<div class="row" style="height:600px;">
+  <div class="col-lg-3 border border-top-0">
+    <form class="example-form">
+
+      <mat-form-field style="min-width: 250px;">
+        <span matPrefix>&nbsp;</span>
+        <input type="tel" matInput placeholder="Search">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+    </form>
+    <div style="height: 500px; overflow-y: scroll;">
+      <app-chat-card> </app-chat-card>
+      <app-chat-card> </app-chat-card>
+      <app-chat-card> </app-chat-card>
+    </div>
+  </div>
+  <div class="col-lg-6 border-bottom">
+    <div style="position: absolute; bottom: 0;">
+
+      <app-message> </app-message>
+      <mat-form-field class="float-left message-input">
+          <textarea matInput placeholder="Write a message" matTextareaAutosize matAutosizeMinRows="1"
+              matAutosizeMaxRows="5">
+          </textarea>
+      </mat-form-field>
+      <div class="float-left send-message-actions">
+        <button mat-button [matMenuTriggerFor]="menu">OPTIONS</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Photo</button>
+          <button mat-menu-item>Video</button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 border border-top-0">
+    <div class="row border-bottom">
+      <strong>About</strong>
+      <br>
+      What Elon Musk's Compensation Deal Means for Tesla Motors
+    </div>
+    <div class="row border-bottom">
+      <strong>Participants</strong>
+    </div>
+    <mat-list>
+      <mat-list-item>
+        <img matListAvatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png/220px-Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png" alt="...">
+        <h3 matLine> Supreme Leader </h3>
+        <p matLine>
+          <span> Kim Jong Un </span>
+          <span class="demo-2"> sent a message at 10:00 </span>
+        </p>
+      </mat-list-item>
+      <mat-list-item>
+        <img matListAvatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png/220px-Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png" alt="...">
+        <h3 matLine> Supreme Leader </h3>
+        <p matLine>
+          <span> Kim Jong Un </span>
+          <span class="demo-2"> sent a message at 10:00 </span>
+        </p>
+      </mat-list-item>
+      <mat-list-item>
+        <img matListAvatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png/220px-Kim_Jong-un_at_the_Workers%27_Party_of_Korea_main_building.png" alt="...">
+        <h3 matLine> Supreme Leader </h3>
+        <p matLine>
+          <span> Kim Jong Un </span>
+          <span class="demo-2"> sent a message at 10:00 </span>
+        </p>
+      </mat-list-item>
+    </mat-list>
+
+  </div>
+</div>
+ -->
