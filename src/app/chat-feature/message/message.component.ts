@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Message } from '../message'
+import { Message } from '../message';
+import { MessageService } from '../message.service'
 
 
 @Component({
@@ -13,15 +14,23 @@ export class MessageComponent implements OnInit {
   
 
 
-  constructor() { }
+  constructor(private messageService: MessageService) { }
 
   ngOnInit() {
   }
 
-  like() { 
-
-    
-    
+  // need to pass the id of the message
+  like(id) { 
+    this.messageService.like(id).subscribe(
+      data => { 
+        console.log(data)
+        if(data['status']=="message liked") {
+          this.message.likers_count++
+        } else {
+          this.message.likers_count--          
+        }
+      }
+    )
   }  
 
 }

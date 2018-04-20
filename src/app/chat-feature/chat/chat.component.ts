@@ -7,7 +7,8 @@ import { Message } from '../message';
 // import { User } from './shared/model/user';
 import { Profile } from '../../profile-feature/profile'
 import { SocketService } from '../socket.service';
-import { UserService } from '../../profile-feature/profile.service'
+import { UserService } from '../../profile-feature/profile.service';
+import { MessageService } from '../message.service';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class ChatComponent implements OnInit {
   ioConnection: any;
 
   constructor(private socketService: SocketService,
-              private userService: UserService) { 
+              private userService: UserService,
+              private messageService: MessageService) { 
 
       // use the check Authenticated function in here          
       if (localStorage.getItem('username')) {         
@@ -53,13 +55,33 @@ export class ChatComponent implements OnInit {
 
   }
 
+  private messageLike(id) {
+    this.messageService.like(id).subscribe(
+      data => console.log(data)
+    )
+  }
+
   private initIoConnection(): void {
     this.socketService.initSocket();
 
     this.ioConnection = this.socketService.onMessage()
       .subscribe((message: Message) => {
-        this.messages.push(message);
-        // at the same time can save the message via the django backend
+        // save the message via the Django backend, then push it -> don't have to store
+        // the username in localstorage, 1 is the test topic id
+        this.messageService.newMessage(message.content, 1).subscribe(
+          data => { 
+            console.log(data)
+            message.id = data['pk']
+            message.topic = data['topic']
+            message.likers_count = data['likers_count']
+            console.log(message)
+            this.messages.push(message)
+          }
+
+        )
+        
+        // this.messages.push(message);
+        
       });
 
     this.socketService.onEvent(Event.CONNECT)
@@ -79,9 +101,12 @@ export class ChatComponent implements OnInit {
     }
 
     this.socketService.send({
+      id: null,
+      topic: null,
       from: this.profile,
       content: message,
-      timestamp: ''
+      timestamp: '',
+      likers_count: null
     });
     this.messageContent = null;
   }

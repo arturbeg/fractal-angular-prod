@@ -11,6 +11,7 @@ import { MaterialModule }          from '../material.module';
 import { ProfileModule } from '../profile-feature/profile.module'
 import { SharedModule } from '../shared/shared.module'
 import { SocketService } from './socket.service'
+import { MessageService } from './message.service'
 // import { ChatService } from './chat.service'
 
 @NgModule({
@@ -27,7 +28,7 @@ import { SocketService } from './socket.service'
     ChatCardComponent,
     ChatComponent
   ],
-  providers: [ SocketService ],
+  providers: [ SocketService, MessageService ],
 
   exports: [
 

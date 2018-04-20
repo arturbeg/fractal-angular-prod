@@ -32,7 +32,10 @@
 
 	<div class="float-left msg-related-actions">
 
-	<button mat-button>LIKE #</button>
+	<button mat-button (click)="like(message.id)" >
+		<span> {{message.likers_count}} </span>	
+		<span> LIKE </span>	
+	</button>
 	<button mat-button>SHARE #</button>
 
 
