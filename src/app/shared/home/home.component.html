@@ -3,41 +3,74 @@
 
   <!-- Login/Register -->
   <mat-card>
-    <form class="example-form">
-      <mat-form-field>
-        <input matInput placeholder="Email">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="Password">
-      </mat-form-field>
-    </form>
-
-    <mat-checkbox>Remember me</mat-checkbox>
-
+    <mat-card-content>
+      <form class="example-form">
+        <mat-form-field>
+          <input matInput placeholder="Email">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Password">
+        </mat-form-field>
+      </form>
+      <mat-checkbox>Remember me</mat-checkbox>
+    </mat-card-content>
     <mat-card-actions>
       <button mat-button color="primary">Login</button>
     </mat-card-actions>
-
   </mat-card>
 
   <!-- Suggestions -->
-  <mat-card>
-    <mat-card-header>
-      Suggestions
-    </mat-card-header>
-    <br>
-    # Football
-    <br>
-    # Republicans
-    <br>
-    # North Korea
-  </mat-card>
+  <div class="bts-card">
+    <ul class="list-group">
+      <a href="#" class="list-group-item list-group-item-action list-group-item-light">Suggestions</a>
+      <li class="list-group-item"># Lorem Ipsum</li>
+      <li class="list-group-item"># Lorem Ipsum</li>
+      <li class="list-group-item"># Lorem Ipsum</li>
+    </ul>
+  </div>
 
   <!-- Mini Chat -->
   <mat-card>
-    This is where the mini chat will go?
+    <div class="chatbox-content-body">
+      <!-- Messages in here -->
+      <p> hi </p>
+      <p> hi </p>
+      <p> hi </p>
+      <p> hi </p>
+      <p> hi </p>
+      <p> hi </p>
+      <p> hi </p>
+      <p> hi </p>
+      <p> hi </p>
+    </div>
   </mat-card>
+
+  <div class="bts-card">
+    <div class="send-message">
+      <mat-form-field class="float-left message-input">
+           <textarea
+           matInput
+           placeholder="Type your message"
+           matTextareaAutosize
+           matAutosizeMinRows="1"
+           matAutosizeMaxRows="5"
+           #inputMessage
+           maxLength="140"
+           [(ngModel)]="messageContent"
+           (keyup.enter)="sendMessage(messageContent)"
+           >
+          </textarea>
+          <mat-hint align="end">{{inputMessage.value.length}}/140</mat-hint>
+        </mat-form-field>
+        <div class="float-left send-message-actions">
+        <button mat-button [matMenuTriggerFor]="menu">OPTIONS</button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Photo</button>
+          <button mat-menu-item>Video</button>
+        </mat-menu>
+        </div>
+    </div>
+  </div>
 
   <!-- Fill side bar to make content even -->
   <div class="filler">

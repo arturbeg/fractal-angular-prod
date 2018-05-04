@@ -20,16 +20,31 @@
 .sidebar {
   .mat-card {
     float:right;
-    //position: relative;
     clear: both;
     width: 19.25rem;
-    margin-bottom: 20px;
-    margin-left: 20px;
+    margin-bottom: 15px;
+    margin-left: 15px;
   }
+
+  .bts-card {
+    float:right;
+    clear: both;
+    width: 19.25rem;
+    margin-bottom: 15px;
+    margin-left: 15px;
+  }
+
   .filler {
     float:right;
     clear: both;
     width: 19.25rem;
     height: calc(100vh - 400px);
   }
+}
+
+.chatbox-content-body {
+  float:left;
+  overflow-y: auto;
+  height: 150px;
+  width: 17.25rem;
 }
