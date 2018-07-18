@@ -19,7 +19,8 @@ export class MessageComponent implements OnInit {
   ngOnInit() {
   }
 
-  // need to pass the id of the message
+
+  // later retreive the updated likers count
   like(id) { 
     this.messageService.like(id).subscribe(
       data => { 
@@ -31,6 +32,15 @@ export class MessageComponent implements OnInit {
         }
       }
     )
-  }  
+  }
+  
+  
+  share(id) {
+    this.messageService.share(id).subscribe(
+      data => {
+        console.log(data)
+      }
+    )
+  }
 
 }

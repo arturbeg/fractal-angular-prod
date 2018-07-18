@@ -4,7 +4,7 @@ import { AuthService } from '../auth.service';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 import { catchError, retry } from 'rxjs/operators';
-
+import { Message } from './message'
 
 @Injectable()
 export class MessageService {
@@ -22,17 +22,27 @@ export class MessageService {
     return this.http.get(likeApiUrl)
   }
 
-  newMessage(text: string, topicId: number) {
+
+  share(id) {
+
+    const shareApiUrl = this.rootApiUrl + id + '/share/'
+    return this.http.get(shareApiUrl)
+    
+  }
+
+  newMessage(text: string, topicLabel: string, userId: number) {
 
     var messageObject = {
       text: text,
-      topic: topicId
+      topic: topicLabel,
+      user: userId,
     }
-    return this.http.post(this.rootApiUrl, messageObject).pipe(
+    return this.http.post<Message>(this.rootApiUrl, messageObject).pipe(
       catchError(this.handleHttpError('newMessage'))
-  )
+    )
 
   }
+
 
 
 }

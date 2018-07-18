@@ -1,0 +1,29 @@
+<div>
+	
+	
+    <form [formGroup]="topicForm">
+  
+      <div class="form-group">
+        <label class="center-block">Name:
+          <input class="form-control" formControlName="name">
+        </label>
+      </div>
+  
+      <div class="form-group">
+        <label class="center-block">About:
+          <input class="form-control" formControlName="about">
+        </label>
+      </div>
+  
+  
+      <div class="form-buttons">
+        <button class="button button-primary" (click)="submitChanges()">Submit</button>
+      </div>
+  
+    </form>
+  
+  
+    <p>Form value: {{ topicForm.value | json }}</p>
+  
+  
+  </div>

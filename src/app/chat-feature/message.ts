@@ -2,20 +2,15 @@ import { Action } from './action'
 import { Profile } from '../profile-feature/profile'
 
 export interface Message {
+    
     id: number;
-    from?: Profile;
-    content?: any;
-    action?: Action;
+    text?: any; // used to be from
     timestamp: string;
-    topic: number;
+    topic: any; //should be a string
+    user: number; // id of the user
+    sender?: Profile;
     likers_count: number;
+
+    //action?: Action;
+    
 }
-
-
-
-// export interface MessageDjango {
-//     id: number;
-//     text: string;
-//     timestamp: string;
-
-// }

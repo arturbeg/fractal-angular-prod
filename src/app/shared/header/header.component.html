@@ -51,8 +51,13 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#">Topic</a>
-            <a class="dropdown-item" href="#">LocalChat</a>
+
             <a class="dropdown-item" href="#">ChatGroup</a>
+
+            <a class="dropdown-item" [routerLink]="['chat', 'test']">Test Topic</a>
+            <a class="dropdown-item" [routerLink]="['chat', 'new']">New Topic</a>
+
+
           </div>
         </li>
 
@@ -62,7 +67,7 @@
             PROFILE
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" routerLink="/profile/artur">My Profile</a>
+            <a class="dropdown-item" routerLink="/profile/arturbegyan">My Profile</a>
             <a class="dropdown-item" (click)="logout()">Log Out</a>
             <a class="dropdown-item" routerLink="/login">Log In</a>
             <a class="dropdown-item" routerLink="/signup">Sign Up</a>

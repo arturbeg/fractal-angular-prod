@@ -3,81 +3,42 @@
 
   <!-- Login/Register -->
   <mat-card>
-    <mat-card-content>
-      <form class="example-form">
-        <mat-form-field>
-          <input matInput placeholder="Email">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Password">
-        </mat-form-field>
-      </form>
-      <mat-checkbox>Remember me</mat-checkbox>
-    </mat-card-content>
+    <form class="example-form">
+      <mat-form-field>
+        <input matInput placeholder="Email">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Password">
+      </mat-form-field>
+    </form>
+
+    <mat-checkbox>Remember me</mat-checkbox>
+
     <mat-card-actions>
       <button mat-button color="primary">Login</button>
     </mat-card-actions>
+
   </mat-card>
 
   <!-- Suggestions -->
-  <div class="bts-card">
-    <ul class="list-group">
-      <a href="#" class="list-group-item list-group-item-action list-group-item-light">Suggestions</a>
-      <li class="list-group-item"># Lorem Ipsum</li>
-      <li class="list-group-item"># Lorem Ipsum</li>
-      <li class="list-group-item"># Lorem Ipsum</li>
-    </ul>
-  </div>
+  <mat-card>
+    <mat-card-header>
+      Suggestions
+    </mat-card-header>
+    <br>
+    # Football
+    <br>
+    # Republicans
+    <br>
+    # North Korea
+  </mat-card>
 
   <!-- Mini Chat -->
   <mat-card>
-    <div class="chatbox-content-body">
-      <!-- Messages in here -->
-      <p> hi </p>
-      <p> hi </p>
-      <p> hi </p>
-      <p> hi </p>
-      <p> hi </p>
-      <p> hi </p>
-      <p> hi </p>
-      <p> hi </p>
-      <p> hi </p>
-    </div>
+    This is where the mini chat will go?
   </mat-card>
 
-  <div class="bts-card">
-    <div class="send-message">
-      <mat-form-field class="float-left message-input">
-           <textarea
-           matInput
-           placeholder="Type your message"
-           matTextareaAutosize
-           matAutosizeMinRows="1"
-           matAutosizeMaxRows="5"
-           #inputMessage
-           maxLength="140"
-           [(ngModel)]="messageContent"
-           (keyup.enter)="sendMessage(messageContent)"
-           >
-          </textarea>
-          <mat-hint align="end">{{inputMessage.value.length}}/140</mat-hint>
-        </mat-form-field>
-        <div class="float-left send-message-actions">
-        <button mat-button [matMenuTriggerFor]="menu">OPTIONS</button>
-        <mat-menu #menu="matMenu">
-          <button mat-menu-item>Photo</button>
-          <button mat-menu-item>Video</button>
-        </mat-menu>
-        </div>
-    </div>
-  </div>
-
-  <!-- Fill side bar to make content even -->
-  <div class="filler">
-    <!-- empty here -->
-  </div>
-
-</div>
 <div class="content">
 
   <mat-tab-group>
@@ -108,75 +69,6 @@
         <div class="float-left">
           <button mat-button>UPVOTE</button>
           <span>25</span>
-          <button mat-button>DOWNVOTE</button>
-        </div>
-        <div class="float-right">
-          <button mat-button>SAVE</button>
-          <button mat-button>OPTIONS</button>
-        </div>
-      </div>
-    </mat-list-item>
-
-    <mat-list-item>
-      <img matListAvatar class="img-fluid rounded" src="https://pixel.nymag.com/imgs/daily/intelligencer/2018/03/21/21-trump-putin-2.w710.h473.jpg">
-      <h4 mat-line>Trump talks shit about Putin</h4>
-      <p mat-line class="text-secondary">Donald Trump</p>
-      <p mat-line>
-        <mat-icon matListIcon>
-          <img class="img-fluid rounded-circle" src="https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-1/p320x320/27544666_1610932332316513_8799680780576811652_n.jpg?oh=4ab2808f6c95e0cc187632daf5d3e668&oe=5B360964">
-        </mat-icon>
-        Trump being trump, putin being putin, kim jong un
-      </p>
-      <div mat-line>
-        <div class="float-left">
-          <button mat-button>UPVOTE</button>
-          <span>99</span>
-          <button mat-button>DOWNVOTE</button>
-        </div>
-        <div class="float-right">
-          <button mat-button>SAVE</button>
-          <button mat-button>OPTIONS</button>
-        </div>
-      </div>
-    </mat-list-item>
-
-    <mat-list-item>
-      <img matListAvatar class="img-fluid rounded" src="https://pixel.nymag.com/imgs/daily/intelligencer/2018/03/21/21-trump-putin-2.w710.h473.jpg">
-      <h4 mat-line>Trump talks shit about Putin</h4>
-      <p mat-line class="text-secondary">Donald Trump</p>
-      <p mat-line>
-        <mat-icon matListIcon>
-          <img class="img-fluid rounded-circle" src="https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-1/p320x320/27544666_1610932332316513_8799680780576811652_n.jpg?oh=4ab2808f6c95e0cc187632daf5d3e668&oe=5B360964">
-        </mat-icon>
-        Trump being trump, putin being putin, kim jong un
-      </p>
-      <div mat-line>
-        <div class="float-left">
-          <button mat-button>UPVOTE</button>
-          <span>99</span>
-          <button mat-button>DOWNVOTE</button>
-        </div>
-        <div class="float-right">
-          <button mat-button>SAVE</button>
-          <button mat-button>OPTIONS</button>
-        </div>
-      </div>
-    </mat-list-item>
-
-    <mat-list-item>
-      <img matListAvatar class="img-fluid rounded" src="https://pixel.nymag.com/imgs/daily/intelligencer/2018/03/21/21-trump-putin-2.w710.h473.jpg">
-      <h4 mat-line>Trump talks shit about Putin</h4>
-      <p mat-line class="text-secondary">Donald Trump</p>
-      <p mat-line>
-        <mat-icon matListIcon>
-          <img class="img-fluid rounded-circle" src="https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-1/p320x320/27544666_1610932332316513_8799680780576811652_n.jpg?oh=4ab2808f6c95e0cc187632daf5d3e668&oe=5B360964">
-        </mat-icon>
-        Trump being trump, putin being putin, kim jong un
-      </p>
-      <div mat-line>
-        <div class="float-left">
-          <button mat-button>UPVOTE</button>
-          <span>99</span>
           <button mat-button>DOWNVOTE</button>
         </div>
         <div class="float-right">

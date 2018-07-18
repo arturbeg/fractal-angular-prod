@@ -4,13 +4,17 @@
 
 		<!-- User Avatar -->
 
-		<img class="float-left rounded-circle" src="https://scontent-frt3-2.xx.fbcdn.net/v/t1.0-9/27544666_1610932332316513_8799680780576811652_n.jpg?_nc_cat=0&oh=4330b0848c4004b64bb29fb68f0715ed&oe=5B30B348" height="40px" width="40px">
+		<a [routerLink]="['/profile', message.sender.label]">
+			
+			<img class="float-left rounded-circle" src="http://santetotal.com/wp-content/uploads/2014/05/default-user.png" height="40px" width="40px"> 
+		
+		</a>
 
 		<!-- Message Content -->
 		<h5 class="msg-content">
 
 			<!-- Username -->
-			<span class="font-weight-bold"> {{message.from.label}} </span>
+			<span class="font-weight-bold"> {{message.sender.label}} </span>
 
 			<!-- Timestamp -->
 
@@ -20,7 +24,7 @@
 
 			<p class="msg-text">
 				
-				{{message.content}}
+				{{message.text}}
 
 			</p>
 
@@ -36,7 +40,12 @@
 		<span> {{message.likers_count}} </span>	
 		<span> LIKE </span>	
 	</button>
-	<button mat-button>SHARE #</button>
+	
+	<button mat-button (click)="share(message.id)">
+		
+		SHARE
+	
+	</button>
 
 
 	</div>
