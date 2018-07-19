@@ -31,6 +31,23 @@ export class SocketService {
         });
     }
 
+    // public onNewParticipant() {
+    //     // update participants list via Socket IO (new participant)
+    //     this.socket.on('new_participant', function(data) {
+    //         // do stuff with the new participant
+    //         console.log("This profile joined the chat, ", data.profile)
+    //     })
+    // }
+
+    // public onLeaveParticipant() {
+    //     // update participants list via Socket IO (participant left)
+
+    //     this.socket.on('leave_participant', function(data) {
+    //         // do stuff with the participant who left the room
+    //         console.log("This profile left the chat, ", data.profile)
+    //     })
+    // }
+
     public onEvent(event: Event): Observable<any> {
         return new Observable<Event>(observer => {
             this.socket.on(event, () => observer.next());

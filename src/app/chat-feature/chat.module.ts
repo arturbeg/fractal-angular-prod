@@ -14,6 +14,8 @@ import { SocketService } from './socket.service'
 import { MessageService } from './message.service'
 import { ChatService } from './chat.service';
 import { EditTopicModalComponent } from './edit-topic-modal/edit-topic-modal.component'
+
+import { NgxAutoScrollModule } from "ngx-auto-scroll";
 // import { ChatService } from './chat.service'
 
 @NgModule({
@@ -24,7 +26,8 @@ import { EditTopicModalComponent } from './edit-topic-modal/edit-topic-modal.com
     MaterialModule,
     ProfileModule,
     ChatRoutingModule,
-    SharedModule
+    SharedModule,
+    NgxAutoScrollModule
   ],
   declarations: [
     MessageComponent,

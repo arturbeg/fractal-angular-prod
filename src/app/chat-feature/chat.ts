@@ -1,4 +1,5 @@
 import { ChatGroup } from './../chatgroup-feature/chatgroup';
+import { Profile } from '../profile-feature/profile'
 
 export interface Chat {
 	id: number;
@@ -13,6 +14,7 @@ export interface Topic {
 	label: string;
 	rating: number;
 	chatgroup: ChatGroup;
+	participants: Profile[];
 	// owner
 	// chatgroup
 	// description

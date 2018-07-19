@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, AfterContentChecked, AfterViewChecked } from '@angular/core';
 
 import { Action } from '../action';
 import { Event } from '../event';
@@ -28,8 +28,8 @@ import {EditTopicModalComponent} from '../edit-topic-modal/edit-topic-modal.comp
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-
-  
+  // @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+  @ViewChild('chatbox') chatbox: ElementRef;
   
   topic: Topic;
   action = Action;
@@ -50,17 +50,38 @@ export class ChatComponent implements OnInit {
 
               public  dialog: MatDialog,
 
-              ) {           
-      // use the check Authenticated function in here          
-      if (localStorage.getItem('username')) {         
-        this.getProfile(localStorage.getItem('username'))          
-      } else {
-        console.log("Please log in to chat!")
-      }
+              ) 
+              
+        {           
+          // use the check Authenticated function in here          
+          if (localStorage.getItem('username')) {         
+            this.getProfile(localStorage.getItem('username'))          
+          } else {
+            console.log("Please log in to chat!")
+          }
 
-  }
+        }
+  
+        
+  // ngAfterViewChecked() {
+
+  //   console.log("After View Checked")
+  //   this.scrollToBottom()
+
+  // }
+
+  // public scrollToBottom() {
+
+  //   console.log(this.chatbox.nativeElement)
+  //   try {
+  //   this.chatbox.nativeElement.scrollTop = this.chatbox.nativeElement.scrollHeight;
+  //   } catch(err) {console.log(err)}
+
+  // }
 
   ngOnInit(): void {
+
+    
 
     this.initIoConnection();
 
@@ -74,34 +95,47 @@ export class ChatComponent implements OnInit {
   
       }
 
-      console.log(params.label)
       this.label = params.label
       
       localStorage.setItem('currentTopic', params.label)
 
+      this.joinRoom(this.label)
+      
       this.getTopic(this.label);
       this.getMessages(this.label);
 
-      
-      console.log(this.label)
-      this.joinRoom(this.label)
+      // scroll to bottom
+      this.chatbox.nativeElement.scrollIntoView(false)
+
 
     });
 
   }
+
+
   
-
-
 
   public joinRoom(label) {
     console.log("Joining the room ", label)
+    // update online_participants
+    this.chatService.participateTopic(label).subscribe(data => {
+      console.log(data)
+    })
+
     this.socketService.joinRoom(label)
+    
   }
 
   public leaveRoom(label) {
     console.log("Leaving the room ", label)
+    // update online_participants
+    this.chatService.leaveTopic(label).subscribe(data =>
+      {
+        console.log(data)
+      }
+    )
+    
     this.socketService.leaveRoom(label)
-    // Once there is a change in the URL -> use Router
 
   }
 
@@ -112,6 +146,7 @@ export class ChatComponent implements OnInit {
       data => {
         console.log(data)
         this.messages = data
+        // this.scrollToBottom();
       }
     )
   }
@@ -188,26 +223,23 @@ export class ChatComponent implements OnInit {
 
   }
 
-  // private messageLike(id) {
-  //   this.messageService.like(id).subscribe(
-  //     data => console.log(data)
-  //   )
-  // }
-
   private initIoConnection(): void {
     this.socketService.initSocket();
 
     this.ioConnection = this.socketService.onMessage()
       .subscribe((message: Message) => {
         this.messages.push(message)
+        this.chatbox.nativeElement.scrollIntoView(false)
       });
-      
+   
   }
 
+  // private ioParticipantUpdates() {
 
+  //   this.socketService.onNewParticipant()
+  //   this.socketService.onLeaveParticipant()
 
-
-
+  // }
 
   public sendMessage(message: string): void {
     if (!message) {

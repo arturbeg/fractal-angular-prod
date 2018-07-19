@@ -43,9 +43,27 @@ export class ChatService {
 	}
 
 
+	// newOnlineParticipant(label:string, )
+
+
 	deleteTopic(label:string) {
 		// delete the topic
 		return this.http.delete(this.chatApiUrl + label + '/')
+	}
+
+	// leaves online_participats if already there
+	participateTopic(label:string) {
+		console.log('participate ', label)
+		// http://127.0.0.1:8000/api/topics/test/participate/
+		const participateApiUrl = this.chatApiUrl + label + '/' + 'participate/'
+		return this.http.get(participateApiUrl)
+	}
+
+	leaveTopic(label:string) {
+		console.log('leave ', label)
+
+		const leaveApiUrl = this.chatApiUrl + label + '/' + 'leave/'
+		return this.http.get(leaveApiUrl)
 	}
 
 	upvoteTopic(label) {
