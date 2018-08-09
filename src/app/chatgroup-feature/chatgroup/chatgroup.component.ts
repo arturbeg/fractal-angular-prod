@@ -1,40 +1,43 @@
+import { Topic } from './../../chat-feature/chat';
+import { ChatgroupNonHttpService } from './../chatgroup-non-http.service';
+import { ChatGroup } from './../chatgroup';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
-import { ChatGroup, ChatGroupInterface } from '../chatgroup';
-
 import { ChatGroupCardComponent } from '../chatgroup-card/chatgroup-card.component';
+import { Observable } from 'rxjs/Observable';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
 
 import { ChatGroupService } from '../chatgroup.service';
 
-
-import { Observable } from 'rxjs/Observable';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
 @Component({
   selector: 'app-chatgroup',
   templateUrl: './chatgroup.component.html',
   styleUrls: ['./chatgroup.component.scss'],
-  providers: [ChatGroupService],
 })
 export class ChatGroupComponent implements OnInit {
 
-	chatgroup: ChatGroupInterface;
+	chatgroup: ChatGroup;
+	label: string;
+	topics: Topic[];
 
-	label: string
 
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
 		private chatGroupService: ChatGroupService,	
+		public chatgroupNonHttpService: ChatgroupNonHttpService,
 	) 
 	{ }
 
 	ngOnInit() {
   		this.label = this.route.snapshot.paramMap.get('label');
-  		this.getChatGroup(this.label);
+			this.getChatGroup(this.label);
+			this.getTopics(this.label)
 	}
 
 	getChatGroup(label) {
@@ -44,61 +47,17 @@ export class ChatGroupComponent implements OnInit {
 	}
 
 
-	follow() {
-
-		this.chatGroupService.follow(this.label).subscribe(
-
-			data =>  {
+  getTopics(label) {
+    this.chatGroupService.getChatGroupTopics(label).subscribe(
+      data => {
 				console.log(data)
-			}
-
-		)
-
-	}
-
-	getChatGroupFollowers() {
-
-	}
-
-
-	getChatGroupLocalChats() {
-
-	}
-
-
-	getChatGroupTopics() {
-
-	}
-
-
+				this.topics = data
+      }
+    )
+  }
 
 
 
 }
 
 
-
-
-
-	// getChatGroupResponse() {
-
-	// 	this.chatgroupService.getChatGroup()
-	// 		// resp is of type 'HttpResponse<Config>'
-	// 		.subscribe(
-
-	// 			resp => {
-	// 				// display its headers
-	// 				const keys = resp.headers.keys();
-	// 				this.headers = 
-	// 			}
-	// 		)
-	// }
-
-
-
-	// id: data['id'],
-	// name: data['name'],
-	// about: data['about'],
-	// description: data['description'],
-	// label: data['label'],
-	// followers_count: data['followers_count'],

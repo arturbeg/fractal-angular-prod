@@ -1,3 +1,5 @@
+import { ChatModule } from './../chat-feature/chat.module';
+import { ChatgroupNonHttpService } from './chatgroup-non-http.service';
 // Angular Modules
 import { NgModule }       			from '@angular/core';
 import { CommonModule }   			from '@angular/common';
@@ -13,19 +15,21 @@ import { ChatGroupRoutingModule }	from './chatgroup-routing.module';
 //import { AppModule }            from '../app.module';
 import { MaterialModule }          from '../material.module';
 
+
 @NgModule({
   imports: [
     //AppModule,
     CommonModule,
     FormsModule,
     ChatGroupRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ChatModule
   ],
   declarations: [
     ChatGroupComponent,
     ChatGroupCardComponent
   ],
-  providers: [ ChatGroupService ],
+  providers: [ ChatGroupService, ChatgroupNonHttpService ],
 
   exports: [
   	ChatGroupComponent,

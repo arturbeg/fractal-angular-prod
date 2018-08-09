@@ -1,3 +1,5 @@
+import { Topic } from './../chat-feature/chat';
+import { ChatGroup } from './chatgroup';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
@@ -9,7 +11,7 @@ import { catchError, retry } from 'rxjs/operators';
 
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 
-import { ChatGroupInterface } from './chatgroup';
+
 
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 
@@ -18,18 +20,26 @@ import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 @Injectable()
 export class ChatGroupService {
 
-	chatgroupApiUrl = 'http://localhost:8000/api/chatgroups/'; // url to web api
+	chatgroupApiUrl = 'http://localhost:8000/api/chatgroups/';
+
+
 	private handleHttpError: HandleError;
 
 
-  	constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler){
+  	constructor(
+			
+			private http: HttpClient, 
+			httpErrorHandler: HttpErrorHandler
+			
+		
+		){
 					
 		this.handleHttpError = httpErrorHandler.createHandleError('ChatGroupService');								
 	}
 
-	
-	addChatGroup (chatgroup: ChatGroupInterface): Observable<ChatGroupInterface> {
-	return this.http.post<ChatGroupInterface>(this.chatgroupApiUrl, chatgroup)
+	// reconfigure
+	addChatGroup (chatgroup: ChatGroup): Observable<ChatGroup> {
+	return this.http.post<ChatGroup>(this.chatgroupApiUrl, chatgroup)
 	  .pipe(
 	    catchError(this.handleHttpError('addChatGroup', chatgroup))
 	  );
@@ -37,17 +47,33 @@ export class ChatGroupService {
 
 	getChatGroup(label: string) {
 
-		return this.http.get<ChatGroupInterface>(this.chatgroupApiUrl + label + '/')
-				// .pipe(
-				// 	retry(3), // retry the failed request up to 3 times
-				// 	catchError(this.handleHttpError('getChatGroup'))	
-				// );
+		return this.http.get<ChatGroup>(this.chatgroupApiUrl + label + '/')
+			.map(
+				res => {
+					return new ChatGroup(res.id, res.name, res.about, res.description, res.label, res.followers_count, res.topics_count, res.timestamp, res.owner)
+				}
+			)
+
+
 
 	}
 
-	follow(label:string) {
+	getChatGroupTopics(label: string) {
+		
+		//http://127.0.0.1:8000/api/chatgroups/test-lz78/topics/
+		const chatgroupTopicsApiUrl = this.chatgroupApiUrl + label + '/topics/'
+		//return this.http.get
+		return this.http.get<Topic[]>(chatgroupTopicsApiUrl)
+		.map(
+			res => res.map(x => new Topic(x.id, x.name, x.about, x.label, x.rating, x.chatgroup, x.participants, x.most_recent_message)
+		))
+
+	}
+
+	followChatGroup(label:string) {
 
 		const followApiUrl = this.chatgroupApiUrl + label + '/follow/'
+
 		return this.http.get(followApiUrl)
 
 	}
@@ -55,64 +81,42 @@ export class ChatGroupService {
 
 	deleteChatGroup(label: string): Observable<{}> {
 
-		const url = '' // DELETE api/chatgroups/label
+		const url = this.chatgroupApiUrl + label + '/'
 		return this.http.delete(url)
 			.pipe(
 
 				catchError(this.handleHttpError('deleteChatGroup'))
 			);
 
-		/* The ChatGroup component will initiate the	
-		DELETE operation by subscribing to the Observable
-		returned by this service method
-		*/
 	}
 
 
-	updateChatGroup(chatgroup:ChatGroupInterface): Observable<ChatGroupInterface> {
-		return this.http.put<ChatGroupInterface>(this.chatgroupApiUrl, chatgroup)
+	updateChatGroup(chatgroup:ChatGroup): Observable<ChatGroup> {
+		return this.http.put<ChatGroup>(this.chatgroupApiUrl, chatgroup)
 			.pipe(
 
 				catchError(this.handleHttpError('updateChatGroup', chatgroup))
 			);
 	}
 
-
-	searchChatGroup(term:string): Observable<ChatGroupInterface[]> {
-
-		term = term.trim();
-
-		const options = term ?
-
-		{ params: new HttpParams().set('name', term) } : {};
-
-		return this.http.get<ChatGroupInterface[]>(this.chatgroupApiUrl, options)
-			.pipe(
-
-				catchError(this.handleHttpError<ChatGroupInterface[]>('searchChatGroup', []))
-
-			);
 	}
 
 
 
 
-	// private handleError(error: HttpErrorResponse) {
-	// 	if(error.error instanceof ErrorEvent) {
-	// 		// A client-side or network error occured
-	// 		// Handle accordingly
+// searchChatGroup(term:string): Observable<ChatGroup[]> {
 
-	// 		console.error('An error occured: ', error.error.message);
+// 	term = term.trim();
 
-	// 	} else {
-	// 		// The backend returned an unsuccessful response code
-	// 		// The response body may contain 
+// 	const options = term ?
 
-	// 		console.error(
- //      		`Backend returned code ${error.status}, ` +
- //      		`body was: ${error.error}`);
- //  				}			
+// 	{ params: new HttpParams().set('name', term) } : {};
 
- //  		return new ErrorObservable('Something went wrong; please try again later.')		
-	// 	}
-	}
+// 	return this.http.get<ChatGroup[]>(this.chatgroupApiUrl, options)
+// 		.pipe(
+
+// 			catchError(this.handleHttpError<ChatGroup[]>('searchChatGroup', []))
+
+// 		);
+// }
+

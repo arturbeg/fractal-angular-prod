@@ -1,23 +1,59 @@
+import { Profile } from './../profile-feature/profile';
+import { Injectable } from '@angular/core';
+
+
+@Injectable()
 export class ChatGroup {
 	id: number;
 	name: string;
 	about: string;
 	description: string;
 	label: string;
+	followers_count: number;	
+	topics_count: number;
+	localchats_count: number;
+	timestamp: string;
+	owner: Profile;
 	
-	// topics_count: number;
-	// localChats_count: number;
 
-	
-	// timestamp: string; 		// necessary manipulations done on the server (or can use  date-time library)	
-	// owner: string; 			// profile object	
-	// avatar: string;			// a link to the avatar
-	// members: Array<any>; 	// Gonna be an array of profile objects (no user object on the front end)
+	constructor(
+		id: number,
+		name: string,
+		about: string,
+		description: string,
+		label: string,
+		followers_count: number,	
+		topics_count: number,
+		timestamp: string,
+		owner: Profile
+
+	) {
+		this.id = id;
+		this.name = name;
+		this.about = about;
+		this.description = description;
+		this.label = label;
+		this.followers_count = followers_count;
+		this.topics_count = topics_count;
+		this.timestamp = timestamp;
+		this.owner = owner
+		
+	}
+
+
+
 }
 
+	
 
-// delete later
-export interface ChatGroupInterface {
+	// avatar: string;			// a link to the avatar
+	// members: Array<any>; 	// Gonna be an array of profile objects (no user object on the front end) -> better to implement as a separate link -> too many members can be hard to handle
+
+ 
+
+
+
+export interface ChatGroup {
 	id: number;
 	name: string;
 	about: string;

@@ -6,7 +6,7 @@
 
 		<!-- Avatar -->
 
-		<img src="https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-9/21752215_10155264899144862_7777986485311439512_n.jpg?_nc_cat=0&oh=769bf23883e0b142f27a278990665f48&oe=5B280FB1" class="rounded-circle float-left" >
+		<img src="https://image.freepik.com/free-icon/users-group_318-48680.jpg" class="rounded-circle float-left" >
 
 		<!-- Name -->
 
@@ -21,7 +21,7 @@
 			<div class="actions float-left">
 
 				<button 
-				mat-raised-button (click)="follow()">
+				mat-raised-button (click)="chatgroupNonHttpService.follow(chatgroup.label)">
 				FOLLOW
 				</button>
 			
@@ -38,12 +38,6 @@
 				mat-button>
 				<span>{{chatgroup.followers_count}}</span>
 				FOLLOWERS
-				</button>
-
-				<button 
-				mat-button>
-				<span>{{chatgroup.localchats_count}}</span>
-				LOCAL CHATS
 				</button>
 
 				<button 
@@ -88,13 +82,11 @@
 	</div>
 
 
-	<div class="chats">
-		<!--
-		Put them back when the chat-feaure is configured
-		<app-chat-card> </app-chat-card>
-		<app-chat-card> </app-chat-card>
-		<app-chat-card> </app-chat-card>
-		-->
+	<div class="chats" >
+
+
+		<!-- <app-chat-card *ngFor="let topic of topics" > </app-chat-card> -->
+
 	</div>
 
 	
