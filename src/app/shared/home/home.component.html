@@ -1,197 +1,53 @@
 <br>
-<div class="sidebar">
-
-  <!-- Login/Register -->
-  <mat-card>
-    <form class="example-form">
-      <mat-form-field>
-        <input matInput placeholder="Email">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput placeholder="Password">
-      </mat-form-field>
-    </form>
-
-    <mat-checkbox>Remember me</mat-checkbox>
-
-    <mat-card-actions>
-      <button mat-button color="primary">Login</button>
-    </mat-card-actions>
-
-  </mat-card>
-
-  <!-- Suggestions -->
-  <mat-card>
-    <mat-card-header>
-      Suggestions
-    </mat-card-header>
-    <br>
-    # Football
-    <br>
-    # Republicans
-    <br>
-    # North Korea
-  </mat-card>
-
-  <!-- Mini Chat -->
-  <mat-card>
-    This is where the mini chat will go?
-  </mat-card>
-
 <div class="content">
-
-  <mat-tab-group>
-    <mat-tab label="Global">
-
-    </mat-tab>
-    <mat-tab label="Local">
-
-    </mat-tab>
-    <mat-tab label="Topic">
-
-    </mat-tab>
-  </mat-tab-group>
-
   <mat-list>
 
-    <mat-list-item>
-      <img matListAvatar class="img-fluid rounded" src="https://static-news.moneycontrol.com/static-mcnews/2017/07/RTX3C49K-770x433.jpg">
-      <h4 mat-line>What Elon Musk's Compensation Deal Means for Tesla Motors</h4>
-      <p mat-line class="text-secondary">Elon Musk</p>
-      <p mat-line>
-        <mat-icon matListIcon>
-          <img class="img-fluid rounded-circle" src="https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-1/p320x320/27544666_1610932332316513_8799680780576811652_n.jpg?oh=4ab2808f6c95e0cc187632daf5d3e668&oe=5B360964">
-        </mat-icon>
-        On Wednesday, Tesla Motors investors approved a compensation...
-      </p>
-      <div mat-line>
-        <div class="float-left">
-          <button mat-button>UPVOTE</button>
-          <span>25</span>
-          <button mat-button>DOWNVOTE</button>
-        </div>
-        <div class="float-right">
-          <button mat-button>SAVE</button>
-          <button mat-button>OPTIONS</button>
-        </div>
-      </div>
-    </mat-list-item>
 
-    <mat-list-item>
-      <img matListAvatar class="img-fluid rounded" src="https://pixel.nymag.com/imgs/daily/intelligencer/2018/03/21/21-trump-putin-2.w710.h473.jpg">
-      <h4 mat-line>Trump talks shit about Putin</h4>
-      <p mat-line class="text-secondary">Donald Trump</p>
-      <p mat-line>
-        <mat-icon matListIcon>
-          <img class="img-fluid rounded-circle" src="https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-1/p320x320/27544666_1610932332316513_8799680780576811652_n.jpg?oh=4ab2808f6c95e0cc187632daf5d3e668&oe=5B360964">
-        </mat-icon>
-        Trump being trump, putin being putin, kim jong un
-      </p>
-      <div mat-line>
-        <div class="float-left">
-          <button mat-button>UPVOTE</button>
-          <span>99</span>
-          <button mat-button>DOWNVOTE</button>
-        </div>
-        <div class="float-right">
-          <button mat-button>SAVE</button>
-          <button mat-button>OPTIONS</button>
-        </div>
-      </div>
-    </mat-list-item>
 
-    <mat-list-item>
-      <img matListAvatar class="img-fluid rounded" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVb6drnIYiCXUapiCTehNO7Q6febgvt_3I9AJ_l1Y3FtuVeKjN">
-      <h4 mat-line>Warwick University becomes the no.1 university for french people</h4>
-      <p mat-line class="text-secondary">The Koan</p>
-      <p mat-line>
-        <mat-icon matListIcon>
-          <img class="img-fluid rounded-circle" src="https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-1/p320x320/27544666_1610932332316513_8799680780576811652_n.jpg?oh=4ab2808f6c95e0cc187632daf5d3e668&oe=5B360964">
-        </mat-icon>
-        The learning grid is full of french people...
-      </p>
-      <div mat-line>
-        <div class="float-left">
-          <button mat-button>UPVOTE</button>
-          <span>25</span>
-          <button mat-button>DOWNVOTE</button>
-        </div>
-        <div class="float-right">
-          <button mat-button>SAVE</button>
-          <button mat-button>OPTIONS</button>
-        </div>
-      </div>
-    </mat-list-item>
 
-    <mat-list-item>
-      <img matListAvatar class="img-fluid rounded" src="https://static-news.moneycontrol.com/static-mcnews/2017/07/RTX3C49K-770x433.jpg">
-      <h4 mat-line>What Elon Musk's Compensation Deal Means for Tesla Motors</h4>
-      <p mat-line class="text-secondary">Elon Musk</p>
-      <p mat-line>
-        <mat-icon matListIcon>
-          <img class="img-fluid rounded-circle" src="https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-1/p320x320/27544666_1610932332316513_8799680780576811652_n.jpg?oh=4ab2808f6c95e0cc187632daf5d3e668&oe=5B360964">
-        </mat-icon>
-        On Wednesday, Tesla Motors investors approved a compensation...
-      </p>
-      <div mat-line>
-        <div class="float-left">
-          <button mat-button>UPVOTE</button>
-          <span>25</span>
-          <button mat-button>DOWNVOTE</button>
-        </div>
-        <div class="float-right">
-          <button mat-button>SAVE</button>
-          <button mat-button>OPTIONS</button>
-        </div>
-      </div>
-    </mat-list-item>
+    <mat-list-item *ngFor="let topic of topics">
 
-    <mat-list-item>
-      <img matListAvatar class="img-fluid rounded" src="https://pixel.nymag.com/imgs/daily/intelligencer/2018/03/21/21-trump-putin-2.w710.h473.jpg">
-      <h4 mat-line>Trump talks shit about Putin</h4>
-      <p mat-line class="text-secondary">Donald Trump</p>
-      <p mat-line>
-        <mat-icon matListIcon>
-          <img class="img-fluid rounded-circle" src="https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-1/p320x320/27544666_1610932332316513_8799680780576811652_n.jpg?oh=4ab2808f6c95e0cc187632daf5d3e668&oe=5B360964">
-        </mat-icon>
-        Trump being trump, putin being putin, kim jong un
-      </p>
-      <div mat-line>
-        <div class="float-left">
-          <button mat-button>UPVOTE</button>
-          <span>99</span>
-          <button mat-button>DOWNVOTE</button>
-        </div>
-        <div class="float-right">
-          <button mat-button>SAVE</button>
-          <button mat-button>OPTIONS</button>
-        </div>
-      </div>
-    </mat-list-item>
+      <!-- Topic Image -->
+      
+      <img matListAvatar class="img-fluid rounded" src="http://www.free-icons-download.net/images/user-group-icon-74418.png">
 
-    <mat-list-item>
-      <img matListAvatar class="img-fluid rounded" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVb6drnIYiCXUapiCTehNO7Q6febgvt_3I9AJ_l1Y3FtuVeKjN">
-      <h4 mat-line>Warwick University becomes the no.1 university for french people</h4>
-      <p mat-line class="text-secondary">The Koan</p>
+      
+      <h4 mat-line>
+        {{topic.name}}
+      </h4>
+      <!-- <a [routerLink]="['/chat', topic.label]">
+        
+        Add later
+        
+      </a> -->
+      
+      <!-- <a [routerLink]="['/chatgroup', topic.chatgroup.label]">
+
+        Add later        
+
+      </a> -->
+
+      <p mat-line class="text-secondary">{{topic.chatgroup.name}}</p>
+
       <p mat-line>
         <mat-icon matListIcon>
-          <img class="img-fluid rounded-circle" src="https://scontent-arn2-1.xx.fbcdn.net/v/t1.0-1/p320x320/27544666_1610932332316513_8799680780576811652_n.jpg?oh=4ab2808f6c95e0cc187632daf5d3e668&oe=5B360964">
+          <img class="img-fluid rounded-circle" src="https://www.shiquehairextensions.com.au/wp-content/uploads/2017/11/default-user-image-female.png">
         </mat-icon>
-        The learning grid is full of french people...
+        {{topic.most_recent_message}}
       </p>
       <div mat-line>
         <div class="float-left">
-          <button mat-button>UPVOTE</button>
-          <span>25</span>
-          <button mat-button>DOWNVOTE</button>
+          <button mat-button (click)="topicService.upvote(topic.label)">UPVOTE</button>
+          <span>{{topic.rating}}</span>
+          <button mat-button (click)="topicService.downvote(topic.label)">DOWNVOTE</button>
         </div>
         <div class="float-right">
-          <button mat-button>SAVE</button>
-          <button mat-button>OPTIONS</button>
+          <button mat-button (click)="topicService.save(topic.label)">SAVE</button>
+          <!-- <button mat-button>OPTIONS</button> -->
         </div>
       </div>
-    </mat-list-item>
+    </mat-list-item> 
+
 
   </mat-list>
 </div>

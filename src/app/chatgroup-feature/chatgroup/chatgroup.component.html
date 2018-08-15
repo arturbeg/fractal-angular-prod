@@ -13,7 +13,7 @@
 		<div class="chatgroup-info float-left">
 
 			<h5 class="chatgroup-name float-left">
-			{{chatgroup.name}}
+				{{chatgroup.name}}
 			</h5>
 
 			<!-- Actions -->
@@ -35,7 +35,7 @@
 			<div class="stats">
 
 				<button 
-				mat-button>
+				mat-button (click)="openDialog()" >
 				<span>{{chatgroup.followers_count}}</span>
 				FOLLOWERS
 				</button>
@@ -85,7 +85,16 @@
 	<div class="chats" >
 
 
-		<!-- <app-chat-card *ngFor="let topic of topics" > </app-chat-card> -->
+		<!-- Figure out how to manipulate the Child Component -->
+		
+
+		<app-chat-card *ngFor="let topic of topics" [topic]="topic">  
+			
+		
+		
+		</app-chat-card>
+		
+
 
 	</div>
 

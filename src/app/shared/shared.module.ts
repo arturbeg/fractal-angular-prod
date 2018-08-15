@@ -1,3 +1,5 @@
+import { ChatService } from './../chat-feature/chat.service';
+import { Topic } from './../chat-feature/chat';
 // Angular Modules
 import { NgModule }       			from '@angular/core';
 import { CommonModule }   			from '@angular/common';
@@ -10,13 +12,18 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './not-found/not-found.component';
 import { ResultsComponent } from './results/results.component';
 import { SharedRoutingModule } from './shared-routing.module'
+import { ChatModule } from '../chat-feature/chat.module';
+
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    SharedRoutingModule
+    SharedRoutingModule,
+    ChatModule
   ],
   declarations: [
 
@@ -26,7 +33,7 @@ import { SharedRoutingModule } from './shared-routing.module'
     ResultsComponent
 
   ],
-  providers: [],
+  providers: [Topic, ChatService],
 
   exports: [
       HeaderComponent

@@ -1,3 +1,4 @@
+import { TopicService } from './topic.service';
 import { NgModule }       			from '@angular/core';
 import { CommonModule }   			from '@angular/common';
 import { FormsModule, ReactiveFormsModule }    			from '@angular/forms';
@@ -16,7 +17,11 @@ import { ChatService } from './chat.service';
 import { EditTopicModalComponent } from './edit-topic-modal/edit-topic-modal.component'
 
 import { NgxAutoScrollModule } from "ngx-auto-scroll";
-// import { ChatService } from './chat.service'
+import { Topic } from './chat';
+
+
+// provide MyClass like providers: [MyClass] in a component or NgModule.
+
 
 @NgModule({
   imports: [
@@ -26,7 +31,7 @@ import { NgxAutoScrollModule } from "ngx-auto-scroll";
     MaterialModule,
     ProfileModule,
     ChatRoutingModule,
-    SharedModule,
+    //SharedModule,
     NgxAutoScrollModule
   ],
   declarations: [
@@ -35,10 +40,11 @@ import { NgxAutoScrollModule } from "ngx-auto-scroll";
     ChatComponent,
     EditTopicModalComponent
   ],
-  providers: [ SocketService, MessageService, ChatService ],
+  providers: [ SocketService, MessageService, ChatService, Topic, TopicService ],
 
   exports: [
       // add later
+      ChatCardComponent,
     ],
 
     entryComponents: [ 

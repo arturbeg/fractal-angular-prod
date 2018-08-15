@@ -1,3 +1,4 @@
+import { ProfileModule } from './../profile-feature/profile.module';
 import { ChatModule } from './../chat-feature/chat.module';
 import { ChatgroupNonHttpService } from './chatgroup-non-http.service';
 // Angular Modules
@@ -14,20 +15,22 @@ import { ChatGroupRoutingModule }	from './chatgroup-routing.module';
 // External Components used by this module (import app module now because it has chat-card)
 //import { AppModule }            from '../app.module';
 import { MaterialModule }          from '../material.module';
+import { FollowersModalComponent } from './followers-modal/followers-modal.component';
 
 
 @NgModule({
   imports: [
-    //AppModule,
     CommonModule,
     FormsModule,
     ChatGroupRoutingModule,
     MaterialModule,
-    ChatModule
+    ChatModule,
+    ProfileModule
   ],
   declarations: [
     ChatGroupComponent,
-    ChatGroupCardComponent
+    ChatGroupCardComponent,
+    FollowersModalComponent
   ],
   providers: [ ChatGroupService, ChatgroupNonHttpService ],
 
@@ -35,5 +38,7 @@ import { MaterialModule }          from '../material.module';
   	ChatGroupComponent,
     ChatGroupCardComponent
     ],
+
+  entryComponents: [FollowersModalComponent]  
 })
 export class ChatGroupModule {}

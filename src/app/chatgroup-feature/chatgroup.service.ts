@@ -1,3 +1,4 @@
+import { Profile } from './../profile-feature/profile';
 import { Topic } from './../chat-feature/chat';
 import { ChatGroup } from './chatgroup';
 import 'rxjs/add/observable/of';
@@ -58,11 +59,17 @@ export class ChatGroupService {
 
 	}
 
+	getChatGroupFollowers(label: string) {
+		const chatgroupFollowersApiUrl = this.chatgroupApiUrl + label + '/followers/'
+		return this.http.get<Profile[]>(chatgroupFollowersApiUrl)
+
+	}
+
 	getChatGroupTopics(label: string) {
 		
-		//http://127.0.0.1:8000/api/chatgroups/test-lz78/topics/
+		
 		const chatgroupTopicsApiUrl = this.chatgroupApiUrl + label + '/topics/'
-		//return this.http.get
+		
 		return this.http.get<Topic[]>(chatgroupTopicsApiUrl)
 		.map(
 			res => res.map(x => new Topic(x.id, x.name, x.about, x.label, x.rating, x.chatgroup, x.participants, x.most_recent_message)

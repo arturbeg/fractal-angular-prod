@@ -16,6 +16,8 @@ import { ChatGroup } from '../chatgroup-feature/chatgroup'
 
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
 
+import { Topic } from '../chat-feature/chat';
+
 
 @Injectable()
 export class UserService {
@@ -32,7 +34,6 @@ export class UserService {
 
     	this.handleHttpError = httpErrorHandler.createHandleError('UserService');								
     }
-
 
     getProfile(username) {
     	// receives a profile object by the username

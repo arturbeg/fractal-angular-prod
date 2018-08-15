@@ -24,7 +24,8 @@ export class ChatService {
   private handleHttpError: HandleError;
 
 
-  constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler){
+	constructor(private http: HttpClient, 
+							httpErrorHandler: HttpErrorHandler){
 					
     this.handleHttpError = httpErrorHandler.createHandleError('ChatService');								
     
@@ -33,6 +34,28 @@ export class ChatService {
 	getTopic(label: string) {
 
 		return this.http.get<Topic>(this.chatApiUrl + label + '/')
+			.map(
+				res =>
+					{
+						return new Topic(res.id, res.name, res.about, res.label, res.rating, res.chatgroup, res.participants, res.most_recent_message)
+					}
+			)
+
+
+	}
+
+
+
+	getTopics(username: string) {
+                
+		console.log("Retriving trendign topics for " + username)
+		const topicsApiUrl = 'http://localhost:8000/api/profiles/' + username + '/' + 'topics/'
+		
+		return this.http.get<Topic[]>(topicsApiUrl)
+			.map(
+				res => res.map(x => new Topic(x.id, x.name, x.about, x.label, x.rating, x.chatgroup, x.participants, x.most_recent_message)
+			))
+
 
 	}
 
