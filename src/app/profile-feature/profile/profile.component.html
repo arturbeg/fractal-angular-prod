@@ -43,10 +43,10 @@
 	
 	<div class="user-stats col-lg-12"> 
 	
-		<button mat-raised-button (click)="verifyToken()">
+		<!-- <button mat-raised-button (click)="verifyToken()">
 			<span>0</span>
 			<span> Verify Token </span>
-		</button>
+		</button> -->
 
 
 		<button mat-raised-button 
@@ -78,23 +78,10 @@
 		
 		<!-- The POSTS are inside of this container -->
 		<div class="col-lg-10">
-			
-			<!--
-			<app-post> </app-post>
-			-->
-			
-			<!-- Delete later -->
-
-			<h1>Users</h1>
 
 			<ul>
-				
-				<!-- <li *ngFor="let user of users">
-				{{user.firstName}}  
-				</li> -->
 
-				<!-- {{usersFake}} -->
-
+				<li *ngFor="let post of posts"> {{post.message.sender.label}} : {{post.message.text}} </li>
 
 
 			</ul>

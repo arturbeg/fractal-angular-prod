@@ -1,3 +1,4 @@
+import { Post } from './../../chat-feature/message';
 import { Component, OnInit } from '@angular/core';
 import { User } 			 from '../profile';
 import { UserService }       from '../profile.service';
@@ -18,6 +19,8 @@ export class ProfileComponent {
 
 	profile$: Observable<Profile>;
 	username: string;
+	posts: Post[];
+
 	//profile: Profile;
 
 	constructor(
@@ -31,8 +34,11 @@ export class ProfileComponent {
 	ngOnInit() {
 
 		this.getProfile()
+		
 
+		// later on replace snapshot by dynamic route functions (like in the chat section -> implement each relevent angular documentation feature within the app)
 		this.username = this.route.snapshot.paramMap.get('username');
+		this.getPosts(this.username);
 
 	}
 
@@ -81,6 +87,16 @@ export class ProfileComponent {
 		    this.profile$ = this.route.paramMap
       		.switchMap((params: ParamMap) =>
        		this.userService.getProfile(params.get('username')));
+	}
+
+	getPosts(username) {
+
+		this.userService.getProfilePosts(username).subscribe(
+			data => {
+				this.posts = data
+			}
+		)
+
 	}
 
 

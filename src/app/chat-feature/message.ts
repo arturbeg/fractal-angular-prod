@@ -14,3 +14,10 @@ export interface Message {
     //action?: Action;
     
 }
+
+export interface Post {
+    message: Message;
+    timestamp: string;
+}
+
+

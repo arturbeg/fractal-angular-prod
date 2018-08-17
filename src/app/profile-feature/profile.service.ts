@@ -1,3 +1,4 @@
+import { Post } from './../chat-feature/message';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
@@ -48,6 +49,18 @@ export class UserService {
 
     }
 
+    getProfilePosts(username) {
+        console.log("Retreiving the posts of " + username)
+        const profilePostsApiUrl = this.rootApiUrl + username + '/posts/'
+        return this.http.get<Post[]>(profilePostsApiUrl)
+    }
+
+    getRecentActivityPosts(username) {
+        console.log("Retreiving the recent activity posts of " + username);
+        const recentActivityApiUrl = this.rootApiUrl + username + '/activity/'
+        return this.http.get<Post[]>(recentActivityApiUrl)
+    }
+
 
     editProfile(username, newUsername, newAbout) {
 
@@ -88,6 +101,8 @@ export class UserService {
                 )
 
     }
+
+    // getRecentActivity(username)
 
 
     getChatGroups(username) {
