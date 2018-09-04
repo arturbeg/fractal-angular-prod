@@ -13,6 +13,7 @@ import { PageNotFoundComponent } from './not-found/not-found.component';
 import { ResultsComponent } from './results/results.component';
 import { SharedRoutingModule } from './shared-routing.module'
 import { ChatModule } from '../chat-feature/chat.module';
+import { ActivityComponent } from './activity/activity.component';
 
 
 
@@ -30,7 +31,8 @@ import { ChatModule } from '../chat-feature/chat.module';
     HeaderComponent,
     HomeComponent,
     PageNotFoundComponent,
-    ResultsComponent
+    ResultsComponent,
+    ActivityComponent
 
   ],
   providers: [Topic, ChatService],

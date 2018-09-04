@@ -5,21 +5,19 @@ import { RouterModule, Routes } from '@angular/router';
 // import { LoginComponent }    from './login/login.component';
 // import { SignupComponent }    from './signup/signup.component';
 // import { ChangePasswordComponent }    from './changepassword/changepassword.component';
-
-import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './not-found/not-found.component';
 import { ResultsComponent } from './results/results.component';
-
+import { ActivityComponent } from './activity/activity.component';
 
 
 const sharedRoutes: Routes = [
   // { path: 'profile/:username', component: ProfileComponent }, // add username later
   { path: '', component: HomeComponent },
   { path: 'results', component: ResultsComponent },
+  { path: 'activity', component: ActivityComponent }, 
   { path: '**', component: PageNotFoundComponent },
-
-
+  
   // { path: 'signup', component: SignupComponent },
   // { path: 'changepassword', component: ChangePasswordComponent },
 ];

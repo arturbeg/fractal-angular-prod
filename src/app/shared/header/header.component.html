@@ -13,7 +13,7 @@
       <ul class="navbar-nav mr-auto">
 
         <!-- Chats List Item -->
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             CHATS
           </a>
@@ -21,23 +21,36 @@
             <a
             class="dropdown-item" routerLink="/" routerLinkActive="active">Trending
             </a>
+
             <a
             class="dropdown-item"
             href="#">
             New
             </a>
+
             <a
             class="dropdown-item"
             href="#">
             Top
             </a>
           </div>
+        </li> -->
+
+        
+        <!-- Trending Topics Item -->
+        <li class="nav-item">
+            <a
+            routerLink="/" routerLinkActive="active"
+            class="nav-link"
+            href="#">
+            TRENDING
+            </a>
         </li>
 
         <!-- Recent Activity List Item -->
         <li class="nav-item">
           <a
-          routerLink="/recentactivity" routerLinkActive="active"
+          routerLink="/activity" routerLinkActive="active"
           class="nav-link"
           href="#">
           ACTIVITY
@@ -45,7 +58,7 @@
         </li>
 
         <!-- New Chat Creation List Item -->
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             NEW
           </a>
@@ -54,12 +67,9 @@
 
             <a class="dropdown-item" href="#">ChatGroup</a>
 
-            <a class="dropdown-item" [routerLink]="['chat', 'test']">Test Topic</a>
-            <a class="dropdown-item" [routerLink]="['chat', 'new']">New Topic</a>
-
 
           </div>
-        </li>
+        </li> -->
 
         <!-- Profile List Item -->
         <li class="nav-item dropdown">
@@ -67,13 +77,18 @@
             PROFILE
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            
             <a class="dropdown-item" routerLink="/profile/arturbegyan">My Profile</a>
-            <a class="dropdown-item" (click)="logout()">Log Out</a>
             <a class="dropdown-item" routerLink="/login">Log In</a>
+            
+            
+            
+
+            
+            <!-- <a class="dropdown-item" href="#">Settings</a>
             <a class="dropdown-item" routerLink="/signup">Sign Up</a>
             <a class="dropdown-item" routerLink="/changepassword">Change Password</a>
-
-            <a class="dropdown-item" href="#">Settings</a>
+            <a class="dropdown-item" (click)="logout()">Log Out</a> -->
           </div>
         </li>
 
@@ -84,10 +99,10 @@
       </ul>
 
       <!-- The Search Box Item -->
-      <form class="form-inline my-2 my-lg-0">
+      <!-- <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button mat-raised-button color="primary">Search</button>
-      </form>
+      </form> -->
     </div>
   </div>
 </nav>

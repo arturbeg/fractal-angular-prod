@@ -13,21 +13,29 @@
 
       
       <h4 mat-line>
+
+        <a [routerLink]="['/chat', topic.label]">
+
         {{topic.name}}
+
+        </a>
+
       </h4>
-      <!-- <a [routerLink]="['/chat', topic.label]">
-        
-        Add later
-        
-      </a> -->
       
-      <!-- <a [routerLink]="['/chatgroup', topic.chatgroup.label]">
 
-        Add later        
 
-      </a> -->
+      
+      <p mat-line class="text-secondary">
 
-      <p mat-line class="text-secondary">{{topic.chatgroup.name}}</p>
+        <a [routerLink]="['/chatgroup', topic.chatgroup.label]">
+
+          {{topic.chatgroup.name}}        
+
+        </a>
+
+      </p>
+
+
 
       <p mat-line>
         <mat-icon matListIcon>

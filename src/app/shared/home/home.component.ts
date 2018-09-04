@@ -51,6 +51,7 @@ export class HomeComponent implements OnInit {
 
   }
 
+  // have a separate function in a profile service for this ->  
   public getProfile(username) {
 
     this.userService.getProfile(username).subscribe(
