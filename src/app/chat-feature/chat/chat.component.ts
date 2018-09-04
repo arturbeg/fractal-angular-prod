@@ -32,6 +32,7 @@ export class ChatComponent implements OnInit {
   @ViewChild('chatbox') chatbox: ElementRef;
   
   topic: Topic;
+  relatedTopics: Topic[];
   action = Action;
   profile: Profile;
   messages: Message[] = [];
@@ -113,7 +114,16 @@ export class ChatComponent implements OnInit {
   }
 
 
-  
+  getRelatedTopics(chatgroup_label) {
+
+    this.chatService.getRelatedTopics(chatgroup_label).subscribe(
+      data => {
+        this.relatedTopics = data
+        console.log(data)
+      }
+    )
+
+  }
 
   public joinRoom(label) {
     console.log("Joining the room ", label)
@@ -176,7 +186,11 @@ export class ChatComponent implements OnInit {
 
   getTopic(label) {
 		this.chatService.getTopic(label).subscribe(
-			data => this.topic = data
+      data => {
+        this.topic = data;
+        this.getRelatedTopics(this.topic.chatgroup.label)
+      }
+      
 			);
   }
   

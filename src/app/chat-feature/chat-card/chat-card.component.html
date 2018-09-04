@@ -10,10 +10,24 @@
     <!-- Card Title -->
     <div class="card-title">
       <mat-card-header>
-        <mat-card-title>{{topic.name}}</mat-card-title>
+        <mat-card-title>
+          
+          <a [routerLink]="['/chat', topic.label]">
+
+            {{topic.name}}
+    
+          </a>
+
+        </mat-card-title>
         <mat-card-subtitle
         class="card-chatgroup-name">
-        {{topic.chatgroup.name}}
+        
+        <a [routerLink]="['/chatgroup', topic.chatgroup.label]">
+
+          {{topic.chatgroup.name}}        
+
+        </a>
+
         </mat-card-subtitle>
       </mat-card-header>
     </div>

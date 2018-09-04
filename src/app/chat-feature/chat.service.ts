@@ -105,12 +105,23 @@ export class ChatService {
 		
 	}
 
+	getRelatedTopics(chatgroup_label) {
+
+		// chatgroupApiUrl = 'http://localhost:8000/api/chatgroups/';
+		const relatedTopicsApi = "http://localhost:8000/api/chatgroups/" + chatgroup_label + "/topics"
+
+		return this.http.get<Topic[]>(relatedTopicsApi)
+		
+	}
+
 	editTopic(label, newName, newAbout) {
 		console.log("Editing the topic: " + label)
 
 		return this.http.patch(this.chatApiUrl + label + '/', {name: newName, about: newAbout})
 		
 	}
+
+	
 
 
 

@@ -28,11 +28,7 @@
 
 			<div class="related-chats">
 
-			<app-chat-card> </app-chat-card>
-
-			<app-chat-card> </app-chat-card>
-			<app-chat-card> </app-chat-card>
-
+					<app-chat-card *ngFor="let topic of relatedTopics" [topic]="topic"> </app-chat-card>
 
 			</div>
 
