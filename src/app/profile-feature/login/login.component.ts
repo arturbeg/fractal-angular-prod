@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 
 import { AuthService } 		 from '../../auth.service';
 
@@ -16,6 +16,10 @@ export class LoginComponent {
 	// password: string;
 
 	form: FormGroup;
+	@Output() isAuthorised = new EventEmitter<boolean>();
+
+
+
 
 	constructor(private authService:AuthService,
 				private fb: FormBuilder) { 
@@ -32,7 +36,14 @@ export class LoginComponent {
 		console.log(val)
 
 		if (val.username && val.password) {
-			this.authService.login(val.username, val.password).subscribe()	
+			this.authService.login(val.username, val.password).subscribe()
+			if (localStorage.getItem('username')) {
+				console.log("Successfully logged in!")
+				this.isAuthorised.emit(true)
+			}	else {
+				console.log("Something went wrong..")
+				this.isAuthorised.emit(false)
+			}
 		}
 	}
 

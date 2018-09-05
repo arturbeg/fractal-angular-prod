@@ -12,12 +12,14 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
 @Injectable()
 export class AuthService {
-    private restAuthUrlLogin = 'https://fractal-django-prod.herokuapp.com/rest-auth/login/';
-    private restAuthUrlLogout = 'https://fractal-django-prod.herokuapp.com/rest-auth/logout/';
-    private restAuthUrlSignup = 'https://fractal-django-prod.herokuapp.com/rest-auth/registration/';
-    private restAuthUrlChangePassword = 'https://fractal-django-prod.herokuapp.com/rest-auth/password/change/';
-    private restAuthUrlLoginNew = 'https://fractal-django-prod.herokuapp.com/api/auth/token/';
-    private restAuthUrlVerifyToken = 'https://fractal-django-prod.herokuapp.com/api-token-verify/';
+
+    
+    private restAuthUrlLogin = 'http://127.0.0.1:8000/rest-auth/login/';
+    private restAuthUrlLogout = 'http://127.0.0.1:8000/rest-auth/logout/';
+    private restAuthUrlSignup = 'http://127.0.0.1:8000/rest-auth/registration/';
+    private restAuthUrlChangePassword = 'http://127.0.0.1:8000/rest-auth/password/change/';
+    private restAuthUrlLoginNew = 'http://127.0.0.1:8000/api/auth/token/';
+    private restAuthUrlVerifyToken = 'http://127.0.0.1:8000/api-token-verify/';
     private handleHttpError: HandleError;
 
     constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) {
@@ -47,6 +49,8 @@ export class AuthService {
                             if (localStorage.getItem('token')) {
                                 localStorage.setItem('username', username)
                             }
+
+                            
                         
                         },
                     )

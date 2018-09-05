@@ -78,8 +78,11 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             
-            <a class="dropdown-item" routerLink="/profile/arturbegyan">My Profile</a>
-            <a class="dropdown-item" routerLink="/login">Log In</a>
+            <a  *ngIf="isAuthorised" class="dropdown-item" [routerLink]="['/profile', username]">My Profile</a>
+            
+            <a *ngIf="!isAuthorised" class="dropdown-item" routerLink="/login">Log In</a>
+
+            <a  *ngIf="isAuthorised" class="dropdown-item" (click)="logout()">Log Out</a>
             
             
             
