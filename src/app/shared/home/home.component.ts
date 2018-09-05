@@ -10,8 +10,7 @@ import { UserService } from '../../profile-feature/profile.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  providers: [Topic]
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
   

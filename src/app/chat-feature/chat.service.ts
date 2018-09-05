@@ -34,12 +34,12 @@ export class ChatService {
 	getTopic(label: string) {
 
 		return this.http.get<Topic>(this.chatApiUrl + label + '/')
-			.map(
-				res =>
-					{
-						return new Topic(res.id, res.name, res.about, res.label, res.rating, res.chatgroup, res.participants, res.most_recent_message)
-					}
-			)
+			// .map(
+			// 	res =>
+			// 		{
+			// 			return new Topic(res.id, res.name, res.about, res.label, res.rating, res.chatgroup, res.participants, res.most_recent_message)
+			// 		}
+			// )
 
 
 	}
@@ -52,9 +52,9 @@ export class ChatService {
 		const topicsApiUrl = 'https://fractal-django-prod.herokuapp.com/api/profiles/' + username + '/' + 'topics/'
 		
 		return this.http.get<Topic[]>(topicsApiUrl)
-			.map(
-				res => res.map(x => new Topic(x.id, x.name, x.about, x.label, x.rating, x.chatgroup, x.participants, x.most_recent_message)
-			))
+			// .map(
+			// 	res => res.map(x => new Topic(x.id, x.name, x.about, x.label, x.rating, x.chatgroup, x.participants, x.most_recent_message)
+			// ))
 
 
 	}

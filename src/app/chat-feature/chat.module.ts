@@ -41,7 +41,7 @@ import { Topic } from './chat';
     ChatComponent,
     EditTopicModalComponent
   ],
-  providers: [ SocketService, MessageService, ChatService, Topic, TopicService ],
+  providers: [ SocketService, MessageService, ChatService, TopicService ],
 
   exports: [
       // add later

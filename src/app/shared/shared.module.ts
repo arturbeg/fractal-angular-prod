@@ -35,7 +35,7 @@ import { ActivityComponent } from './activity/activity.component';
     ActivityComponent
 
   ],
-  providers: [Topic, ChatService],
+  providers: [ChatService],
 
   exports: [
       HeaderComponent
