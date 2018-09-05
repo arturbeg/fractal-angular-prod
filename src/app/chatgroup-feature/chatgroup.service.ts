@@ -21,7 +21,7 @@ import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 @Injectable()
 export class ChatGroupService {
 
-	chatgroupApiUrl = 'http://localhost:8000/api/chatgroups/';
+	chatgroupApiUrl = 'https://fractal-django-prod.herokuapp.com/api/chatgroups/';
 
 
 	private handleHttpError: HandleError;

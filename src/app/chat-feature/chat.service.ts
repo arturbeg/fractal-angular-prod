@@ -20,7 +20,7 @@ import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 export class ChatService {
 
 
-  chatApiUrl = 'http://localhost:8000/api/topics/'; // url to web api
+  chatApiUrl = 'https://fractal-django-prod.herokuapp.com/api/topics/'; // url to web api
   private handleHttpError: HandleError;
 
 
@@ -49,7 +49,7 @@ export class ChatService {
 	getTopics(username: string) {
                 
 		console.log("Retriving trendign topics for " + username)
-		const topicsApiUrl = 'http://localhost:8000/api/profiles/' + username + '/' + 'topics/'
+		const topicsApiUrl = 'https://fractal-django-prod.herokuapp.com/api/profiles/' + username + '/' + 'topics/'
 		
 		return this.http.get<Topic[]>(topicsApiUrl)
 			.map(
@@ -107,8 +107,8 @@ export class ChatService {
 
 	getRelatedTopics(chatgroup_label) {
 
-		// chatgroupApiUrl = 'http://localhost:8000/api/chatgroups/';
-		const relatedTopicsApi = "http://localhost:8000/api/chatgroups/" + chatgroup_label + "/topics"
+		// chatgroupApiUrl = 'https://fractal-django-prod.herokuapp.com/api/chatgroups/';
+		const relatedTopicsApi = "https://fractal-django-prod.herokuapp.com/api/chatgroups/" + chatgroup_label + "/topics"
 
 		return this.http.get<Topic[]>(relatedTopicsApi)
 		
