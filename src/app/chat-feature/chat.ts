@@ -35,24 +35,6 @@ export class Topic {
 		this.participants = participants;
 		this.most_recent_message = most_recent_message;
 	}
-
-
-  public upvote() {
-
-		// this.chatService.upvoteTopic(this.label).subscribe(
-    //   data => {
-    //     console.log(data)
-    //   }
-		// )
-
-		console.log("upvote")
-
-	}
-
-	
-
-
-
 }
 
 
