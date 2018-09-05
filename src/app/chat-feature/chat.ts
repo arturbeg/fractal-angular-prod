@@ -3,7 +3,7 @@ import { ChatService } from './chat.service';
 import { ChatGroup } from './../chatgroup-feature/chatgroup';
 import { Profile } from '../profile-feature/profile'
 
-@Injectable()
+
 export class Topic {
 	id: number;
 	name: string;
