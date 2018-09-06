@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { AuthService } 		 from '../../auth.service';
 
 
@@ -9,30 +9,55 @@ import { AuthService } 		 from '../../auth.service';
 })
 
 
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
-  @Input()isAuthorised: boolean;
-  @Input()username: string; // <- if exists, the user is authorised
+  authenticated: boolean;
+  username: string; // <- if exists, the user is authorised
+  _subscription: any;
 
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {
+
+    this.authenticated = this.authService.isAuthenticated();
+    this.username = this.authService.username;
+    this._subscription = this.authService.authenticatedChange.subscribe((value) => { 
+      console.log("Applying the change to the value of authenticated")
+      console.log(value)
+
+      if (value==true) {
+        this.username = this.authService.username;
+        this.authenticated = true;
+      } else {
+        this.authenticated = false;
+        this.username = '';
+      }
+     
+    });
+
+
+   }
+
+   ngOnDestroy() {
+    //prevent memory leak when component destroyed
+     this._subscription.unsubscribe();
+   }
 
 
   ngOnInit() {
 
-    if (localStorage.getItem('username')) {
-      this.username = localStorage.getItem('username');
-      this.isAuthorised = true;
-    } else {
-      this.isAuthorised = false;
-    }
+    // if (localStorage.getItem('username')) {
+    //   this.username = localStorage.getItem('username');
+    //   this.authenticated = true;
+    // } else {
+    //   this.authenticated = false;
+    // }
 
   }
 
 	logout() {
     this.authService.logout();		
-    this.isAuthorised = false;
-    this.username = "";
+    // this.authenticated = false;
+    // this.username = "";
 	}
 
 

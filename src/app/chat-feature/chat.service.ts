@@ -20,6 +20,9 @@ import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 export class ChatService {
 
 
+	
+
+
   chatApiUrl = 'http://127.0.0.1:8000/api/topics/'; // url to web api
   private handleHttpError: HandleError;
 

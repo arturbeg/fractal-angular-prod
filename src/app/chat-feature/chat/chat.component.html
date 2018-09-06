@@ -1,151 +1,129 @@
 <div id="chat">
 
-	<div class="row">
-
-		<div class="left_section col-lg-3">
-
-			<mat-card class="header">
-
-				<h5 class="text-center">
-
-					Related
-
-				</h5>
-
-
-
-			</mat-card>
-
-
-			<mat-form-field class="search-chats">
-
-  			<textarea matInput placeholder="Search" matTextareaAutosize matAutosizeMinRows="1"
-            matAutosizeMaxRows="5"></textarea>
-
-			</mat-form-field>
-
-
-
-			<div class="related-chats">
-
-					<app-chat-card *ngFor="let topic of relatedTopics" [topic]="topic"> </app-chat-card>
-
-			</div>
-
-		</div>
-
-
-		<div class="middle_section col-lg-6">
-
-
-			<mat-card class="header chatbox-header">
-
-			<h5> {{topic.name}} </h5>
-
-			<h6 class="text-secondary">{{topic.chatgroup.name}}</h6>
-
-			</mat-card>
-
-			<!-- <div id ="myId" #myId> -->
-
-			<mat-card class="chatbox-content" id="chatbox-content">
-				<div class="chatbox-content-body" id="chatbox" #chatbox ngx-auto-scroll lock-y-offset="10" observe-attributes>
-					<!-- Messages in here -->
-					<app-message *ngFor="let message of messages" [message]="message"> </app-message>
-				</div>
-			</mat-card>
-
-
-
-			<div class="send-message">
-
-				<mat-form-field class="float-left message-input">
-
-						 <textarea 
-						 matInput 
-						 placeholder="Type your message" 
-						 matTextareaAutosize 
-						 matAutosizeMinRows="1"
-						 matAutosizeMaxRows="5"
-						 #inputMessage
-						 maxLength="140"
-						 [(ngModel)]="messageContent"
-						 (keyup.enter)="sendMessage(messageContent)" 
-						 >
-			
-						</textarea>
-
-						<mat-hint align="end">{{inputMessage.value.length}}/140</mat-hint>
-
-
-
-	  			</mat-form-field>
-
-
-	  			<div class="float-left send-message-actions">
-
-	  			<button mat-button [matMenuTriggerFor]="menu">OPTIONS</button>
-
-
-				<mat-menu #menu="matMenu">
-				  <button mat-menu-item>Photo</button>
-				  <button mat-menu-item>Video</button>
-				</mat-menu>
-
-	  			</div>
-
-			</div>
-
-
-			</div>
-
-
-		<div class="right_section col-lg-3">
-
-			<mat-card class="header">
-
-
-				<h5 class="text-center">
-
-				Info
-
-				</h5>
-
-
-			</mat-card>
-
-			<div class="info-cards">
-
-
-				<mat-card class="info-card about">
-					<mat-card-header>
-
-						<mat-card-title>
-
-							<span class="font-weight-bold">
-							About
-							</span>
-
-						</mat-card-title>
-
-					</mat-card-header>
-
-					<mat-card-content>
-
-						<p>{{topic.about}}</p>
-
-					</mat-card-content>
-
-
+		<div class="row">
+	
+			<div class="left_section col-lg-3">
+	
+				<mat-card class="header">
+	
+					<h5 class="text-center">
+	
+						Related
+	
+					</h5>
+	
+	
+	
 				</mat-card>
-
-				<mat-card class="info-card edit-topic">
+	
+	
+				<mat-form-field class="search-chats">
+	
+					<textarea matInput placeholder="Search" matTextareaAutosize matAutosizeMinRows="1"
+							matAutosizeMaxRows="5"></textarea>
+	
+				</mat-form-field>
+	
+	
+	
+				<div class="related-chats">
+	
+						<app-chat-card *ngFor="let topic of relatedTopics" [topic]="topic"> </app-chat-card>
+	
+				</div>
+	
+			</div>
+	
+	
+			<div class="middle_section col-lg-6">
+	
+	
+				<mat-card class="header chatbox-header">
+	
+				<h5> {{topic.name}} </h5>
+	
+				<h6 class="text-secondary">{{topic.chatgroup.name}}</h6>
+	
+				</mat-card>
+	
+				<!-- <div id ="myId" #myId> -->
+	
+				<mat-card class="chatbox-content" id="chatbox-content">
+					<div class="chatbox-content-body" id="chatbox" #chatbox ngx-auto-scroll lock-y-offset="10" observe-attributes>
+						<!-- Messages in here -->
+						<app-message *ngFor="let message of messages" [message]="message"> </app-message>
+					</div>
+				</mat-card>
+	
+	
+	
+				<div class="send-message">
+	
+					<mat-form-field class="float-left message-input">
+	
+							 <textarea 
+							 matInput 
+							 placeholder="Type your message" 
+							 matTextareaAutosize 
+							 matAutosizeMinRows="1"
+							 matAutosizeMaxRows="5"
+							 #inputMessage
+							 maxLength="140"
+							 [(ngModel)]="messageContent"
+							 (keyup.enter)="sendMessage(messageContent)" 
+							 >
+				
+							</textarea>
+	
+							<mat-hint align="end">{{inputMessage.value.length}}/140</mat-hint>
+	
+	
+	
+						</mat-form-field>
+	
+	
+						<div class="float-left send-message-actions">
+	
+						<button mat-button [matMenuTriggerFor]="menu">OPTIONS</button>
+	
+	
+					<mat-menu #menu="matMenu">
+						<button mat-menu-item>Photo</button>
+						<button mat-menu-item>Video</button>
+					</mat-menu>
+	
+						</div>
+	
+				</div>
+	
+	
+				</div>
+	
+	
+			<div class="right_section col-lg-3">
+	
+				<mat-card class="header">
+	
+	
+					<h5 class="text-center">
+	
+					Info
+	
+					</h5>
+	
+	
+				</mat-card>
+	
+				<div class="info-cards">
+	
+	
+					<mat-card class="info-card about">
 						<mat-card-header>
 	
 							<mat-card-title>
 	
 								<span class="font-weight-bold">
-								Edit Topic
+								About
 								</span>
 	
 							</mat-card-title>
@@ -154,25 +132,20 @@
 	
 						<mat-card-content>
 	
-							<p>Wanna edit the topic?</p>
-							<!-- Edit Topic -->
-							<button mat-raised-button (click)="editTopic()">EDIT TOPIC</button>
-
-
+							<p>{{topic.about}}</p>
 	
 						</mat-card-content>
 	
 	
 					</mat-card>
-					
-					
-					<mat-card class="info-card delete-topic">
+	
+					<mat-card class="info-card edit-topic">
 							<mat-card-header>
 		
 								<mat-card-title>
 		
 									<span class="font-weight-bold">
-									Delete Topic
+									Edit Topic
 									</span>
 		
 								</mat-card-title>
@@ -181,66 +154,91 @@
 		
 							<mat-card-content>
 		
-
-								<!-- Delte Topic -->
-								<button mat-raised-button (click)="deleteTopic(topic.label)">DELETE TOPIC</button>
-
-								<!-- Upvote Topic | Downvote Topic -->
-								<button mat-raised-button (click)="upvoteTopic(topic.label)">UPVOTE TOPIC</button>
-								
-								
-								<button mat-raised-button (click)="downvoteTopic(topic.label)">DOWNVOTE TOPIC</button>
-
-								<!-- Save Topic -->
-								<button mat-raised-button (click)="saveTopic(topic.label)">SAVE TOPIC</button>
-
-
-								<p> Topic Rating: {{topic.rating}}</p>
-
+								<p>Wanna edit the topic?</p>
+								<!-- Edit Topic -->
+								<button mat-raised-button (click)="editTopic()">EDIT TOPIC</button>
 	
 	
 		
 							</mat-card-content>
 		
 		
-						</mat-card>						
-
-
-				<mat-card class="info-card participants">
-					<mat-card-header>
-
-						<mat-card-title>
-
-							<span class="font-weight-bold">
-							Participants
-							</span>
-
-						</mat-card-title>
-
-					</mat-card-header>
-
-					<mat-card-content>
-
-					<ul>
-							<li *ngFor="let participant of topic.participants">
-								{{participant.label}}
-							</li>
-					</ul>
-
-					</mat-card-content>
-
-
-				</mat-card>
-
-
+						</mat-card>
+						
+						
+						<mat-card class="info-card delete-topic">
+								<mat-card-header>
+			
+									<mat-card-title>
+			
+										<span class="font-weight-bold">
+										Delete Topic
+										</span>
+			
+									</mat-card-title>
+			
+								</mat-card-header>
+			
+								<mat-card-content>
+			
+	
+									<!-- Delte Topic -->
+									<button mat-raised-button (click)="deleteTopic(topic.label)">DELETE TOPIC</button>
+	
+									<!-- Upvote Topic | Downvote Topic -->
+									<button mat-raised-button (click)="upvoteTopic(topic.label)">UPVOTE TOPIC</button>
+									
+									
+									<button mat-raised-button (click)="downvoteTopic(topic.label)">DOWNVOTE TOPIC</button>
+	
+									<!-- Save Topic -->
+									<button mat-raised-button (click)="saveTopic(topic.label)">SAVE TOPIC</button>
+	
+	
+									<p> Topic Rating: {{topic.rating}}</p>
+	
+		
+		
+			
+								</mat-card-content>
+			
+			
+							</mat-card>						
+	
+	
+					<mat-card class="info-card participants">
+						<mat-card-header>
+	
+							<mat-card-title>
+	
+								<span class="font-weight-bold">
+								Participants
+								</span>
+	
+							</mat-card-title>
+	
+						</mat-card-header>
+	
+						<mat-card-content>
+	
+						<ul>
+								<li *ngFor="let participant of topic.participants">
+									{{participant.label}}
+								</li>
+						</ul>
+	
+						</mat-card-content>
+	
+	
+					</mat-card>
+	
+	
+				</div>
+	
 			</div>
-
+	
+	
 		</div>
-
-
+	
+	
 	</div>
-
-
-</div>
-
-

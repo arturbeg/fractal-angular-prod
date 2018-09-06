@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, AfterContentChecked, AfterViewChecked } from '@angular/core';
+import { AuthService } from './../../auth.service';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
 
 import { Action } from '../action';
 import { Event } from '../event';
@@ -27,10 +28,15 @@ import {EditTopicModalComponent} from '../edit-topic-modal/edit-topic-modal.comp
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
   // @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   @ViewChild('chatbox') chatbox: ElementRef;
   
+  authenticated: boolean;
+  username: string;
+  _subscription: any; 
+
+
   topic: Topic;
   relatedTopics: Topic[];
   action = Action;
@@ -44,6 +50,8 @@ export class ChatComponent implements OnInit {
   constructor(private socketService: SocketService,
               private userService: UserService,
               private chatService: ChatService,
+              private authService: AuthService,
+              
 
               private messageService: MessageService,
               private route: ActivatedRoute,
@@ -54,31 +62,48 @@ export class ChatComponent implements OnInit {
               ) 
               
         {           
-          // use the check Authenticated function in here          
-          if (localStorage.getItem('username')) {         
-            this.getProfile(localStorage.getItem('username'))          
-          } else {
-            console.log("Please log in to chat!")
-          }
+
+          this.handleAuthentication(); 
+          
 
         }
-  
-        
-  // ngAfterViewChecked() {
 
-  //   console.log("After View Checked")
-  //   this.scrollToBottom()
 
-  // }
+  handleAuthentication() {
 
-  // public scrollToBottom() {
 
-  //   console.log(this.chatbox.nativeElement)
-  //   try {
-  //   this.chatbox.nativeElement.scrollTop = this.chatbox.nativeElement.scrollHeight;
-  //   } catch(err) {console.log(err)}
+    this.authenticated = this.authService.isAuthenticated();
 
-  // }
+    if (this.authenticated) {
+      this.username = this.authService.username
+      this.getProfile(this.username)
+
+    } else {
+      this.router.navigate(['/login']);
+    }
+
+    this._subscription = this.authService.authenticatedChange.subscribe((value) => { 
+      console.log("Applying the change to the value of authenticated")
+      console.log(value)
+
+      if (value==true) {
+        this.username = this.authService.username;
+        this.authenticated = true;
+      } else {
+        this.authenticated = false;
+        this.username = '';
+        this.router.navigate(['/login']);
+
+      }
+     
+    });
+
+
+  }
+
+  ngOnDestroy() {
+    this._subscription.unsubscribe();
+  }
 
   ngOnInit(): void {
 

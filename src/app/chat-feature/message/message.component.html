@@ -14,7 +14,14 @@
 		<h5 class="msg-content">
 
 			<!-- Username -->
-			<span class="font-weight-bold"> {{message.sender.label}} </span>
+			<span class="font-weight-bold"> 
+				<a [routerLink]="['/profile', message.sender.label]">
+			
+					{{message.sender.label}} 
+
+				</a>	 
+			
+			</span>
 
 			<!-- Timestamp -->
 

@@ -8,12 +8,19 @@ import { catchError, retry } from 'rxjs/operators';
 import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
+import {Subject} from 'rxjs/Subject';
+
 
 
 @Injectable()
 export class AuthService {
 
-    
+    authenticated: boolean;
+    username: string;
+
+    authenticatedChange: Subject<boolean> = new Subject<boolean>();
+
+
     private restAuthUrlLogin = 'http://127.0.0.1:8000/rest-auth/login/';
     private restAuthUrlLogout = 'http://127.0.0.1:8000/rest-auth/logout/';
     private restAuthUrlSignup = 'http://127.0.0.1:8000/rest-auth/registration/';
@@ -24,7 +31,9 @@ export class AuthService {
 
     constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) {
 
-        this.handleHttpError = httpErrorHandler.createHandleError('AuthService');                                
+        this.handleHttpError = httpErrorHandler.createHandleError('AuthService'); 
+        
+        this.isAuthenticated();
 
     }
 
@@ -50,6 +59,8 @@ export class AuthService {
                                 localStorage.setItem('username', username)
                             }
 
+                            this.isAuthenticated();
+
                             
                         
                         },
@@ -60,16 +71,25 @@ export class AuthService {
 
 
     public logout(): void {
-        localStorage.removeItem('token')
-        localStorage.removeItem('username')
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        this.isAuthenticated();
     }
 
 
-    isAuthenticated(): boolean {
+    isAuthenticated() {
         if (localStorage.getItem('token')) {
-            return true;
+            this.authenticated = true
+            this.username = localStorage.getItem('username')
+            this.authenticatedChange.next(this.authenticated)
+
+            return true
+
         } else {
-            return false;
+            this.authenticated = false
+            this.authenticatedChange.next(this.authenticated)
+
+            return false
         };
     }
 
