@@ -1,5 +1,12 @@
 <br>
 <div class="content">
+
+    <app-chat-card *ngFor="let topic of topics" [topic]="topic"> </app-chat-card>
+  
+</div>
+
+<!---
+
   <mat-list>
 
 
@@ -7,7 +14,7 @@
 
     <mat-list-item *ngFor="let topic of topics">
 
-      <!-- Topic Image -->
+      
       
       <img matListAvatar class="img-fluid rounded" src="http://www.free-icons-download.net/images/user-group-icon-74418.png">
 
@@ -51,11 +58,14 @@
         </div>
         <div class="float-right">
           <button mat-button (click)="topicService.save(topic.label)">SAVE</button>
-          <!-- <button mat-button>OPTIONS</button> -->
+          <button mat-button>OPTIONS</button>
         </div>
       </div>
     </mat-list-item> 
 
 
   </mat-list>
-</div>
+
+
+
+-->

@@ -18,9 +18,6 @@ export class LoginComponent {
 	form: FormGroup;
 	@Output() isAuthorised = new EventEmitter<boolean>();
 
-
-
-
 	constructor(private authService:AuthService,
 				private fb: FormBuilder) { 
 

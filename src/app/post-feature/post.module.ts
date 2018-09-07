@@ -29,8 +29,8 @@ import { MaterialModule }          from '../material.module';
   providers: [], // add later
 
   exports: [
-
       // add later
+      PostComponent
     ],
 })
 export class PostModule {}

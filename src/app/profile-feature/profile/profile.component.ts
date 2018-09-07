@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth.service';
 import { Post } from './../../chat-feature/message';
 import { Component, OnInit } from '@angular/core';
 import { User } 			 from '../profile';
@@ -21,13 +22,17 @@ export class ProfileComponent {
 	username: string;
 	posts: Post[];
 
+
+
+
 	//profile: Profile;
 
 	constructor(
 			  private userService: UserService,
 			  private route: ActivatedRoute,
 			  private router: Router,
-			  public  dialog: MatDialog,
+				public  dialog: MatDialog,
+				public  authService: AuthService
 			  ) { }
 
 
@@ -75,6 +80,7 @@ export class ProfileComponent {
 			console.log(result);
 			this.profile$ = result
 			// update the profile object (Observable)
+			// need to update the authentication
 
 			
 		});

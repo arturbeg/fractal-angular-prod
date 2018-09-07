@@ -48,7 +48,7 @@
 		<span> LIKE </span>	
 	</button>
 	
-	<button mat-button (click)="messageNonHttp.share(message.id)">
+	<button *ngIf="message.sender.id==profile.id" mat-button (click)="messageNonHttp.share(message.id)">
 		
 		<span *ngIf="message.shared"> UNSHARE </span>
 		<!-- <ng-template #share>SHARE</ng-template>	 -->

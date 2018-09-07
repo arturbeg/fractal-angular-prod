@@ -59,7 +59,7 @@
 				<mat-card class="chatbox-content" id="chatbox-content">
 					<div class="chatbox-content-body" id="chatbox" #chatbox ngx-auto-scroll lock-y-offset="10" observe-attributes>
 						<!-- Messages in here -->
-						<app-message *ngFor="let message of messages" [message]="message"> </app-message>
+						<app-message *ngFor="let message of messages" [message]="message" [profile]="profile"> </app-message>
 					</div>
 				</mat-card>
 	
@@ -180,7 +180,7 @@
 									<mat-card-title>
 			
 										<span class="font-weight-bold">
-										Delete Topic
+										Options
 										</span>
 			
 									</mat-card-title>

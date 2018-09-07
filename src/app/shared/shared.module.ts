@@ -1,3 +1,4 @@
+import { PostModule } from './../post-feature/post.module';
 import { ChatService } from './../chat-feature/chat.service';
 import { Topic } from './../chat-feature/chat';
 // Angular Modules
@@ -17,6 +18,7 @@ import { ActivityComponent } from './activity/activity.component';
 
 
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { ActivityComponent } from './activity/activity.component';
     ReactiveFormsModule,
     MaterialModule,
     SharedRoutingModule,
-    ChatModule
+    ChatModule,
+    PostModule
   ],
   declarations: [
 

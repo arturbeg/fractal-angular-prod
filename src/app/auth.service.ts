@@ -64,10 +64,8 @@ export class AuthService {
                             
                         
                         },
-                    )
-
-            
-    }
+                    )         
+        }
 
 
     public logout(): void {
@@ -128,49 +126,4 @@ export class AuthService {
         return localStorage.getItem('token')
     }
 
-}  
-
-
-
-
-
-    
-// const httpOptions = {
-//     headers: new HttpHeaders({
-//     'Accept': 'application/json',
-//     'Content-Type':  'application/json',
-//     })
-// };
-
-// const httpOptions = {
-//     headers: new HttpHeaders({
-//     'Accept': 'application/json',
-//     'Content-Type':  'application/json',
-//     'Authorization': localStorage.getItem('token')
-
-//     })
-// };
-    // private setSession(authResult) {
-    //     // localStorage.setItem('id_token', authResult.idToken);
-    //     // localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
-    //     localStorage.setItem('token', authResult.token)
-
-    // }
-
-    // login(email:string, password:string ) {
-    //     return this.http.post<User>('/api/login', {email, password})
-    //         // this is just the HTTP call, 
-    //         // we still need to handle the reception of the token
-    //         .shareReplay();
-    // }
-
-
-    // public login(username:string, password:string) {
-    //     console.log("User login");
-    //     return this.http.post(this.restAuthUrlLogin, { username: username, email: "", password: password }, httpOptions)
-    //                 .map(
-
-    //                     data => localStorage.setItem('token', data['token'])
-
-    //                 )
-    // }  
+} 
