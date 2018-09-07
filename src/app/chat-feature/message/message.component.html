@@ -43,14 +43,16 @@
 
 	<div class="float-left msg-related-actions">
 
-	<button mat-button (click)="like(message.id)" >
+	<button mat-button (click)="messageNonHttp.like(message.id)" >
 		<span> {{message.likers_count}} </span>	
 		<span> LIKE </span>	
 	</button>
 	
-	<button mat-button (click)="share(message.id)">
+	<button mat-button (click)="messageNonHttp.share(message.id)">
 		
-		SHARE
+		<span *ngIf="message.shared"> UNSHARE </span>
+		<!-- <ng-template #share>SHARE</ng-template>	 -->
+		<span *ngIf="!message.shared"> SHARE </span>
 	
 	</button>
 

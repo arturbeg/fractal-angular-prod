@@ -19,14 +19,14 @@ export class MessageService {
 
   like(id) {
     const likeApiUrl = this.rootApiUrl + id + '/like/'
-    return this.http.get(likeApiUrl)
+    return this.http.get<Message>(likeApiUrl)
   }
 
 
   share(id) {
 
     const shareApiUrl = this.rootApiUrl + id + '/share/'
-    return this.http.get(shareApiUrl)
+    return this.http.get<Message>(shareApiUrl)
     
   }
 

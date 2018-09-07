@@ -82,29 +82,29 @@ export class ChatService {
 		console.log('participate ', label)
 		// http://127.0.0.1:8000/api/topics/test/participate/
 		const participateApiUrl = this.chatApiUrl + label + '/' + 'participate/'
-		return this.http.get(participateApiUrl)
+		return this.http.get<Topic>(participateApiUrl)
 	}
 
 	leaveTopic(label:string) {
 		console.log('leave ', label)
 
 		const leaveApiUrl = this.chatApiUrl + label + '/' + 'leave/'
-		return this.http.get(leaveApiUrl)
+		return this.http.get<Topic>(leaveApiUrl)
 	}
 
 	upvoteTopic(label) {
 		const upvoteApiUrl = this.chatApiUrl + label + '/' + 'upvote/'
-		return this.http.get(upvoteApiUrl)
+		return this.http.get<Topic>(upvoteApiUrl)
 	}
 
 	downvoteTopic(label) {
 		const downvoteApiUrl = this.chatApiUrl + label + '/' + 'downvote/'
-		return this.http.get(downvoteApiUrl)
+		return this.http.get<Topic>(downvoteApiUrl)
 	}
 
 	saveTopic(label) {
 		const saveApiUrl = this.chatApiUrl + label + '/' + 'save/'
-		return this.http.get(saveApiUrl)
+		return this.http.get<Topic>(saveApiUrl)
 		
 	}
 

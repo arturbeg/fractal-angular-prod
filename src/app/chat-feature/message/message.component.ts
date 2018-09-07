@@ -1,6 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { MessageNonHttpService } from './../message-non-http.service';
+import { SnackBar } from './snack-bar';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Message } from '../message';
 import { MessageService } from '../message.service'
+import {MatSnackBar} from '@angular/material';
+
 
 
 @Component({
@@ -8,39 +12,35 @@ import { MessageService } from '../message.service'
   templateUrl: './message.component.html',
   styleUrls: ['./message.component.scss']
 })
-export class MessageComponent implements OnInit {
+export class MessageComponent implements OnInit, OnDestroy {
 
   @Input() message: Message;
-  
 
+  _subscription: any;
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService,
+              public snackBar: MatSnackBar,
+              public messageNonHttp: MessageNonHttpService
+              ) { 
+
+                this._subscription = this.messageNonHttp.messageChange.subscribe(
+                  (value) => {
+                    if(this.message.id==value.id) {
+                      this.message = value;
+                    }
+                  }
+                )
+
+              }
 
   ngOnInit() {
+
   }
 
-
-  // later retreive the updated likers count
-  like(id) { 
-    this.messageService.like(id).subscribe(
-      data => { 
-        console.log(data)
-        if(data['status']=="message liked") {
-          this.message.likers_count++
-        } else {
-          this.message.likers_count--          
-        }
-      }
-    )
-  }
-  
-  
-  share(id) {
-    this.messageService.share(id).subscribe(
-      data => {
-        console.log(data)
-      }
-    )
+  ngOnDestroy() {
+    this._subscription.unsubscribe()
   }
 
 }
+
+

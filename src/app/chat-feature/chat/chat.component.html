@@ -17,12 +17,12 @@
 				</mat-card>
 	
 	
-				<mat-form-field class="search-chats">
+				<!-- <mat-form-field class="search-chats">
 	
 					<textarea matInput placeholder="Search" matTextareaAutosize matAutosizeMinRows="1"
 							matAutosizeMaxRows="5"></textarea>
 	
-				</mat-form-field>
+				</mat-form-field> -->
 	
 	
 	
@@ -42,7 +42,15 @@
 	
 				<h5> {{topic.name}} </h5>
 	
-				<h6 class="text-secondary">{{topic.chatgroup.name}}</h6>
+				<h6 class="text-secondary">
+				
+					<!-- <a [routerLink]="['/chatgroup', topic.chatgroup.label]">
+					
+					</a> -->
+
+					{{topic.chatgroup.name}}
+				
+				</h6>
 	
 				</mat-card>
 	
@@ -139,7 +147,7 @@
 	
 					</mat-card>
 	
-					<mat-card class="info-card edit-topic">
+					<mat-card *ngIf="isOwner()" class="info-card edit-topic">
 							<mat-card-header>
 		
 								<mat-card-title>
@@ -183,16 +191,31 @@
 			
 	
 									<!-- Delte Topic -->
-									<button mat-raised-button (click)="deleteTopic(topic.label)">DELETE TOPIC</button>
+									<button *ngIf="isOwner()" mat-raised-button (click)="deleteTopic(topic.label)">DELETE TOPIC</button>
 	
 									<!-- Upvote Topic | Downvote Topic -->
-									<button mat-raised-button (click)="upvoteTopic(topic.label)">UPVOTE TOPIC</button>
+									<button mat-raised-button (click)="topicService.upvote(topic.label)">
+										
+											<span *ngIf="topic.upvoted"> REMOVE UPVOTE </span>
+											<span *ngIf="!topic.upvoted"> UPVOTE </span>
+
+									</button>
 									
 									
-									<button mat-raised-button (click)="downvoteTopic(topic.label)">DOWNVOTE TOPIC</button>
+									<button mat-raised-button (click)="topicService.downvote(topic.label)">
+										
+										<span *ngIf="topic.downvoted"> REMOVE DOWNVOTE </span>
+										<span *ngIf="!topic.downvoted"> DOWNVOTE </span>
+										
+									</button>
 	
 									<!-- Save Topic -->
-									<button mat-raised-button (click)="saveTopic(topic.label)">SAVE TOPIC</button>
+									<button mat-raised-button (click)="topicService.save(topic.label)">
+										
+											<span *ngIf="topic.saved"> UNSAVE </span>
+											<span *ngIf="!topic.saved"> SAVE </span>
+
+									</button>
 	
 	
 									<p> Topic Rating: {{topic.rating}}</p>
@@ -206,7 +229,7 @@
 							</mat-card>						
 	
 	
-					<mat-card class="info-card participants">
+					<!-- <mat-card class="info-card participants">
 						<mat-card-header>
 	
 							<mat-card-title>
@@ -230,7 +253,7 @@
 						</mat-card-content>
 	
 	
-					</mat-card>
+					</mat-card> -->
 	
 	
 				</div>

@@ -10,6 +10,7 @@ export interface Message {
     user: number; // id of the user
     sender?: Profile;
     likers_count: number;
+    shared: boolean;
 
     //action?: Action;
     

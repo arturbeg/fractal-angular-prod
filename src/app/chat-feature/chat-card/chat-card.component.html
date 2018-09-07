@@ -36,7 +36,11 @@
   <div class="card-recent-message">
     <!-- The avatar of the user who produced the top message -->
     <div class="card-user-avatar">
+
+      <!-- <a [routerLink]="['/profile', topic.most_recent_message.sender.id]" > -->
       <img class="img-fluid rounded-circle" src="https://www.shiquehairextensions.com.au/wp-content/uploads/2017/11/default-user-image-female.png">
+      <!-- </a> -->
+
     </div>
 
     <!-- The content of the top message -->
@@ -63,12 +67,27 @@
 
   <mat-card-actions class="chat-card-actions">
     <div class="float-left">
-      <button mat-button (click)="topicService.upvote(topic.label)">UPVOTE</button>
+      <button mat-button (click)="topicService.upvote(topic.label)">
+      
+          <span *ngIf="topic.upvoted"> REMOVE UPVOTE </span>
+          <span *ngIf="!topic.upvoted"> UPVOTE </span>
+      
+      </button>
       <span>{{topic.rating}}</span>
-      <button mat-button (click)="topicService.downvote(topic.label)">DOWNVOTE</button>
+      <button mat-button (click)="topicService.downvote(topic.label)">
+        
+          <span *ngIf="topic.downvoted"> REMOVE DOWNVOTE </span>
+          <span *ngIf="!topic.downvoted"> DOWNVOTE </span>
+
+      </button>
     </div>
     <div class="float-right">
-      <button mat-button (click)="topicService.save(topic.label)">SAVE</button>
+      <button mat-button (click)="topicService.save(topic.label)">
+          
+          <span *ngIf="topic.saved"> UNSAVE </span>
+          <span *ngIf="!topic.saved"> SAVE </span>
+      
+      </button>
       <button mat-button>OPTIONS</button>
 
       <!-- Menu of potential options -->

@@ -1,16 +1,34 @@
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SnackBar } from './message/snack-bar';
 import { ChatService } from './chat.service';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import { Topic } from './chat';
+
 
 @Injectable()
 export class TopicService {
 
-  constructor(private chatService: ChatService) { }
+
+  topicChange: Subject<Topic> = new Subject<Topic>();
+  
+  
+  constructor(private chatService: ChatService,
+              public snackBar: MatSnackBarModule) { }
+
+  
+  editResult(topic) {
+
+    this.topicChange.next(topic)
+
+  }
 
   upvote(label) {
 
     this.chatService.upvoteTopic(label).subscribe(
       data => {
         console.log(data)
+        this.topicChange.next(data)
       }
     )
 
@@ -21,6 +39,7 @@ export class TopicService {
     this.chatService.downvoteTopic(label).subscribe(
       data => {
         console.log(data)
+        this.topicChange.next(data)
       }
     )
 
@@ -31,6 +50,7 @@ export class TopicService {
     this.chatService.saveTopic(label).subscribe(
       data => {
         console.log(data)
+        this.topicChange.next(data)
       }
     )
 

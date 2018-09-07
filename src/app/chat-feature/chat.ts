@@ -48,6 +48,10 @@ export interface Topic {
 	chatgroup: ChatGroup;
 	participants: Profile[];
 	most_recent_message: string;
+	owner: Profile;
+	upvoted: boolean;
+	downvoted: boolean;
+	saved: boolean;
 
 }
 

@@ -1,3 +1,5 @@
+import { MessageNonHttpService } from './message-non-http.service';
+import { SnackBar } from './message/snack-bar';
 
 import { TopicService } from './topic.service';
 import { NgModule }       			from '@angular/core';
@@ -21,6 +23,7 @@ import { NgxAutoScrollModule } from "ngx-auto-scroll";
 import { Topic } from './chat';
 
 
+
 // provide MyClass like providers: [MyClass] in a component or NgModule.
 
 
@@ -39,9 +42,10 @@ import { Topic } from './chat';
     MessageComponent,
     ChatCardComponent,
     ChatComponent,
-    EditTopicModalComponent
+    EditTopicModalComponent,
+    SnackBar
   ],
-  providers: [ SocketService, MessageService, ChatService, TopicService ],
+  providers: [ SocketService, MessageService, ChatService, TopicService, MessageNonHttpService ],
 
   exports: [
       // add later
@@ -50,7 +54,8 @@ import { Topic } from './chat';
 
     entryComponents: [ 
       
-      EditTopicModalComponent 
+      EditTopicModalComponent,
+      SnackBar
 
     ]
 })

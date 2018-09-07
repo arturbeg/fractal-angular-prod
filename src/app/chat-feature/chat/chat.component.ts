@@ -1,3 +1,4 @@
+import { TopicService } from './../topic.service';
 import { AuthService } from './../../auth.service';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
 
@@ -23,6 +24,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {EditTopicModalComponent} from '../edit-topic-modal/edit-topic-modal.component'
 
 
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -35,6 +37,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   authenticated: boolean;
   username: string;
   _subscription: any; 
+  _subscriptionTopicChange: any;
 
 
   topic: Topic;
@@ -51,6 +54,7 @@ export class ChatComponent implements OnInit, OnDestroy {
               private userService: UserService,
               private chatService: ChatService,
               private authService: AuthService,
+              public topicService: TopicService,
               
 
               private messageService: MessageService,
@@ -64,11 +68,25 @@ export class ChatComponent implements OnInit, OnDestroy {
         {           
 
           this.handleAuthentication(); 
+          this.handleTopicChange();
           
 
         }
 
 
+  handleTopicChange() {
+
+    this._subscriptionTopicChange = this.topicService.topicChange.subscribe((value) => {
+      
+      if (this.topic.id == value.id) {
+        this.topic = value;
+      }
+
+    }) 
+
+
+  }
+        
   handleAuthentication() {
 
 
@@ -103,6 +121,11 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this._subscription.unsubscribe();
+    this._subscriptionTopicChange.unsubscribe();
+  }
+
+  isOwner() {
+    return this.profile.label==this.topic.owner.label
   }
 
   ngOnInit(): void {
@@ -204,6 +227,10 @@ export class ChatComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       this.topic = result
+
+      // play with topic service here
+
+      this.topicService.editResult(result);
     })
  
 
@@ -224,29 +251,29 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.chatService.deleteTopic(label).subscribe();
   }
 
-  upvoteTopic(label) {
-    this.chatService.upvoteTopic(label).subscribe(
-      data => {
-        console.log(data)
-      }
-    )
-  }
+  // upvoteTopic(label) {
+  //   this.chatService.upvoteTopic(label).subscribe(
+  //     data => {
+  //       console.log(data)
+  //     }
+  //   )
+  // }
 
-  downvoteTopic(label) {
-    this.chatService.downvoteTopic(label).subscribe(
-      data => {
-        console.log(data)
-      }
-    )
-  }
+  // downvoteTopic(label) {
+  //   this.chatService.downvoteTopic(label).subscribe(
+  //     data => {
+  //       console.log(data)
+  //     }
+  //   )
+  // }
 
-  saveTopic(label) {
-    this.chatService.saveTopic(label).subscribe(
-      data => {
-        console.log(data)
-      }
-    )
-  }
+  // saveTopic(label) {
+  //   this.chatService.saveTopic(label).subscribe(
+  //     data => {
+  //       console.log(data)
+  //     }
+  //   )
+  // }
 
   private getProfile(username) {
 
@@ -301,7 +328,8 @@ export class ChatComponent implements OnInit, OnDestroy {
           sender: this.profile,
           text: message,
           timestamp: data['timestamp'],
-          likers_count: data['likers_count']
+          likers_count: data['likers_count'],
+          shared: false
         }, this.label);        
       
   
