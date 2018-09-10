@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 // Angular Modules
 import { NgModule }       			from '@angular/core';
 import { CommonModule }   			from '@angular/common';
@@ -15,11 +16,14 @@ import { RecentActivityComponent }    from './recent-activity/recent-activity.co
 //import { AppModule }            from '../app.module';
 import { MaterialModule }          from '../material.module';
 
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule
   ],
   declarations: [
     PostComponent,

@@ -281,8 +281,8 @@ export class ChatComponent implements OnInit, OnDestroy {
 
       data => {
 
-        this.profile = data
-        console.log(this.profile)
+        this.profile = data;
+        console.log(this.profile);
 
       }
     )
@@ -314,7 +314,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     // save the message via Django REST
 
-    this.messageService.newMessage(message, this.label, this.profile.id).subscribe(
+    this.messageService.newMessage(message, this.topic.label, this.profile.id).subscribe(
       
       data => { 
 
@@ -325,11 +325,13 @@ export class ChatComponent implements OnInit, OnDestroy {
           id: data['id'],
           user: data['user'],
           topic: this.topic.label,
+          topic_object: this.topic, 
           sender: this.profile,
           text: message,
           timestamp: data['timestamp'],
           likers_count: data['likers_count'],
-          shared: false
+          shared: false,
+          timestamp_human: data['timestamp_human']
         }, this.label);        
       
   

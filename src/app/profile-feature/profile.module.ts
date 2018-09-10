@@ -1,3 +1,4 @@
+import { PostModule } from './../post-feature/post.module';
 import { ChatModule } from './../chat-feature/chat.module';
 // Angular Modules
 import { NgModule }       			from '@angular/core';
@@ -24,6 +25,7 @@ import { ChatGroupModule } from '../chatgroup-feature/chatgroup.module';
 import { ProfileModalComponent } from './profile-modal/profile-modal.component'
 
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -31,6 +33,7 @@ import { ProfileModalComponent } from './profile-modal/profile-modal.component'
     ReactiveFormsModule,
     MaterialModule,
     ProfileRoutingModule,
+    PostModule
     //ChatGroupModule,
   ],  
   declarations: [

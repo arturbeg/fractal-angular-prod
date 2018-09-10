@@ -1,4 +1,4 @@
-import { Post } from './../chat-feature/message';
+import { Post } from './../post-feature/post';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
@@ -59,6 +59,11 @@ export class UserService {
         console.log("Retreiving the recent activity posts of " + username);
         const recentActivityApiUrl = this.rootApiUrl + username + '/activity/'
         return this.http.get<Post[]>(recentActivityApiUrl)
+            // .map(
+            //     data => {
+            //         console.log(data)
+            //     }
+            // )
     }
 
 

@@ -79,12 +79,14 @@
 		<!-- The POSTS are inside of this container -->
 		<div class="col-lg-10">
 
-			<ul>
+			<!-- <ul>
 
 				<li *ngFor="let post of posts"> {{post.message.sender.label}} : {{post.message.text}} </li>
 
 
-			</ul>
+			</ul> -->
+
+			<app-post *ngFor="let post of posts" [post]="post" > </app-post>
 
 
 		</div>

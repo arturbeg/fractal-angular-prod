@@ -1,5 +1,5 @@
+import { Post } from './../../post-feature/post';
 import { AuthService } from './../../auth.service';
-import { Post } from './../../chat-feature/message';
 import { Component, OnInit } from '@angular/core';
 import { User } 			 from '../profile';
 import { UserService }       from '../profile.service';
@@ -8,8 +8,10 @@ import 'rxjs/add/operator/switchMap';
 import { Profile } from '../profile'
 import { Observable } from 'rxjs/Observable';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { ProfileModalComponent } from '../profile-modal/profile-modal.component'
-import { ChatGroupComponent }	from '../../chatgroup-feature/chatgroup/chatgroup.component'
+import { ProfileModalComponent } from '../profile-modal/profile-modal.component';
+import { ChatGroupComponent }	from '../../chatgroup-feature/chatgroup/chatgroup.component';
+
+
 
 @Component({
   selector: 'app-profile',
@@ -22,9 +24,7 @@ export class ProfileComponent {
 	username: string;
 	posts: Post[];
 
-
-
-
+	
 	//profile: Profile;
 
 	constructor(

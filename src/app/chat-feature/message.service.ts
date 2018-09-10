@@ -1,10 +1,12 @@
+import { Topic } from './chat';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth.service';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
 import { catchError, retry } from 'rxjs/operators';
-import { Message } from './message'
+import { Message } from './message';
+
 
 @Injectable()
 export class MessageService {
@@ -30,11 +32,11 @@ export class MessageService {
     
   }
 
-  newMessage(text: string, topicLabel: string, userId: number) {
+  newMessage(text: string, topic: string, userId: number) {
 
     var messageObject = {
       text: text,
-      topic: topicLabel,
+      topic: topic,
       user: userId,
     }
     return this.http.post<Message>(this.rootApiUrl, messageObject).pipe(

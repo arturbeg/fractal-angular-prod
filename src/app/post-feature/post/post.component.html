@@ -3,8 +3,9 @@
 
 	<!-- User Avatar -->
 
-	<img class="float-left rounded-circle" src="http://santetotal.com/wp-content/uploads/2014/05/default-user.png" height="30px" width="30px">
-
+	<a [routerLink]="['/profile', post.message.sender.label]">
+		<img class="float-left rounded-circle" src="http://santetotal.com/wp-content/uploads/2014/05/default-user.png" height="30px" width="30px">
+	</a>	
 
 	<!-- Post Content  -->
 
@@ -13,21 +14,27 @@
 		<!-- Username -->
 
 		<span class="username font-weight-bold">
-			{{post.message.sender.label}}
+			
+			<a [routerLink]="['/profile', post.message.sender.label]"> 	
+				{{post.message.sender.label}}
+			</a>
 		</span>
 
 
-		<!-- ChatGroup -->
 
 		<span class="chatgroup text-secondary">
-			{{post.message.topic.chatgroup.label}}
+			<a [routerLink]="['/chatgroup', post.message.topic_object.chatgroup.label]"> 
+				{{post.message.topic_object.chatgroup.name}}
+			</a>
 		</span>
 
 		<!-- Context (chat where the post comes from) -->
 
 
 		<span class="context float-right">
-		Context
+			<a [routerLink]="['/chat', post.message.topic_object.label]"> 
+				{{post.message.topic_object.name}}
+			</a>
 		</span>
 
 
@@ -58,8 +65,7 @@
 		COMMENT
 		</button>
 
-		<span class="timestamp text-secondary float-right">{{post.timestamp}}</span>
-		<p> {{post.timestamp}} </p>
+		<span class="timestamp text-secondary float-right">{{post.timestamp_human}} ago</span>
 	</div>
 
 </div>
