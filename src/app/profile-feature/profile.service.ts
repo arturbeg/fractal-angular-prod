@@ -24,8 +24,8 @@ import { Topic } from '../chat-feature/chat';
 export class UserService {
     
 	private handleHttpError: HandleError;
-	private rootApiUrl = 'http://127.0.0.1:8000/api/profiles/'
-    private rootApiUrlUser = 'http://127.0.0.1:8000/rest-auth/user/'
+	private rootApiUrl = 'https://fractal-django-prod.herokuapp.com/api/profiles/'
+    private rootApiUrlUser = 'https://fractal-django-prod.herokuapp.com/rest-auth/user/'
 
 
     constructor(

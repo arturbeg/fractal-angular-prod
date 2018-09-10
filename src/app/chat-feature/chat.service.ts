@@ -23,7 +23,7 @@ export class ChatService {
 	
 
 
-  chatApiUrl = 'http://127.0.0.1:8000/api/topics/'; // url to web api
+  chatApiUrl = 'https://fractal-django-prod.herokuapp.com/api/topics/'; // url to web api
   private handleHttpError: HandleError;
 
 
@@ -52,7 +52,7 @@ export class ChatService {
 	getTopics(username: string) {
                 
 		console.log("Retriving trendign topics for " + username)
-		const topicsApiUrl = 'http://127.0.0.1:8000/api/profiles/' + username + '/' + 'topics/'
+		const topicsApiUrl = 'https://fractal-django-prod.herokuapp.com/api/profiles/' + username + '/' + 'topics/'
 		
 		return this.http.get<Topic[]>(topicsApiUrl)
 			// .map(
@@ -63,8 +63,8 @@ export class ChatService {
 	}
 
 	getMessages(label:string) {
-		// http://127.0.0.1:8000/api/realtime/messages/?topic=new
-		const messagesListApiUrl = 'http://127.0.0.1:8000/api/realtime/messages/?topic=' + label
+		// https://fractal-django-prod.herokuapp.com/api/realtime/messages/?topic=new
+		const messagesListApiUrl = 'https://fractal-django-prod.herokuapp.com/api/realtime/messages/?topic=' + label
 		return this.http.get<Message[]>(messagesListApiUrl)
 	}
 
@@ -80,7 +80,7 @@ export class ChatService {
 	// leaves online_participats if already there
 	participateTopic(label:string) {
 		console.log('participate ', label)
-		// http://127.0.0.1:8000/api/topics/test/participate/
+		// https://fractal-django-prod.herokuapp.com/api/topics/test/participate/
 		const participateApiUrl = this.chatApiUrl + label + '/' + 'participate/'
 		return this.http.get<Topic>(participateApiUrl)
 	}
@@ -110,8 +110,8 @@ export class ChatService {
 
 	getRelatedTopics(chatgroup_label) {
 
-		// chatgroupApiUrl = 'http://127.0.0.1:8000/api/chatgroups/';
-		const relatedTopicsApi = "http://127.0.0.1:8000/api/chatgroups/" + chatgroup_label + "/topics"
+		// chatgroupApiUrl = 'https://fractal-django-prod.herokuapp.com/api/chatgroups/';
+		const relatedTopicsApi = "https://fractal-django-prod.herokuapp.com/api/chatgroups/" + chatgroup_label + "/topics"
 
 		return this.http.get<Topic[]>(relatedTopicsApi)
 		
