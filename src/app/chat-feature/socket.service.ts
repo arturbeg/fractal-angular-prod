@@ -6,7 +6,7 @@ import { Event } from './event';
 
 import * as socketIo from 'socket.io-client';
 
-const SERVER_URL = 'http://localhost:8080';
+const SERVER_URL = 'https://fractal-node.herokuapp.com/';
 
 @Injectable()
 export class SocketService {
@@ -127,7 +127,7 @@ import { Event } from './event';
 
 import * as socketIo from 'socket.io-client';
 
-const SERVER_URL = 'http://localhost:8080';
+const SERVER_URL = 'https://fractal-node.herokuapp.com/';
 
 @Injectable()
 export class SocketService {
