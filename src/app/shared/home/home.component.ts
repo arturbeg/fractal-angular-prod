@@ -1,3 +1,6 @@
+import { Router } from '@angular/router';
+import { ProfileNonHttpService } from './../../profile-feature/profile-non-http.service';
+import { CommonService } from './../../common.service';
 import { TopicService } from './../../chat-feature/topic.service';
 import { Component, OnInit } from '@angular/core';
 import {PageEvent} from '@angular/material';
@@ -14,57 +17,33 @@ import { UserService } from '../../profile-feature/profile.service';
 })
 export class HomeComponent implements OnInit {
   
-
   topics: Topic[];
-  profile: Profile;
-
 
   constructor(private chatService: ChatService,
               private userService: UserService,
               public topicService: TopicService,
+              public commonService: CommonService,
+              private router: Router
               )
 
       { 
-          
-        if (localStorage.getItem('username')) {         
-          this.getProfile(localStorage.getItem('username'))
-                    
+        if(this.commonService.authenticated) {
+          this.getTopics(this.commonService.username); 
         } else {
-          console.log("Please log in to chat!")
+          this.router.navigate(['/login'])
         }
-        
-}
+      }
 
   ngOnInit() {
-    // getting the topics within the getProfileMethod
+
   }
 
   public getTopics(username) {
-
     this.chatService.getTopics(username).subscribe(
       data => {
         this.topics = data
-        console.log(this.topics)
       }
     )
-
   }
-
-  // have a separate function in a profile service for this ->  
-  public getProfile(username) {
-
-    this.userService.getProfile(username).subscribe(
-
-      data => {
-
-        this.profile = data
-        console.log(this.profile)
-        this.getTopics(this.profile.label)
-
-      }
-    )
-
-  }
-
 
 }

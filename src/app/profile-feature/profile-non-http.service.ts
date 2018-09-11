@@ -1,3 +1,5 @@
+import { ChatService } from './../chat-feature/chat.service';
+import { Topic } from './../chat-feature/chat';
 import { ProfileModalComponent } from './profile-modal/profile-modal.component';
 import { Post } from './../post-feature/post';
 import { UserService } from './profile.service';
@@ -6,15 +8,15 @@ import {Profile} from './profile';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
-
 @Injectable()
 export class ProfileNonHttpService {
 
   profile: Profile;
   posts: Post[];
-  username: string;
+	username: string;
+	topics: Topic[];
   
-  constructor(private userService: UserService, private dialog: MatDialog ) {  }
+  constructor(private userService: UserService, private dialog: MatDialog) {  }
 
   getProfile(username) {
     this.userService.getProfile(username).subscribe(
@@ -22,9 +24,9 @@ export class ProfileNonHttpService {
         this.profile = data
       }
     )
-  }
+	}
 
-  	
+
 	getPosts(username) {
 		this.userService.getProfilePosts(username).subscribe(
 			data => {
@@ -35,7 +37,11 @@ export class ProfileNonHttpService {
 	}
 
   follow(username) {
-		this.userService.follow(username).subscribe()	
+		this.userService.follow(username).subscribe(
+			data => {
+				this.profile = data;
+			}
+		);	
   }
   
   public sayHi() {

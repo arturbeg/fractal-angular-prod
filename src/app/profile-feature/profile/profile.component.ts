@@ -1,3 +1,4 @@
+import { CommonService } from './../../common.service';
 import { ProfileNonHttpService } from './../profile-non-http.service';
 import { Post } from './../../post-feature/post';
 import { AuthService } from './../../auth.service';
@@ -10,6 +11,7 @@ import { Profile } from '../profile'
 import { Observable } from 'rxjs/Observable';
 import { ProfileModalComponent } from '../profile-modal/profile-modal.component';
 import { ChatGroupComponent }	from '../../chatgroup-feature/chatgroup/chatgroup.component';
+
 
 @Component({
   selector: 'app-profile',
@@ -27,7 +29,8 @@ export class ProfileComponent {
 			  private route: ActivatedRoute,
 			  private router: Router,
 				public  authService: AuthService,
-				public 	profileNonHttp: ProfileNonHttpService
+				public 	profileNonHttp: ProfileNonHttpService,
+				public  commonService: CommonService
 			  ) { 
 					this.getProfileData();
 				}

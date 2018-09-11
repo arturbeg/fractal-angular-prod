@@ -33,7 +33,7 @@ import { Topic } from './chat';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    ProfileModule,
+    // ProfileModule,
     ChatRoutingModule,
     //SharedModule,
     NgxAutoScrollModule

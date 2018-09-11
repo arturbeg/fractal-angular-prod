@@ -117,7 +117,7 @@ export class UserService {
         console.log("Follow a profile: " + username)
         const followApiUrl = this.rootApiUrl + username + '/follow/'
 
-        return this.http.get(followApiUrl)
+        return this.http.get<Profile>(followApiUrl)
 
     }
 }

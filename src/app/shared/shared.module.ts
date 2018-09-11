@@ -1,3 +1,4 @@
+import { ProfileModule } from './../profile-feature/profile.module';
 import { RouterModule } from '@angular/router';
 import { PostModule } from './../post-feature/post.module';
 import { ChatService } from './../chat-feature/chat.service';
@@ -29,7 +30,8 @@ import { ActivityComponent } from './activity/activity.component';
     SharedRoutingModule,
     ChatModule,
     PostModule,
-    RouterModule
+    RouterModule,
+    ProfileModule
   ],
   declarations: [
 

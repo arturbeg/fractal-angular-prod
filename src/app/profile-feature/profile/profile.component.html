@@ -23,13 +23,15 @@
 
 
 			<!-- Edit Profile -->
-			<button mat-raised-button (click)="profileNonHttp.sayHi()">EDIT PROFILE</button>
+			<button mat-button *ngIf="commonService.username==profileNonHttp.profile.label" (click)="profileNonHttp.sayHi()">EDIT PROFILE</button>
 			
 			<!-- Follow -->
-			<button mat-button>FOLLOW</button>
+			<button *ngIf="commonService.username!=profileNonHttp.profile.label" mat-button (click)="profileNonHttp.follow(profileNonHttp.profile.label)">
+				
+				<span *ngIf="profileNonHttp.profile.followed"> UNFOLLOW </span>
+				<span *ngIf="!profileNonHttp.profile.followed"> FOLLOW </span>
 
-
-
+			</button>
 
 		</div>
 
