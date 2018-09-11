@@ -35,16 +35,7 @@ export class ChatService {
 	}  
   
 	getTopic(label: string) {
-
 		return this.http.get<Topic>(this.chatApiUrl + label + '/')
-			// .map(
-			// 	res =>
-			// 		{
-			// 			return new Topic(res.id, res.name, res.about, res.label, res.rating, res.chatgroup, res.participants, res.most_recent_message)
-			// 		}
-			// )
-
-
 	}
 
 
@@ -55,32 +46,21 @@ export class ChatService {
 		const topicsApiUrl = 'https://fractal-django-prod.herokuapp.com/api/profiles/' + username + '/' + 'topics/'
 		
 		return this.http.get<Topic[]>(topicsApiUrl)
-			// .map(
-			// 	res => res.map(x => new Topic(x.id, x.name, x.about, x.label, x.rating, x.chatgroup, x.participants, x.most_recent_message)
-			// ))
-
-
 	}
 
 	getMessages(label:string) {
-		// https://fractal-django-prod.herokuapp.com/api/realtime/messages/?topic=new
-		const messagesListApiUrl = 'https://fractal-django-prod.herokuapp.com/api/realtime/messages/?topic=' + label
+		const messagesListApiUrl = 'https://fractal-django-prod.herokuapp.com/api/realtime/messages/?ordering=timestamp&topic=' + label
 		return this.http.get<Message[]>(messagesListApiUrl)
 	}
 
 
-	// newOnlineParticipant(label:string, )
-
 
 	deleteTopic(label:string) {
-		// delete the topic
 		return this.http.delete(this.chatApiUrl + label + '/')
 	}
 
-	// leaves online_participats if already there
 	participateTopic(label:string) {
 		console.log('participate ', label)
-		// https://fractal-django-prod.herokuapp.com/api/topics/test/participate/
 		const participateApiUrl = this.chatApiUrl + label + '/' + 'participate/'
 		return this.http.get<Topic>(participateApiUrl)
 	}
@@ -109,12 +89,8 @@ export class ChatService {
 	}
 
 	getRelatedTopics(chatgroup_label) {
-
-		// chatgroupApiUrl = 'https://fractal-django-prod.herokuapp.com/api/chatgroups/';
 		const relatedTopicsApi = "https://fractal-django-prod.herokuapp.com/api/chatgroups/" + chatgroup_label + "/topics"
-
 		return this.http.get<Topic[]>(relatedTopicsApi)
-		
 	}
 
 	editTopic(label, newName, newAbout) {

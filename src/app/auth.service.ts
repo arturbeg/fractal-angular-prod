@@ -23,7 +23,6 @@ export class AuthService {
 
     authenticatedChange: Subject<boolean> = new Subject<boolean>();
 
-
     private restAuthUrlLogin = 'https://fractal-django-prod.herokuapp.com/rest-auth/login/';
     private restAuthUrlLogout = 'https://fractal-django-prod.herokuapp.com/rest-auth/logout/';
     private restAuthUrlSignup = 'https://fractal-django-prod.herokuapp.com/rest-auth/registration/';

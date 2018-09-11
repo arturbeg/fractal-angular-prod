@@ -18,6 +18,7 @@ export interface Profile {
 	following_count: number;
 	chatgroups_count: number;
 	followed: boolean;
+	user_id: number;
 	///user: User;
 	// timestamp, avatar, followers
 }

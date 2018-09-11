@@ -1,9 +1,9 @@
+import { ProfileNonHttpService } from './../../profile-feature/profile-non-http.service';
 import { CommonService } from './../../common.service';
 import { TopicService } from './../topic.service';
 import { AuthService } from './../../auth.service';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
 
-import { Action } from '../action';
 import { Event } from '../event';
 import { Message } from '../message';
 import { Profile } from '../../profile-feature/profile'
@@ -30,19 +30,12 @@ import {EditTopicModalComponent} from '../edit-topic-modal/edit-topic-modal.comp
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  // @ViewChild('scrollMe') private myScrollContainer: ElementRef;
   @ViewChild('chatbox') chatbox: ElementRef;
   
-  authenticated: boolean;
-  username: string;
-  // _subscription: any; 
   _subscriptionTopicChange: any;
-
 
   topic: Topic;
   relatedTopics: Topic[];
-  action = Action;
-  profile: Profile;
   messages: Message[] = [];
   label: string;
   messageContent: string;
@@ -62,7 +55,9 @@ export class ChatComponent implements OnInit, OnDestroy {
 
               public  dialog: MatDialog,
 
-              private commonService: CommonService
+              private commonService: CommonService,
+
+              public profileNonHttp: ProfileNonHttpService
 
               ) 
               
@@ -71,7 +66,6 @@ export class ChatComponent implements OnInit, OnDestroy {
           this.handleAuthentication(); 
           this.handleTopicChange();
           
-
         }
 
 
@@ -89,32 +83,11 @@ export class ChatComponent implements OnInit, OnDestroy {
         
   handleAuthentication() {
 
-    this.authenticated = this.commonService.authenticated;
-
-    if (this.authenticated) {
-      this.username = this.commonService.username
-      this.getProfile(this.username)
-
+    if (this.commonService.authenticated) {
+      this.profileNonHttp.getProfile(this.commonService.username);
     } else {
       this.router.navigate(['/login']);
     }
-
-    // this._subscription = this.authService.authenticatedChange.subscribe((value) => { 
-    //   console.log("Applying the change to the value of authenticated")
-    //   console.log(value)
-
-    //   if (value==true) {
-    //     this.username = this.authService.username;
-    //     this.authenticated = true;
-    //   } else {
-    //     this.authenticated = false;
-    //     this.username = '';
-    //     this.router.navigate(['/login']);
-
-    //   }
-     
-    // });
-
 
   }
 
@@ -124,7 +97,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   isOwner() {
-    return this.profile.label==this.topic.owner.label
+    return this.profileNonHttp.profile.label==this.topic.owner.label
   }
 
   ngOnInit(): void {
@@ -153,7 +126,6 @@ export class ChatComponent implements OnInit, OnDestroy {
       // scroll to bottom
       this.chatbox.nativeElement.scrollIntoView(false)
 
-
     });
 
   }
@@ -171,46 +143,24 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   public joinRoom(label) {
-    console.log("Joining the room ", label)
-    // update online_participants
-    this.chatService.participateTopic(label).subscribe(data => {
-      console.log(data)
-    })
-
-    this.socketService.joinRoom(label)
-    
+    this.socketService.joinRoom(label)    
   }
 
   public leaveRoom(label) {
-    console.log("Leaving the room ", label)
-    // update online_participants
-    this.chatService.leaveTopic(label).subscribe(data =>
-      {
-        console.log(data)
-      }
-    )
-    
     this.socketService.leaveRoom(label)
-
   }
-
 
 
   getMessages(label) {
     this.chatService.getMessages(label).subscribe(
       data => {
-        console.log(data)
         this.messages = data
-        // this.scrollToBottom();
       }
     )
   }
 
+  // TODO: move to nonHTTP SERVICE 
   editTopic() {
-
-
-    console.log("Editing the topic")
-
     const dialogRef = this.dialog.open(EditTopicModalComponent, {
       data: {
         topic: this.topic,
@@ -224,9 +174,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       this.topic = result
-
-      // play with topic service here
-
       this.topicService.editResult(result);
     })
  
@@ -248,44 +195,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.chatService.deleteTopic(label).subscribe();
   }
 
-  // upvoteTopic(label) {
-  //   this.chatService.upvoteTopic(label).subscribe(
-  //     data => {
-  //       console.log(data)
-  //     }
-  //   )
-  // }
-
-  // downvoteTopic(label) {
-  //   this.chatService.downvoteTopic(label).subscribe(
-  //     data => {
-  //       console.log(data)
-  //     }
-  //   )
-  // }
-
-  // saveTopic(label) {
-  //   this.chatService.saveTopic(label).subscribe(
-  //     data => {
-  //       console.log(data)
-  //     }
-  //   )
-  // }
-
-  private getProfile(username) {
-
-    this.userService.getProfile(username).subscribe(
-
-      data => {
-
-        this.profile = data;
-        console.log(this.profile);
-
-      }
-    )
-
-  }
-
   private initIoConnection(): void {
     this.socketService.initSocket();
 
@@ -297,33 +206,29 @@ export class ChatComponent implements OnInit, OnDestroy {
    
   }
 
-  // private ioParticipantUpdates() {
-
-  //   this.socketService.onNewParticipant()
-  //   this.socketService.onLeaveParticipant()
-
-  // }
-
   public sendMessage(message: string): void {
     if (!message) {
       return;
     }
 
     // save the message via Django REST
-
-    this.messageService.newMessage(message, this.topic.label, this.profile.id).subscribe(
+    this.messageService.newMessage(
+      message, 
+      this.topic.label, 
+      this.profileNonHttp.profile.user_id // <- should be the user id not topic id
+      ).subscribe(
       
       data => { 
 
         console.log(data)
         
-    // send the message to Socket IO
+        // send the message to Socket IO
         this.socketService.send({
           id: data['id'],
           user: data['user'],
           topic: this.topic.label,
           topic_object: this.topic, 
-          sender: this.profile,
+          sender: this.profileNonHttp.profile,
           text: message,
           timestamp: data['timestamp'],
           likers_count: data['likers_count'],
@@ -335,7 +240,6 @@ export class ChatComponent implements OnInit, OnDestroy {
       }
 
     )
-    
     this.messageContent = null;
   }
 

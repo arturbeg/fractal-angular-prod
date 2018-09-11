@@ -37,8 +37,9 @@ export class MessageService {
     var messageObject = {
       text: text,
       topic: topic,
-      user: userId,
+      user: 1,
     }
+
     return this.http.post<Message>(this.rootApiUrl, messageObject).pipe(
       catchError(this.handleHttpError('newMessage'))
     )
