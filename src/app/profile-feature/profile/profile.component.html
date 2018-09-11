@@ -1,4 +1,4 @@
-<div *ngIf="profile$ | async as profile" class="profile">
+<div class="profile">
 
 	<div class="row">
 
@@ -13,20 +13,20 @@
 			<!-- Username -->
 
 			<h2 class="username text-center">
-			{{profile.label}}
+			{{profileNonHttp.profile.label}}
 			</h2>
 
 
 			<!-- User about --> 
 
-			<h4 class="user-about text-center">{{profile.about}}</h4>
+			<h4 class="user-about text-center">{{profileNonHttp.profile.about}}</h4>
 
 
 			<!-- Edit Profile -->
-			<button mat-raised-button (click)="editProifle()">EDIT PROFILE</button>
+			<button mat-raised-button (click)="profileNonHttp.sayHi()">EDIT PROFILE</button>
 			
 			<!-- Follow -->
-			<button mat-button (click)="follow()">FOLLOW</button>
+			<button mat-button>FOLLOW</button>
 
 
 
@@ -49,21 +49,20 @@
 		</button> -->
 
 
-		<button mat-raised-button 
-		(click)="openDialog()">
+		<button mat-raised-button>
 
-			<span>{{profile.chatgroups_count}}</span>
+			<span>{{profileNonHttp.profile.chatgroups_count}}</span>
 			<span> chat groups </span>
 
 		</button>
 
 		<button mat-raised-button>
-			<span>{{profile.followers_count}}</span>
+			<span>{{profileNonHttp.profile.followers_count}}</span>
 			<span> followers </span>
 		</button>
 
 		<button mat-raised-button>
-			<span>{{profile.following_count}}</span>	
+			<span>{{profileNonHttp.profile.following_count}}</span>	
 			<span> following </span>
 		</button>
 	
@@ -86,7 +85,7 @@
 
 			</ul> -->
 
-			<app-post *ngFor="let post of posts" [post]="post" > </app-post>
+			<app-post *ngFor="let post of profileNonHttp.posts" [post]="post" > </app-post>
 
 
 		</div>

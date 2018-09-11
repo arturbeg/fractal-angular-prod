@@ -1,3 +1,5 @@
+import { LocalStorageService } from 'ngx-webstorage';
+import { CommonService } from './../common.service';
 import { Post } from './../post-feature/post';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
@@ -29,7 +31,7 @@ export class UserService {
 
 
     constructor(
-        private authService: AuthService, httpErrorHandler: HttpErrorHandler, private http: HttpClient) 
+        private authService: AuthService, httpErrorHandler: HttpErrorHandler, private http: HttpClient, private commonService: CommonService, private localSt: LocalStorageService) 
 
     {
 
@@ -67,32 +69,23 @@ export class UserService {
     }
 
 
-    editProfile(username, newUsername, newAbout) {
+    editProfile(username, newAbout) {
 
         console.log("Editing the profile: " + username)
-        console.log("New Username: " + newUsername + 'New About: ' + newAbout)
+        // console.log("New Username: " + newUsername + 'New About: ' + newAbout)
 
         // edit profile object
-        return this.http.patch(this.rootApiUrl + username + '/', {label: newUsername, about: newAbout})
-
-        
-
-        // this.http.patch(this.rootApiUrlUser, {username: newUsername})
-
-
+        return this.http.patch(this.rootApiUrl + username + '/', {about: newAbout})
 
     }
 
     editUserObject(username, newUsername) {
-        // edit user object
-
+        // edit user object -> need to update commonService
+        // change later to account for validation errors
+        console.log("Patching the userObject...");
         return this.http.patch(this.rootApiUrlUser, {username: newUsername})
-    }
-
-
-
-    deleteProfile(username) {
-
+        // this.localSt.store('username', newUsername);
+        // this.commonService.refreshValues();
     }
 
 
@@ -106,8 +99,6 @@ export class UserService {
                 )
 
     }
-
-    // getRecentActivity(username)
 
 
     getChatGroups(username) {
@@ -126,48 +117,7 @@ export class UserService {
         console.log("Follow a profile: " + username)
         const followApiUrl = this.rootApiUrl + username + '/follow/'
 
-
         return this.http.get(followApiUrl)
-            // .map(
-            //     data => console.log(data)
-            // )
 
     }
-
-    verifyToken() {
-
-        this.authService.verifyToken().subscribe()
-
-    }
-
-
-    
 }
-
-
-
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Accept': 'application/json',
-    //     'Content-Type':  'application/json',
-
-    //   })
-    // };
-
-
-
-    // jwtHeaders(): object {    
-    //     const httpOptions = {
-    //     headers: new HttpHeaders({
-    //         'Content-Type': 'application/json',
-    //         // 'Authorization': 'Token ' + localStorage.getItem('token'),
-    //     })
-    //     };
-    //     return httpOptions;
-    // }
-
-
-                // .pipe(
-                //     retry(3), // retry the failed request up to 3 times
-                //     catchError(this.handleHttpError('getProfile'))    
-                // );

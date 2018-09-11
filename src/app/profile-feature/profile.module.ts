@@ -1,3 +1,4 @@
+import { ProfileNonHttpService } from './profile-non-http.service';
 import { PostModule } from './../post-feature/post.module';
 import { ChatModule } from './../chat-feature/chat.module';
 // Angular Modules
@@ -46,7 +47,7 @@ import { ProfileModalComponent } from './profile-modal/profile-modal.component'
      
 
   ],
-  providers: [ UserService ],
+  providers: [ UserService, ProfileNonHttpService ],
 
   exports: [
       // add later

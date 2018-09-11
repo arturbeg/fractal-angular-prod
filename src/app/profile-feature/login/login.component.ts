@@ -1,9 +1,9 @@
+import { CommonService } from './../../common.service';
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 
 import { AuthService } 		 from '../../auth.service';
 
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-
 
 @Component({
   selector: 'app-login',
@@ -12,14 +12,11 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 })
 export class LoginComponent {
 
-	// username: string;
-	// password: string;
-
 	form: FormGroup;
-	@Output() isAuthorised = new EventEmitter<boolean>();
+
 
 	constructor(private authService:AuthService,
-				private fb: FormBuilder) { 
+				private fb: FormBuilder, private commonService: CommonService) { 
 
         this.form = this.fb.group({
             username: ['',Validators.required],
@@ -33,37 +30,8 @@ export class LoginComponent {
 		console.log(val)
 
 		if (val.username && val.password) {
-			this.authService.login(val.username, val.password).subscribe()
-			if (localStorage.getItem('username')) {
-				console.log("Successfully logged in!")
-				this.isAuthorised.emit(true)
-			}	else {
-				console.log("Something went wrong..")
-				this.isAuthorised.emit(false)
-			}
+			this.authService.login(val.username, val.password).subscribe();
 		}
 	}
-
-
-	getToken() {
-		return this.authService.getAuthToken()
-	}
-
-
-
-
-	// ngOnInit() {
-
-	// }
-
-
-
-	// onSubmit() {
-	// 	this.authService.login(this.username, this.password).subscribe()
-	// }
-
-	// getToken() {
-	// 	return this.authService.getAuthToken()
-	// }
 
 }

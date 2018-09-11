@@ -1,3 +1,5 @@
+import { LocalStorageService } from 'ngx-webstorage';
+import { ProfileNonHttpService } from './../profile-non-http.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
 import { UserService }       from '../profile.service';
@@ -8,7 +10,6 @@ import { ChatGroup } from '../../chatgroup-feature/chatgroup';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 
-
 @Component({
   selector: 'app-profile-modal',
   templateUrl: './profile-modal.component.html',
@@ -16,68 +17,30 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 })
 export class ProfileModalComponent implements OnInit {
 
-	// followers$: Observable<User[]> // convert to profile later on Python Side
-	chatgroups$: Observable<ChatGroup[]>;
+
 	username: string;
-	// all the modal types
-	editProifle = false;
 	profile: Profile;
 	profileForm: FormGroup;
-
-
-	// showChatGroups = false;
-	// showFollowers = false;
-	// showFollowing = false;
 
 	constructor(private matDialogRef: MatDialogRef<ProfileModalComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
 				private userService: UserService, private fb: FormBuilder) { 
 
-		this.username = this.data.username
+		this.profile = this.data.profile;
 
 		this.createEditForm()
-
-		this.initialiseProfileObject()
-
-		// Set form values
+		
+		this.setEditFormValues()
 
 	}
-
 
 	ngOnInit() {
 
 	}
 
-
-	initialiseProfileObject() {
-		// this.getFollowers()
-		// this.getChatGroups(this.data.username);
-		console.log("handling edit profile modal")
-		if (this.data.modalType == 'editProfile') {
-			this.editProifle = true
-			this.userService.getProfile(this.username).subscribe(
-				data => {
-
-					this.profile = data
-					console.log(this.profile)
-					// this.createEditForm()
-					this.setEditFormValues()
-
-				}
-			)
-		}			
-	}
-
-
-	getChatGroups(username) {
-
-		this.chatgroups$ = this.userService.getChatGroups(username)
-
-	}
-
-	createEditForm() {
+	createEditForm() {	
         
         this.profileForm = this.fb.group({
-            username: ['',Validators.required],
+            // username: ['',Validators.required],
             about: ['',Validators.required]
         });
 	}
@@ -86,7 +49,7 @@ export class ProfileModalComponent implements OnInit {
 	setEditFormValues() {
 
 		this.profileForm.setValue({
-		   username: this.profile.label,
+		  //  username: this.profile.label,
 		   about: this.profile.about
 		});	
 		
@@ -95,17 +58,17 @@ export class ProfileModalComponent implements OnInit {
 	submitChanges() {
 		
 		const val = this.profileForm.value;
-		console.log(val)
 
-		if (val.username && val.about) {
-			this.userService.editProfile(this.username, val.username, val.about).subscribe()
-			this.userService.editUserObject(this.username, val.username).subscribe()
+		if (val.about) {
+
+			this.userService.editProfile(this.profile.label, val.about).subscribe();
+			// this.userService.editUserObject(this.profile.label, val.username).subscribe();
 
 
-			this.profile.label = val.username
-			this.profile.about = val.about
+			// this.profile.label = val.username;
+			this.profile.about = val.about;
 
-			this.matDialogRef.close(Observable.of(this.profile));
+			this.matDialogRef.close(this.profile);
 		}		
 
 	}
