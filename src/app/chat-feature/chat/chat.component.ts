@@ -1,3 +1,4 @@
+import { CommonService } from './../../common.service';
 import { TopicService } from './../topic.service';
 import { AuthService } from './../../auth.service';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
@@ -5,7 +6,6 @@ import { Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/cor
 import { Action } from '../action';
 import { Event } from '../event';
 import { Message } from '../message';
-// import { User } from './shared/model/user';
 import { Profile } from '../../profile-feature/profile'
 import { SocketService } from '../socket.service';
 import { UserService } from '../../profile-feature/profile.service';
@@ -24,7 +24,6 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import {EditTopicModalComponent} from '../edit-topic-modal/edit-topic-modal.component'
 
 
-
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -36,7 +35,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   
   authenticated: boolean;
   username: string;
-  _subscription: any; 
+  // _subscription: any; 
   _subscriptionTopicChange: any;
 
 
@@ -63,6 +62,8 @@ export class ChatComponent implements OnInit, OnDestroy {
 
               public  dialog: MatDialog,
 
+              private commonService: CommonService
+
               ) 
               
         {           
@@ -84,43 +85,41 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     }) 
 
-
   }
         
   handleAuthentication() {
 
-
-    this.authenticated = this.authService.isAuthenticated();
+    this.authenticated = this.commonService.authenticated;
 
     if (this.authenticated) {
-      this.username = this.authService.username
+      this.username = this.commonService.username
       this.getProfile(this.username)
 
     } else {
       this.router.navigate(['/login']);
     }
 
-    this._subscription = this.authService.authenticatedChange.subscribe((value) => { 
-      console.log("Applying the change to the value of authenticated")
-      console.log(value)
+    // this._subscription = this.authService.authenticatedChange.subscribe((value) => { 
+    //   console.log("Applying the change to the value of authenticated")
+    //   console.log(value)
 
-      if (value==true) {
-        this.username = this.authService.username;
-        this.authenticated = true;
-      } else {
-        this.authenticated = false;
-        this.username = '';
-        this.router.navigate(['/login']);
+    //   if (value==true) {
+    //     this.username = this.authService.username;
+    //     this.authenticated = true;
+    //   } else {
+    //     this.authenticated = false;
+    //     this.username = '';
+    //     this.router.navigate(['/login']);
 
-      }
+    //   }
      
-    });
+    // });
 
 
   }
 
   ngOnDestroy() {
-    this._subscription.unsubscribe();
+    // this._subscription.unsubscribe();
     this._subscriptionTopicChange.unsubscribe();
   }
 
@@ -129,8 +128,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
-    
 
     this.initIoConnection();
 

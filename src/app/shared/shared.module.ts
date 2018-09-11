@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { PostModule } from './../post-feature/post.module';
 import { ChatService } from './../chat-feature/chat.service';
 import { Topic } from './../chat-feature/chat';
@@ -27,7 +28,8 @@ import { ActivityComponent } from './activity/activity.component';
     MaterialModule,
     SharedRoutingModule,
     ChatModule,
-    PostModule
+    PostModule,
+    RouterModule
   ],
   declarations: [
 

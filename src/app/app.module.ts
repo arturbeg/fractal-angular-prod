@@ -1,3 +1,5 @@
+import { CommonService } from './common.service';
+import { LocalStorageService } from 'ngx-webstorage';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
@@ -34,6 +36,7 @@ import { SharedModule } from './shared/shared.module'
 
 import { HttpModule } from '@angular/http';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +63,8 @@ import { HttpModule } from '@angular/http';
               HttpErrorHandler,
               MessageService,
               httpInterceptorProviders,
+              LocalStorageService,
+              CommonService
               ],
   bootstrap: [AppComponent],
 

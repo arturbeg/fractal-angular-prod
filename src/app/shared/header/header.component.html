@@ -57,6 +57,36 @@
           </a>
         </li>
 
+        <!-- Profile, if logged in  -->
+        <li *ngIf="commonService.authenticated" class="nav-item">
+          <a
+          [routerLink]="['/profile', commonService.username]"
+          class="nav-link"
+          href="#">
+          {{ commonService.username }}
+          </a>
+        </li>
+
+        <!-- Login, if not logged in -->
+        <li  *ngIf="!commonService.authenticated" class="nav-item">
+          <a
+          routerLink="/login"
+          class="nav-link"
+          href="#">
+          Log in
+          </a>
+        </li>    
+        
+        
+        <!-- Log out, if already logged in -->
+        <li  *ngIf="commonService.authenticated" class="nav-item">
+          <button mat-button (click)="logout()">
+            
+            Log OUT
+          
+          </button>
+        </li>                
+
         <!-- New Chat Creation List Item -->
         <!-- <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -71,8 +101,7 @@
           </div>
         </li> -->
 
-        <!-- Profile List Item -->
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             PROFILE
           </a>
@@ -83,17 +112,19 @@
             <a *ngIf="!authenticated" class="dropdown-item" routerLink="/login">Log In</a>
 
             <a  *ngIf="authenticated" class="dropdown-item" (click)="logout()">Log Out</a>
-            
-            
-            
+
+            <a  class="dropdown-item" (click)="logout()"></a>
+
 
             
-            <!-- <a class="dropdown-item" href="#">Settings</a>
+          
+            
+            <a class="dropdown-item" href="#">Settings</a>
             <a class="dropdown-item" routerLink="/signup">Sign Up</a>
             <a class="dropdown-item" routerLink="/changepassword">Change Password</a>
-            <a class="dropdown-item" (click)="logout()">Log Out</a> -->
+            <a class="dropdown-item" (click)="logout()">Log Out</a>
           </div>
-        </li>
+        </li> -->
 
         <!-- Notifications List Item
         <li class="nav-item">

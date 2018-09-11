@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { CommonService } from './common.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -10,6 +12,7 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
 import {Subject} from 'rxjs/Subject';
 
+import {LocalStorageService} from "ngx-webstorage";
 
 
 @Injectable()
@@ -26,23 +29,13 @@ export class AuthService {
     private restAuthUrlSignup = 'https://fractal-django-prod.herokuapp.com/rest-auth/registration/';
     private restAuthUrlChangePassword = 'https://fractal-django-prod.herokuapp.com/rest-auth/password/change/';
     private restAuthUrlLoginNew = 'https://fractal-django-prod.herokuapp.com/api/auth/token/';
-    private restAuthUrlVerifyToken = 'https://fractal-django-prod.herokuapp.com/api-token-verify/';
     private handleHttpError: HandleError;
 
-    constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler) {
+    constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler, private localSt: LocalStorageService, private commonService: CommonService, private router: Router) {
 
         this.handleHttpError = httpErrorHandler.createHandleError('AuthService'); 
         
-        this.isAuthenticated();
-
-    }
-
-    verifyToken() {
-
-       return this.http.post(this.restAuthUrlVerifyToken, {token: localStorage.getItem('token')})
-           .map(
-               data => console.log(data)
-            )
+        // this.isAuthenticated();
 
     }
 
@@ -52,46 +45,32 @@ export class AuthService {
         return this.http.post(this.restAuthUrlLoginNew, JSON.stringify({ username: username, password: password }))
                     .map(
                         data => {
-                            
-                            localStorage.setItem('token', data['token'])
 
-                            if (localStorage.getItem('token')) {
-                                localStorage.setItem('username', username)
+                            this.localSt.store('token', data['token'])
+
+                            if (this.commonService.token) {
+                               this.localSt.store('username', username)
+                               console.log("Successfully logged in!")
+                               this.router.navigate(['/profile', username]);
+                            } else {
+                               console.log("ERROR IN LOGIN")
                             }
 
-                            this.isAuthenticated();
-
-                            
-                        
+                            this.commonService.refreshValues();
                         },
                     )         
         }
 
 
     public logout(): void {
-        localStorage.removeItem('token');
-        localStorage.removeItem('username');
-        this.isAuthenticated();
+        console.log("LOG OUT!!!")
+        this.localSt.clear("token");
+        this.localSt.clear("username");
+        
+        this.commonService.refreshValues();
+
+        this.router.navigate(['/login'])
     }
-
-
-    isAuthenticated() {
-        if (localStorage.getItem('token')) {
-            this.authenticated = true
-            this.username = localStorage.getItem('username')
-            this.authenticatedChange.next(this.authenticated)
-
-            return true
-
-        } else {
-            this.authenticated = false
-            this.authenticatedChange.next(this.authenticated)
-
-            return false
-        };
-    }
-
-
 
     public signup(username:string, email: string, password1: string, password2: string) {
         console.log("Sign Up")
@@ -120,10 +99,6 @@ export class AuthService {
         )
 
 
-    }
-
-    public getAuthToken() {
-        return localStorage.getItem('token')
     }
 
 } 
