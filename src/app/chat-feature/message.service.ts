@@ -37,7 +37,7 @@ export class MessageService {
     var messageObject = {
       text: text,
       topic: topic,
-      user: 1,
+      user: userId,
     }
 
     return this.http.post<Message>(this.rootApiUrl, messageObject).pipe(

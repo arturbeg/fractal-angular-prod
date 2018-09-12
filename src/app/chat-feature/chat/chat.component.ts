@@ -1,3 +1,4 @@
+import { LocalStorageService } from 'ngx-webstorage';
 import { ProfileNonHttpService } from './../../profile-feature/profile-non-http.service';
 import { CommonService } from './../../common.service';
 import { TopicService } from './../topic.service';
@@ -23,54 +24,45 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import {EditTopicModalComponent} from '../edit-topic-modal/edit-topic-modal.component'
 
-
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  @ViewChild('chatbox') chatbox: ElementRef;
-  
-  _subscriptionTopicChange: any;
 
+  @ViewChild('chatbox') chatbox: ElementRef;
+  _subscriptionTopicChange: any;
   topic: Topic;
   relatedTopics: Topic[];
   messages: Message[] = [];
   label: string;
   messageContent: string;
   ioConnection: any;
-  currentRoute: string;
 
   constructor(private socketService: SocketService,
               private userService: UserService,
               private chatService: ChatService,
               private authService: AuthService,
-              public topicService: TopicService,
-              
-
+              public  topicService: TopicService,
               private messageService: MessageService,
               private route: ActivatedRoute,
               private router: Router,
-
               public  dialog: MatDialog,
-
               private commonService: CommonService,
-
-              public profileNonHttp: ProfileNonHttpService
-
-              ) 
-              
+              public  profileNonHttp: ProfileNonHttpService,
+              private localSt: LocalStorageService
+              )      
         {           
-
           this.handleAuthentication(); 
-          this.handleTopicChange();
-          
+          this.handleTopicChange(); 
+
+          console.log("Initialised Chat Component");
+
+          this.localSt.clear("currentTopic");
         }
 
-
   handleTopicChange() {
-
     this._subscriptionTopicChange = this.topicService.topicChange.subscribe((value) => {
       
       if (this.topic.id == value.id) {
@@ -78,22 +70,19 @@ export class ChatComponent implements OnInit, OnDestroy {
       }
 
     }) 
-
   }
         
   handleAuthentication() {
-
     if (this.commonService.authenticated) {
       this.profileNonHttp.getProfile(this.commonService.username);
     } else {
       this.router.navigate(['/login']);
     }
-
   }
 
   ngOnDestroy() {
-    // this._subscription.unsubscribe();
     this._subscriptionTopicChange.unsubscribe();
+    this.localSt.clear('currentTopic');
   }
 
   isOwner() {
@@ -106,30 +95,25 @@ export class ChatComponent implements OnInit, OnDestroy {
 
     this.route.params.subscribe(params =>
     {
+      if (this.localSt.retrieve('currentTopic')) {
 
-      if (localStorage.getItem('currentTopic')) {
-
-        console.log("The previous topic was, ", localStorage.getItem('currentTopic'))
-        this.leaveRoom(localStorage.getItem('currentTopic'))
+        console.log("The previous topic was, ", this.localSt.retrieve('currentTopic'))
+        
+        this.leaveRoom(this.localSt.retrieve('currentTopic'))
   
       }
+      this.label = params.label;
 
-      this.label = params.label
-      
-      localStorage.setItem('currentTopic', params.label)
+      this.localSt.store('currentTopic', params.label)
 
       this.joinRoom(this.label)
       
       this.getTopic(this.label);
       this.getMessages(this.label);
 
-      // scroll to bottom
       this.chatbox.nativeElement.scrollIntoView(false)
-
     });
-
   }
-
 
   getRelatedTopics(chatgroup_label) {
 
@@ -150,7 +134,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.socketService.leaveRoom(label)
   }
 
-
   getMessages(label) {
     this.chatService.getMessages(label).subscribe(
       data => {
@@ -159,7 +142,6 @@ export class ChatComponent implements OnInit, OnDestroy {
     )
   }
 
-  // TODO: move to nonHTTP SERVICE 
   editTopic() {
     const dialogRef = this.dialog.open(EditTopicModalComponent, {
       data: {
@@ -168,16 +150,12 @@ export class ChatComponent implements OnInit, OnDestroy {
       },
       height: '500px',
       width: '500px'
-    });
-
-    
+    }); 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       this.topic = result
       this.topicService.editResult(result);
     })
- 
-
   }
 
   getTopic(label) {
@@ -186,12 +164,10 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.topic = data;
         this.getRelatedTopics(this.topic.chatgroup.label)
       }
-      
 			);
   }
   
   deleteTopic(label) {
-    // Deleting the topic
     this.chatService.deleteTopic(label).subscribe();
   }
 
@@ -211,18 +187,13 @@ export class ChatComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // save the message via Django REST
     this.messageService.newMessage(
       message, 
       this.topic.label, 
-      this.profileNonHttp.profile.user_id // <- should be the user id not topic id
+      this.profileNonHttp.profile.user_id
       ).subscribe(
       
       data => { 
-
-        console.log(data)
-        
-        // send the message to Socket IO
         this.socketService.send({
           id: data['id'],
           user: data['user'],
@@ -235,13 +206,9 @@ export class ChatComponent implements OnInit, OnDestroy {
           shared: false,
           timestamp_human: data['timestamp_human']
         }, this.label);        
-      
-  
       }
 
     )
     this.messageContent = null;
   }
-
-
 }
