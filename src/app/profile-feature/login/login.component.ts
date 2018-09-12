@@ -17,7 +17,6 @@ export class LoginComponent {
 
 	constructor(private authService:AuthService,
 				private fb: FormBuilder, private commonService: CommonService) { 
-
         this.form = this.fb.group({
             username: ['',Validators.required],
             password: ['',Validators.required]
@@ -27,8 +26,7 @@ export class LoginComponent {
 
 	login() {
 		const val = this.form.value;
-		console.log(val)
-
+		console.log(val);
 		if (val.username && val.password) {
 			this.authService.login(val.username, val.password).subscribe();
 		}

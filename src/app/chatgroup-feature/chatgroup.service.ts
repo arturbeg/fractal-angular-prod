@@ -5,18 +5,10 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { catchError, retry } from 'rxjs/operators';
-
-
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-
-
-
 import { HttpErrorHandler, HandleError } from '../http-error-handler.service';
-
-
 
 @Injectable()
 export class ChatGroupService {
@@ -49,14 +41,6 @@ export class ChatGroupService {
 	getChatGroup(label: string) {
 
 		return this.http.get<ChatGroup>(this.chatgroupApiUrl + label + '/')
-			.map(
-				res => {
-					return new ChatGroup(res.id, res.name, res.about, res.description, res.label, res.followers_count, res.topics_count, res.timestamp, res.owner)
-				}
-			)
-
-
-
 	}
 
 	getChatGroupFollowers(label: string) {
@@ -66,14 +50,10 @@ export class ChatGroupService {
 	}
 
 	getChatGroupTopics(label: string) {
-		
-		
+	
 		const chatgroupTopicsApiUrl = this.chatgroupApiUrl + label + '/topics/'
 		
 		return this.http.get<Topic[]>(chatgroupTopicsApiUrl)
-		// .map(
-		// 	res => res.map(x => new Topic(x.id, x.name, x.about, x.label, x.rating, x.chatgroup, x.participants, x.most_recent_message)
-		// ))
 
 	}
 
@@ -81,7 +61,7 @@ export class ChatGroupService {
 
 		const followApiUrl = this.chatgroupApiUrl + label + '/follow/'
 
-		return this.http.get(followApiUrl)
+		return this.http.get<ChatGroup>(followApiUrl)
 
 	}
 

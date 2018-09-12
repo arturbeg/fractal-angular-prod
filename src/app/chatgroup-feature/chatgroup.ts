@@ -2,8 +2,48 @@ import { Profile } from './../profile-feature/profile';
 import { Injectable } from '@angular/core';
 
 
-@Injectable()
-export class ChatGroup {
+// @Injectable()
+// export class ChatGroup {
+// 	id: number;
+// 	name: string;
+// 	about: string;
+// 	description: string;
+// 	label: string;
+// 	followers_count: number;	
+// 	topics_count: number;
+// 	localchats_count: number;
+// 	timestamp: string;
+// 	owner: Profile;
+// 	followed: boolean;
+
+// 	constructor(
+// 		id: number,
+// 		name: string,
+// 		about: string,
+// 		description: string,
+// 		label: string,
+// 		followers_count: number,	
+// 		topics_count: number,
+// 		timestamp: string,
+// 		owner: Profile,
+// 		followed: boolean
+
+// 	) {
+// 		this.id = id;
+// 		this.name = name;
+// 		this.about = about;
+// 		this.description = description;
+// 		this.label = label;
+// 		this.followers_count = followers_count;
+// 		this.topics_count = topics_count;
+// 		this.timestamp = timestamp;
+// 		this.owner = owner;
+// 		this.followed = followed;
+// 	}
+// }
+
+export interface ChatGroup {
+
 	id: number;
 	name: string;
 	about: string;
@@ -14,54 +54,8 @@ export class ChatGroup {
 	localchats_count: number;
 	timestamp: string;
 	owner: Profile;
-	
+	followed: boolean;
 
-	constructor(
-		id: number,
-		name: string,
-		about: string,
-		description: string,
-		label: string,
-		followers_count: number,	
-		topics_count: number,
-		timestamp: string,
-		owner: Profile
-
-	) {
-		this.id = id;
-		this.name = name;
-		this.about = about;
-		this.description = description;
-		this.label = label;
-		this.followers_count = followers_count;
-		this.topics_count = topics_count;
-		this.timestamp = timestamp;
-		this.owner = owner
-		
-	}
-
-
-
-}
-
-	
-
-	// avatar: string;			// a link to the avatar
-	// members: Array<any>; 	// Gonna be an array of profile objects (no user object on the front end) -> better to implement as a separate link -> too many members can be hard to handle
-
- 
-
-
-
-export interface ChatGroup {
-	id: number;
-	name: string;
-	about: string;
-	description: string;
-	label: string;
-	followers_count: number;	
-	topics_count: number;
-	localchats_count: number;
 }
 
 

@@ -31,7 +31,6 @@ export class ChatGroupComponent implements OnInit {
 	label: string;
 	topics: Topic[];
 
-
 	constructor(
 		private route: ActivatedRoute,
 		private router: Router,
@@ -46,9 +45,16 @@ export class ChatGroupComponent implements OnInit {
 			this.getChatGroup(this.label);
 			this.getFollowers(this.label);
 			this.getTopics(this.label);
-			
 	}
-
+		
+	follow(label) {
+    this.chatGroupService.followChatGroup(label).subscribe(
+      data => {
+				this.chatgroup = data;
+      }
+    )
+	}
+	
 
 	openDialog() {
 		

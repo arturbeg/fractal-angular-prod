@@ -1,62 +1,18 @@
-<form [formGroup]="form">
-    <fieldset>
-        <legend>Login</legend>
-        <div class="form-field">
-            <label>Username:</label>
-            <input name="username" formControlName="username">
-        </div>
-        <div class="form-field">
-            <label>Password:</label>
-            <input name="password" formControlName="password" 
-                   type="password">
-        </div>
-    </fieldset>
-    <div class="form-buttons">
-        <button class="button button-primary" (click)="login()">Login</button>
-    </div>
-</form>
+<form class="form" [formGroup]="form">
 
+<mat-form-field class="example-full-width">
+    <input matInput placeholder="Username" name="username" formControlName="username">
+</mat-form-field>  
 
+<br>
 
-<!-- <p>  {{getToken()}}   </p> -->
+<mat-form-field class="example-full-width">
+        <input matInput name="password" formControlName="password" placeholder="Password"  
+        type="password">
+</mat-form-field>  
 
+<br>
 
+<button mat-raised-button (click)="login()">Login</button>
 
-
-<!-- 
-
-<form (ngSubmit)="onSubmit()">
-
-
-<mat-form-field>
-    
-    <input
-    matInput 
-    placeholder="Username"
-    [(ngModel)]="username" name="username">
-    
-
-</mat-form-field>
-
-
-
-
-<mat-form-field>
-
-    <input
-    matInput 
-    placeholder="Password"
-    [(ngModel)]="password" name="password">
-
-</mat-form-field>
-
-
-<button type="submit"> Submit </button>
-
-
-<p>
- AuthToken: {{getToken()}}
-</p>
-</form>
-
- -->
+</form>    

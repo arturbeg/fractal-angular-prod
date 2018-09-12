@@ -57,19 +57,12 @@ export class ProfileNonHttpService {
 
 
 		dialogRef.afterClosed().subscribe(result => {
-			console.log(result);
-			this.profile = result
+			if(result!=this.profile) {
+				this.profile = result;
+			}
 		});
-
-
   }
-
-
 }
-
-
-
-
   // openDialog() {
 		
 	// 	const dialogRef = this.dialog.open(ProfileModalComponent, {

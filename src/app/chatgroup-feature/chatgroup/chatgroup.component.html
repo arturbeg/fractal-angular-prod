@@ -21,8 +21,9 @@
 			<div class="actions float-left">
 
 				<button 
-				mat-raised-button (click)="chatgroupNonHttpService.follow(chatgroup.label)">
-				FOLLOW
+				mat-button (click)="follow(chatgroup.label)">
+					<span *ngIf="!chatgroup.followed"> FOLLOW </span>
+					<span *ngIf="chatgroup.followed"> UNFOLLOW </span>
 				</button>
 			
 			</div>

@@ -12,7 +12,6 @@ import { Observable } from 'rxjs/Observable';
 import { ProfileModalComponent } from '../profile-modal/profile-modal.component';
 import { ChatGroupComponent }	from '../../chatgroup-feature/chatgroup/chatgroup.component';
 
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',

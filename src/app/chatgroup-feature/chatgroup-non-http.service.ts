@@ -18,8 +18,6 @@ export class ChatgroupNonHttpService {
         console.log(data)
       }
     )
-
-    // also dynamically update the followers counter
   }
 
 

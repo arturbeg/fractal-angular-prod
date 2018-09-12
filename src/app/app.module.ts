@@ -36,12 +36,15 @@ import { SharedModule } from './shared/shared.module'
 
 import { HttpModule } from '@angular/http';
 
+import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
+
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    LoadingBarHttpClientModule,
     ChatGroupModule,
     ChatModule,
     PostModule,
