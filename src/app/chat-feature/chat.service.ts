@@ -59,6 +59,10 @@ export class ChatService {
 		return this.http.delete(this.chatApiUrl + label + '/')
 	}
 
+	newTopic(topic_object) {
+		return this.http.post<Topic>(this.chatApiUrl, topic_object)
+	}
+
 	participateTopic(label:string) {
 		console.log('participate ', label)
 		const participateApiUrl = this.chatApiUrl + label + '/' + 'participate/'

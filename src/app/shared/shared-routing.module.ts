@@ -1,3 +1,4 @@
+import { NewTopicComponent } from './new-topic/new-topic.component';
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -15,7 +16,8 @@ const sharedRoutes: Routes = [
   // { path: 'profile/:username', component: ProfileComponent }, // add username later
   { path: '', component: HomeComponent },
   { path: 'results', component: ResultsComponent },
-  { path: 'activity', component: ActivityComponent }, 
+  { path: 'activity', component: ActivityComponent },
+  { path: 'new-topic', component: NewTopicComponent},
   { path: '**', component: PageNotFoundComponent },
   
   // { path: 'signup', component: SignupComponent },

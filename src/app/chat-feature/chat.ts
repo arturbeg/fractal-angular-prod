@@ -44,7 +44,8 @@ export interface Topic {
 	about: string;
 	label: string;
 	rating: number;
-	chatgroup: ChatGroup;
+	chatgroup_object: ChatGroup;
+	chatgroup: string;
 	participants: Profile[];
 	most_recent_message: string;
 	owner: Profile;

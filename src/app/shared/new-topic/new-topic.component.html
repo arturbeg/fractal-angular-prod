@@ -1,0 +1,46 @@
+<form class="form" [formGroup]="form">
+
+  <mat-form-field class="example-full-width">
+      <input 
+      matInput 
+      placeholder="Topic Name" 
+      name="name" 
+      formControlName="name">
+      
+  </mat-form-field>  
+  
+  <br>
+  
+  <mat-form-field class="example-full-width">
+          <input 
+          matInput 
+          name="about" 
+          formControlName="about" 
+          placeholder="About">
+  </mat-form-field>  
+  
+  <br>
+
+
+  <mat-form-field class="example-full-width">
+    <input 
+    matInput
+    placeholder="Choose a chatgroup"
+    [matAutocomplete]="auto"
+    formControlName="chatgroup_input">
+  </mat-form-field>
+  
+  <!-- <span>Your choice is: {{form.get('chatgroup_input').value | json}}</span> -->
+
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+    <mat-option *ngFor="let chatgroup of (filteredChatgroups | async)?.results" [value]="chatgroup">
+      <span>{{chatgroup.name}}</span>
+      <small> | ID: {{chatgroup.id}}</small>
+    </mat-option>
+  </mat-autocomplete>
+
+  <br>
+
+  <button mat-raised-button (click)="submit()">Create</button>
+  
+</form>  

@@ -162,9 +162,9 @@ export class ChatComponent implements OnInit, OnDestroy {
 		this.chatService.getTopic(label).subscribe(
       data => {
         this.topic = data;
-        this.getRelatedTopics(this.topic.chatgroup.label)
+        this.getRelatedTopics(this.topic.chatgroup_object.label)
       }
-			);
+			)
   }
   
   deleteTopic(label) {

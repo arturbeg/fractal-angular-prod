@@ -84,7 +84,14 @@ export class ChatGroupService {
 
 				catchError(this.handleHttpError('updateChatGroup', chatgroup))
 			);
-	}
+	
+		}
+
+	searchChatGroup(term:string) {
+		const searchApiUrl = this.chatgroupApiUrl + '?search=' + term;
+		console.log(searchApiUrl);
+		return this.http.get(searchApiUrl)
+	}	
 
 	}
 

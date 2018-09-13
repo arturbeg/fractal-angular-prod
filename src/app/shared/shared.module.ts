@@ -1,3 +1,4 @@
+import { ChatGroupModule } from './../chatgroup-feature/chatgroup.module';
 import { ProfileModule } from './../profile-feature/profile.module';
 import { RouterModule } from '@angular/router';
 import { PostModule } from './../post-feature/post.module';
@@ -17,6 +18,7 @@ import { ResultsComponent } from './results/results.component';
 import { SharedRoutingModule } from './shared-routing.module'
 import { ChatModule } from '../chat-feature/chat.module';
 import { ActivityComponent } from './activity/activity.component';
+import { NewTopicComponent } from './new-topic/new-topic.component';
 
 
 
@@ -31,7 +33,8 @@ import { ActivityComponent } from './activity/activity.component';
     ChatModule,
     PostModule,
     RouterModule,
-    ProfileModule
+    ProfileModule,
+    ChatGroupModule
   ],
   declarations: [
 
@@ -39,7 +42,8 @@ import { ActivityComponent } from './activity/activity.component';
     HomeComponent,
     PageNotFoundComponent,
     ResultsComponent,
-    ActivityComponent
+    ActivityComponent,
+    NewTopicComponent
 
   ],
   providers: [ChatService],
