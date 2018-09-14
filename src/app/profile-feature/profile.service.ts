@@ -26,7 +26,7 @@ export class UserService {
     
 	private handleHttpError: HandleError;
 	private rootApiUrl = 'https://fractal-django-prod.herokuapp.com/api/profiles/'
-    private rootApiUrlUser = 'https://fractal-django-prod.herokuapp.corest-auth/user/'
+    private rootApiUrlUser = 'https://fractal-django-prod.herokuapp.com/rest-auth/user/'
 
 
     constructor(
