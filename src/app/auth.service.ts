@@ -23,11 +23,11 @@ export class AuthService {
 
     authenticatedChange: Subject<boolean> = new Subject<boolean>();
 
-    private restAuthUrlLogin = 'https://fractal-django-prod.herokuapp.corest-auth/login/';
-    private restAuthUrlLogout = 'https://fractal-django-prod.herokuapp.corest-auth/logout/';
-    private restAuthUrlSignup = 'https://fractal-django-prod.herokuapp.corest-auth/registration/';
-    private restAuthUrlChangePassword = 'https://fractal-django-prod.herokuapp.corest-auth/password/change/';
-    private restAuthUrlLoginNew = 'https://fractal-django-prod.herokuapp.coapi/auth/token/';
+    private restAuthUrlLogin = 'https://fractal-django-prod.herokuapp.com/rest-auth/login/';
+    private restAuthUrlLogout = 'https://fractal-django-prod.herokuapp.com/rest-auth/logout/';
+    private restAuthUrlSignup = 'https://fractal-django-prod.herokuapp.com/rest-auth/registration/';
+    private restAuthUrlChangePassword = 'https://fractal-django-prod.herokuapp.com/rest-auth/password/change/';
+    private restAuthUrlLoginNew = 'https://fractal-django-prod.herokuapp.com/api/auth/token/';
     private handleHttpError: HandleError;
 
     constructor(private http: HttpClient, httpErrorHandler: HttpErrorHandler, private localSt: LocalStorageService, private commonService: CommonService, private router: Router) {
