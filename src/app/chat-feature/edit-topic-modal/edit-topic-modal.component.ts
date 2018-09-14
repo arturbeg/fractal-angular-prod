@@ -1,6 +1,6 @@
 import { ChatService } from './../chat.service';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';

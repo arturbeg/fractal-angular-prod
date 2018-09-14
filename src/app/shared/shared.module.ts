@@ -18,8 +18,8 @@ import { ResultsComponent } from './results/results.component';
 import { SharedRoutingModule } from './shared-routing.module'
 import { ChatModule } from '../chat-feature/chat.module';
 import { ActivityComponent } from './activity/activity.component';
-import { NewTopicComponent } from './new-topic/new-topic.component';
-
+import { NewRootTopicComponent } from './new-root-topic/new-root-topic.component';
+// import { NewTopicComponent } from './new-topic/new-topic.component';
 
 
 
@@ -43,7 +43,8 @@ import { NewTopicComponent } from './new-topic/new-topic.component';
     PageNotFoundComponent,
     ResultsComponent,
     ActivityComponent,
-    NewTopicComponent
+    NewRootTopicComponent,
+    // NewTopicComponent
 
   ],
   providers: [ChatService],

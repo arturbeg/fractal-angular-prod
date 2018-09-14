@@ -192,7 +192,6 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.topic.label, 
       this.profileNonHttp.profile.user_id
       ).subscribe(
-      
       data => { 
         this.socketService.send({
           id: data['id'],
@@ -204,10 +203,10 @@ export class ChatComponent implements OnInit, OnDestroy {
           timestamp: data['timestamp'],
           likers_count: data['likers_count'],
           shared: false,
-          timestamp_human: data['timestamp_human']
+          timestamp_human: data['timestamp_human'],
+          subtopics: data['subtopics']
         }, this.label);        
       }
-
     )
     this.messageContent = null;
   }

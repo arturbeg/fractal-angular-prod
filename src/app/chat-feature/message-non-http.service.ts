@@ -35,14 +35,30 @@ export class MessageNonHttpService {
     )
   }
 
+  showSubtopics(subtopics) {
+
+    this.openSnackBarSubtopics(subtopics);
+
+  }
+
   openSnackBar(text) {
     this.snackBar.openFromComponent(SnackBar, {
       duration: 500,
-      data: text
+      data: {
+        text:text
+      }
     });
   }
 
+  openSnackBarSubtopics(subtopics) {
+    this.snackBar.openFromComponent(SnackBar, {
+      duration: 4000,
+      data: {
+        subtopics: subtopics
+      }
 
+    })
+  }
 
 
 }

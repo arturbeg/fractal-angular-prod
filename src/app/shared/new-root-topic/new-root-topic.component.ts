@@ -8,11 +8,11 @@ import { debounceTime, switchMap, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-new-topic',
-  templateUrl: './new-topic.component.html',
-  styleUrls: ['./new-topic.component.scss']
+  selector: 'app-new-root-topic',
+  templateUrl: './new-root-topic.component.html',
+  styleUrls: ['./new-root-topic.component.scss']
 })
-export class NewTopicComponent implements OnInit {
+export class NewRootTopicComponent implements OnInit {
 
   form: FormGroup;    
   filteredChatgroups: any;
@@ -68,5 +68,6 @@ export class NewTopicComponent implements OnInit {
 
 
   }
+
 
 }

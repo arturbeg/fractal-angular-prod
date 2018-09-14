@@ -14,14 +14,7 @@ export interface Message {
     shared: boolean;
     timestamp_human: string;
     topic: string;
+    subtopics: string[];
 
-    //action?: Action;
-    
 }
-
-// export interface Post {
-//     message: Message;
-//     timestamp: string;
-// }
-
 

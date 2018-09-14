@@ -1,3 +1,4 @@
+import { ChatGroupModule } from './../chatgroup-feature/chatgroup.module';
 import { MessageNonHttpService } from './message-non-http.service';
 import { SnackBar } from './message/snack-bar';
 
@@ -21,11 +22,9 @@ import { EditTopicModalComponent } from './edit-topic-modal/edit-topic-modal.com
 
 import { NgxAutoScrollModule } from "ngx-auto-scroll";
 import { Topic } from './chat';
-
-
-
-// provide MyClass like providers: [MyClass] in a component or NgModule.
-
+import { NewTopicComponent } from './new-topic/new-topic.component';
+import { LinkyModule } from 'angular-linky';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
@@ -33,17 +32,21 @@ import { Topic } from './chat';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
+    BrowserAnimationsModule,
     // ProfileModule,
     ChatRoutingModule,
-    //SharedModule,
-    NgxAutoScrollModule
+    // SharedModule,
+    NgxAutoScrollModule,
+    LinkyModule
+    // ChatGroupModule
   ],
   declarations: [
     MessageComponent,
     ChatCardComponent,
     ChatComponent,
     EditTopicModalComponent,
-    SnackBar
+    SnackBar,
+    NewTopicComponent
   ],
   providers: [ SocketService, MessageService, ChatService, TopicService, MessageNonHttpService ],
 
@@ -55,7 +58,8 @@ import { Topic } from './chat';
     entryComponents: [ 
       
       EditTopicModalComponent,
-      SnackBar
+      SnackBar,
+      NewTopicComponent
 
     ]
 })

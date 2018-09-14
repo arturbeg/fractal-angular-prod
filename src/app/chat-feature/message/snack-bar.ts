@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import {MAT_SNACK_BAR_DATA} from '@angular/material';
 
@@ -9,10 +10,20 @@ import {MAT_SNACK_BAR_DATA} from '@angular/material';
 export class SnackBar {
 
   text: any;
+  subtopics: string[]
 
-  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any) {
+  constructor(@Inject(MAT_SNACK_BAR_DATA) public data: any,
+              public router: Router) 
+              {
 
-    this.text = data;
+    if(data.text) {
+      this.text = data.text;
+    } 
+
+    if(data.subtopics) {
+      this.subtopics = data.subtopics;
+    }
+
 
   }
 }

@@ -38,7 +38,6 @@ import { HttpModule } from '@angular/http';
 
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
-
 @NgModule({
   declarations: [
     AppComponent,

@@ -46,7 +46,7 @@ export class CommonService {
 
   verifyToken(token) {
 
-    const verifyTokenApiUrl = 'https://fractal-django-prod.herokuapp.com/api-token-verify/';
+    const verifyTokenApiUrl = 'http://fractal-django-prod.herokuapp.com//api-token-verify/';
 
     const httpPayload = {token: this.token};
 

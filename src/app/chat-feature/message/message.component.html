@@ -11,7 +11,9 @@
 		</a>
 
 		<!-- Message Content -->
-		<h5 class="msg-content">
+		<h5 
+		class="msg-content"
+		>
 
 			<!-- Username -->
 			<span class="font-weight-bold"> 
@@ -26,14 +28,19 @@
 			<!-- Timestamp -->
 
 			<span class="text-secondary timestamp"> {{ message.timestamp_human }} ago</span>
-
+			<span class="text-secondary timestamp pointer" (click)="messageNonHttp.openSnackBarSubtopics(message.subtopics)"> subtopics </span>
+			
 			<!-- Text/Image/Video/Link -->
+			<div (click)="newSubtopic()" class="pointer">
+				<p class="msg-text" 
+				[matTooltipPosition]="tooltipPosition"
+				matTooltip="Click to create a subtopic!"
+				>
+					<span [innerHTML]="message.text | linky"> </span>	
+				</p>
+			</div>
 
-			<p class="msg-text">
-				
-				{{message.text}}
-
-			</p>
+			<!-- <span [innerHTML]="yourText | linky"></span> -->
 
 		</h5>
 
@@ -55,6 +62,7 @@
 		<span *ngIf="!message.shared"> SHARE </span>
 	
 	</button>
+
 
 
 	</div>
