@@ -28,7 +28,8 @@
 			<!-- Timestamp -->
 
 			<span class="text-secondary timestamp"> {{ message.timestamp_human }} ago</span>
-			<span class="text-secondary timestamp pointer" (click)="messageNonHttp.openSnackBarSubtopics(message.subtopics)"> subtopics </span>
+			
+			<span *ngIf="message.subtopics.length>0" class="text-secondary timestamp pointer" (click)="messageNonHttp.openSnackBarSubtopics(message.subtopics)"> subtopics </span>
 			
 			<!-- Text/Image/Video/Link -->
 			<div (click)="newSubtopic()" class="pointer">
