@@ -78,6 +78,11 @@ export class ChatGroupService {
 	}
 
 
+	newChatGroup(chatgroup_object) {
+		return this.http.post<ChatGroup>(this.chatgroupApiUrl, chatgroup_object)
+	}
+
+
 	updateChatGroup(chatgroup:ChatGroup): Observable<ChatGroup> {
 		return this.http.put<ChatGroup>(this.chatgroupApiUrl, chatgroup)
 			.pipe(

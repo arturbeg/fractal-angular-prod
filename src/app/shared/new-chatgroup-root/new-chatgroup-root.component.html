@@ -1,0 +1,26 @@
+<form class="form" [formGroup]="form">
+
+  <mat-form-field class="example-full-width">
+      <input 
+      matInput 
+      placeholder="Topic Name" 
+      name="name" 
+      formControlName="name">
+      
+  </mat-form-field>  
+  
+  <br>
+  
+  <mat-form-field class="example-full-width">
+          <input 
+          matInput 
+          name="about" 
+          formControlName="about" 
+          placeholder="About">
+  </mat-form-field>  
+  
+  <br>
+
+  <button mat-raised-button (click)="submit()">Create</button>
+  
+</form>

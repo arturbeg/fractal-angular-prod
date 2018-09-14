@@ -66,6 +66,15 @@
           </a>
         </li>
 
+        <li class="nav-item">
+          <a
+          routerLink="/new-chatgroup" routerLinkActive="active"
+          class="nav-link"
+          href="#">
+          NEW CHATGROUP
+          </a>
+        </li>        
+
         <!-- Profile, if logged in  -->
         <li *ngIf="commonService.authenticated" class="nav-item">
           <a
