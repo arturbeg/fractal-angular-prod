@@ -9,7 +9,7 @@ import { ChangePasswordComponent }    from './changepassword/changepassword.comp
 
 
 const profileRoutes: Routes = [
-  { path: 'profile/:username', component: ProfileComponent }, // add username later
+  { path: 'profile/:username', component: ProfileComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'changepassword', component: ChangePasswordComponent },

@@ -115,6 +115,11 @@ export class ChatService {
 		
 	}
 
+	searchTopic(term: string) {
+		const searchApiUrl = this.chatApiUrl + '?search=' + term;
+		return this.http.get<Topic[]>(searchApiUrl) 
+	}
+
 	
 
 

@@ -36,6 +36,8 @@ export class NewRootTopicComponent implements OnInit {
                     debounceTime(300),
                     switchMap(value => this.chatgroupService.searchChatGroup(value))
                   )
+
+                    
               }
 
   ngOnInit() {

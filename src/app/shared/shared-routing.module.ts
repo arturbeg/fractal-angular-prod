@@ -20,7 +20,7 @@ const sharedRoutes: Routes = [
   { path: 'activity', component: ActivityComponent },
   { path: 'new-topic', component: NewRootTopicComponent},
   { path: 'new-chatgroup', component: NewChatgroupRootComponent},
-  { path: '**', component: PageNotFoundComponent },
+  // { path: '**', component: PageNotFoundComponent },
   
   // { path: 'signup', component: SignupComponent },
   // { path: 'changepassword', component: ChangePasswordComponent },

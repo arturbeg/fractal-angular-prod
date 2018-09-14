@@ -1,3 +1,4 @@
+import { SearchModule } from './search/search.module';
 import { CommonService } from './common.service';
 import { LocalStorageService } from 'ngx-webstorage';
 import { BrowserModule } from '@angular/platform-browser';
@@ -55,7 +56,8 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
     HttpClientModule,
     AppRoutingModule,
     HttpModule,
-    SharedModule
+    SharedModule,
+    SearchModule
   ],
 
   exports: [

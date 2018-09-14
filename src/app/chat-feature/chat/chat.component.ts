@@ -61,6 +61,10 @@ export class ChatComponent implements OnInit, OnDestroy {
 
           this.localSt.clear("currentTopic");
         }
+  
+  public onScroll(ev): void {
+    console.log('scrolled down!!', ev);
+  }      
 
   handleTopicChange() {
     this._subscriptionTopicChange = this.topicService.topicChange.subscribe((value) => {

@@ -25,6 +25,7 @@ import { Topic } from './chat';
 import { NewTopicComponent } from './new-topic/new-topic.component';
 import { LinkyModule } from 'angular-linky';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ChatRoutingModule,
     // SharedModule,
     NgxAutoScrollModule,
-    LinkyModule
+    LinkyModule,
+    InfiniteScrollModule
     // ChatGroupModule
   ],
   declarations: [
@@ -53,7 +55,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   exports: [
       // add later
       ChatCardComponent,
-    ],
+  ],
 
     entryComponents: [ 
       

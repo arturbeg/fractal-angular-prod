@@ -1,0 +1,21 @@
+<form class="form" [formGroup]="form">
+
+<mat-form-field class="example-full-width">
+    <input 
+    matInput 
+    placeholder="Search" 
+    name="query" 
+    formControlName="query"
+    >
+</mat-form-field>  
+
+
+</form>
+
+
+
+<div class="Search Results"> 
+
+    <app-chat-card *ngFor="let topic of (topics | async)?.results" [topic]="topic"> </app-chat-card>
+
+</div>    

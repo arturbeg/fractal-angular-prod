@@ -11,6 +11,10 @@ export class HeaderComponent {
 
   constructor(private authService: AuthService, public commonService: CommonService) {}
 
+  // submitSearch() {
+
+  // }
+
 	logout() {
     this.authService.logout();		
 	}
