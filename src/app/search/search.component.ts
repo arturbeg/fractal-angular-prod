@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { CommonService } from './../common.service';
 import { ChatService } from './../chat-feature/chat.service';
 import { Topic } from './../chat-feature/chat';
 import { Component, OnInit } from '@angular/core';
@@ -15,21 +17,26 @@ export class SearchComponent implements OnInit {
   form: FormGroup;
 
   constructor(private fb: FormBuilder,
-              private chatService: ChatService
+              private chatService: ChatService,
+              private commonService: CommonService,
+              private router: Router
               ) {
+    if(this.commonService.authenticated) {                 
 
-    this.form = this.fb.group({
-      query: [''],
-    }); 
+      this.form = this.fb.group({
+        query: [''],
+      }); 
 
-    this.topics = this.form.get('query')
-      .valueChanges
-      .pipe(
-        debounceTime(300),
-        switchMap(value => this.chatService.searchTopic(value))
-      )
+      this.topics = this.form.get('query')
+        .valueChanges
+        .pipe(
+          debounceTime(300),
+          switchMap(value => this.chatService.searchTopic(value))
+        )
 
-
+      } else {
+        this.router.navigate(['/login'])
+      }
 
   }
 

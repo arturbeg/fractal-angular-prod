@@ -1,3 +1,4 @@
+import { CommonService } from './../../common.service';
 import { ChatGroupService } from './../../chatgroup-feature/chatgroup.service';
 import { ChatService } from './../../chat-feature/chat.service';
 import { Component, OnInit } from '@angular/core';
@@ -6,6 +7,7 @@ import { Router } from '@angular/router';
 import {ChatGroup} from './../../chatgroup-feature/chatgroup';
 import { debounceTime, switchMap, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-new-root-topic',
@@ -20,23 +22,29 @@ export class NewRootTopicComponent implements OnInit {
   constructor(private chatService: ChatService,
               private fb: FormBuilder,
               private router: Router,
-              private chatgroupService: ChatGroupService
+              private chatgroupService: ChatGroupService,
+              private commonService: CommonService
               ) { 
 
-                this.form = this.fb.group({
-                  name: ['',Validators.required],
-                  about: [''],
-                  chatgroup_input: [null, Validators.required]
-                });
+                if(this.commonService.authenticated) {
 
-                this.filteredChatgroups = this.form
-                  .get('chatgroup_input')
-                  .valueChanges
-                  .pipe(
-                    debounceTime(300),
-                    switchMap(value => this.chatgroupService.searchChatGroup(value))
-                  )
+                  this.form = this.fb.group({
+                    name: ['',Validators.required],
+                    about: [''],
+                    chatgroup_input: [null, Validators.required]
+                  });
 
+                  this.filteredChatgroups = this.form
+                    .get('chatgroup_input')
+                    .valueChanges
+                    .pipe(
+                      debounceTime(300),
+                      switchMap(value => this.chatgroupService.searchChatGroup(value))
+                    )
+                
+                } else {
+                  this.router.navigate(['/login']);
+                }
                     
               }
 

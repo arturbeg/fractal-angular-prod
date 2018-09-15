@@ -31,6 +31,13 @@ export class SocketService {
         });
     }
 
+    public onMessageLike(): Observable<Message> {
+        return new Observable<Message>(observer => {
+            console.log("Receiving the likedMessage on socket io");
+            this.socket.on('messageLike', (data: Message) => observer.next(data));
+        })
+    }
+
     // public onNewParticipant() {
     //     // update participants list via Socket IO (new participant)
     //     this.socket.on('new_participant', function(data) {
@@ -70,6 +77,12 @@ export class SocketService {
 
     }
 
+    public messageLike(data) {
+        console.log("Emitting the message like to the socket!");
+
+        this.socket.emit('messageLike', data);
+
+    }
 
 
 

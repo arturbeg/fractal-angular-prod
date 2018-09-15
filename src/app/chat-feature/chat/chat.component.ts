@@ -183,7 +183,6 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.messages.push(message)
         this.chatbox.nativeElement.scrollIntoView(false)
       });
-   
   }
 
   public sendMessage(message: string): void {

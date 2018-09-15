@@ -1,3 +1,4 @@
+import { SocketService } from './socket.service';
 import { SnackBar } from './message/snack-bar';
 import { MessageService } from './message.service';
 import { Injectable } from '@angular/core';
@@ -5,21 +6,33 @@ import {Subject} from 'rxjs/Subject';
 import { Message } from './message';
 import {MatSnackBar} from '@angular/material';
 
-
 @Injectable()
 export class MessageNonHttpService {
 
   messageChange: Subject<Message> = new Subject<Message>();
+  // messageLikeIoConnection: any;
 
-  constructor(public messageService: MessageService,
-              public snackBar: MatSnackBar) { }
+
+  constructor(public  messageService: MessageService,
+              public  snackBar: MatSnackBar,
+              private socketService: SocketService) { 
+                this.ioConnection();
+              }
 
   like(id) {
     this.messageService.like(id).subscribe(
       data => {
-        this.messageChange.next(data)
+        this.messageChange.next(data);
+        this.socketService.messageLike(data);
       }
     )
+  };
+
+  ioConnection() {
+    this.socketService.onMessageLike()
+    .subscribe((message: Message) => {
+      this.messageChange.next(message);
+    });
   }
 
   share(id) {

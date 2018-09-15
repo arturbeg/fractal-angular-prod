@@ -1,9 +1,9 @@
+import { CommonService } from './../../common.service';
 import { Component, OnInit } from '@angular/core';
 import { ChatGroupService } from './../../chatgroup-feature/chatgroup.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import {ChatGroup} from './../../chatgroup-feature/chatgroup';
-
 
 
 @Component({
@@ -14,16 +14,21 @@ import {ChatGroup} from './../../chatgroup-feature/chatgroup';
 export class NewChatgroupRootComponent implements OnInit {
 
   form: FormGroup;
-
-
   constructor(private fb: FormBuilder,
               private router: Router,
-              private chatgroupService: ChatGroupService) {
+              private chatgroupService: ChatGroupService,
+              private commonService: CommonService) {
+
+                if(this.commonService.authenticated) {
                 
                 this.form = this.fb.group({
                   name: ['',Validators.required],
                   about: [''],
                 });
+
+                } else {
+                  this.router.navigate(['/login'])
+                }
 
                }
 
