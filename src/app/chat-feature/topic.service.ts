@@ -25,7 +25,7 @@ export class TopicService {
       .subscribe(
         data => {
           console.log(data);
-          const text = `${data.profile_label} left the topic`;
+          const text = `${data['profile_label']} left the topic`;
           this.openSnackBarUserJoinedOrLeft(text)
 
         }
@@ -37,7 +37,7 @@ export class TopicService {
       .subscribe(
         data => {
           console.log(data);
-          const text = `${data.profile_label} joined the topic`;
+          const text = `${data['profile_label']} joined the topic`;
           this.openSnackBarUserJoinedOrLeft(text);
         }
       )
