@@ -1,4 +1,5 @@
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { SocketService } from './socket.service';
+import { MatSnackBar } from '@angular/material';
 import { SnackBar } from './message/snack-bar';
 import { ChatService } from './chat.service';
 import { Injectable } from '@angular/core';
@@ -11,12 +12,38 @@ export class TopicService {
 
 
   topicChange: Subject<Topic> = new Subject<Topic>();
-  
+  ioConnectionProfileLeave: any;
+  ioConnectionProfileJoin: any;  
   
   constructor(private chatService: ChatService,
-              public snackBar: MatSnackBarModule) { }
+              public snackBar: MatSnackBar,
+              private socketService: SocketService) {}
 
   
+  onProfileLeave() {
+    this.ioConnectionProfileLeave = this.socketService.onLeaveRoom()
+      .subscribe(
+        data => {
+          console.log(data);
+          const text = `${data.profile_label} left the topic`;
+          this.openSnackBarUserJoinedOrLeft(text)
+
+        }
+      )
+  }
+
+  onProfileJoin() {
+    this.ioConnectionProfileJoin = this.socketService.onJoinRoom()
+      .subscribe(
+        data => {
+          console.log(data);
+          const text = `${data.profile_label} joined the topic`;
+          this.openSnackBarUserJoinedOrLeft(text);
+        }
+      )
+  }
+
+
   editResult(topic) {
 
     this.topicChange.next(topic)
@@ -62,18 +89,13 @@ export class TopicService {
 
   }
 
-  // add later -> need socket io service
-  participate(label) {
-
+  openSnackBarUserJoinedOrLeft(text) {
+    this.snackBar.openFromComponent(SnackBar, {
+      duration: 2000,
+      data: {
+        text:text
+      }
+    });
   }
-
-  leave(label) {
-
-  }
-
-  edit(label) {
-
-  }
-
 
 }

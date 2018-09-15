@@ -1,46 +1,76 @@
-<form class="form" [formGroup]="form">
+<mat-tab-group>
+  <mat-tab label="Link New Topic"> 
+    <form class="form" [formGroup]="form">
 
-  <mat-form-field class="example-full-width">
-      <input 
-      matInput 
-      placeholder="Topic Name" 
-      name="name" 
-      formControlName="name">
+        <mat-form-field class="example-full-width">
+            <input 
+            matInput 
+            placeholder="Topic Name" 
+            name="name" 
+            formControlName="name">
+            
+        </mat-form-field>  
+        
+        <br>
+        
+        <mat-form-field class="example-full-width">
+                <input 
+                matInput 
+                name="about" 
+                formControlName="about" 
+                placeholder="About">
+        </mat-form-field>  
+        
+        <br>
       
-  </mat-form-field>  
-  
-  <br>
-  
-  <mat-form-field class="example-full-width">
+      
+        <mat-form-field class="example-full-width">
           <input 
-          matInput 
-          name="about" 
-          formControlName="about" 
-          placeholder="About">
-  </mat-form-field>  
-  
-  <br>
+          matInput
+          placeholder="Choose a chatgroup"
+          [matAutocomplete]="auto"
+          formControlName="chatgroup_input">
+        </mat-form-field>
+        
+        <!-- <span>Your choice is: {{form.get('chatgroup_input').value | json}}</span> -->
+      
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let chatgroup of (filteredChatgroups | async)?.results" [value]="chatgroup">
+            <span>{{chatgroup.name}}</span>
+            <small> | ID: {{chatgroup.id}}</small>
+          </mat-option>
+        </mat-autocomplete>
+      
+        <br>
+      
+        <button mat-raised-button (click)="submit()">Create and Link</button>
+        
+      </form>  
+  </mat-tab>
+
+  <mat-tab label="Link Existing Topic">
+
+      <form class="topicForm" [formGroup]="topicForm">
+
+        <mat-form-field class="example-full-width">
+            <input 
+            matInput
+            placeholder="Choose a topic"
+            [matAutocomplete]="autoTopic"
+            formControlName="topic_input">
+        </mat-form-field>
 
 
-  <mat-form-field class="example-full-width">
-    <input 
-    matInput
-    placeholder="Choose a chatgroup"
-    [matAutocomplete]="auto"
-    formControlName="chatgroup_input">
-  </mat-form-field>
-  
-  <!-- <span>Your choice is: {{form.get('chatgroup_input').value | json}}</span> -->
+        <mat-autocomplete #autoTopic="matAutocomplete" [displayWith]="displayFnTopic">
+            <mat-option *ngFor="let topic of (filteredTopics | async)?.results" [value]="topic">
+              <span>{{topic.name}}</span>
+              <small> | ID: {{topic.id}}</small>
+            </mat-option>
+        </mat-autocomplete>
 
-  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-    <mat-option *ngFor="let chatgroup of (filteredChatgroups | async)?.results" [value]="chatgroup">
-      <span>{{chatgroup.name}}</span>
-      <small> | ID: {{chatgroup.id}}</small>
-    </mat-option>
-  </mat-autocomplete>
+        <button mat-raised-button (click)="submitTopic()">Link</button>
 
-  <br>
+      </form>  
 
-  <button mat-raised-button (click)="submit()">Create</button>
-  
-</form>  
+  </mat-tab>
+</mat-tab-group> 

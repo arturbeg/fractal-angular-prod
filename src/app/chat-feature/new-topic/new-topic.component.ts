@@ -9,6 +9,8 @@ import { debounceTime, switchMap, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material'
 import { Inject } from '@angular/core';
+import { Topic } from '../../chat-feature/chat';
+
 
 @Component({
   selector: 'app-new-topic',
@@ -20,6 +22,8 @@ export class NewTopicComponent implements OnInit {
   form: FormGroup;    
   filteredChatgroups: any;
   isSubtopic: boolean;
+  filteredTopics: any;
+  topicForm: FormGroup;
 
   constructor(private chatService: ChatService,
               private fb: FormBuilder,
@@ -48,6 +52,21 @@ export class NewTopicComponent implements OnInit {
                       debounceTime(300),
                       switchMap(value => this.chatgroupService.searchChatGroup(value))
                     )
+                  
+                  this.topicForm = this.fb.group({
+                    topic_input: [null, Validators.required]
+                  })
+                  
+                  this.filteredTopics = this.topicForm
+                    .get('topic_input')
+                    .valueChanges
+                    .pipe(
+                      debounceTime(300),
+                      switchMap(value => this.chatService.searchTopic(value))
+                    )
+
+
+                    
                 } else {
                   this.router.navigate(['/login']);
                 }
@@ -61,6 +80,23 @@ export class NewTopicComponent implements OnInit {
 
   displayFn(chatgroup: ChatGroup) {
     if (chatgroup) { return chatgroup.name }
+  }
+
+  displayFnTopic(topic: Topic) {
+    if(topic) {return topic.name}
+  }
+
+
+  submitTopic() {
+    const val = this.topicForm.value;
+    console.log(val);
+    if(val.topic_input) {
+      this.chatService.newMessageToSubTopicConnection(val.topic_input.label, this.data.message_id).subscribe( message => {
+          this.router.navigate(['/chat', val.topic_input.label]);
+          this.matDialogRef.close();
+       }
+      )
+    }
   }
 
   submit() {

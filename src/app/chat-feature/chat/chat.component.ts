@@ -56,9 +56,6 @@ export class ChatComponent implements OnInit, OnDestroy {
         {           
           this.handleAuthentication(); 
           this.handleTopicChange(); 
-
-          console.log("Initialised Chat Component");
-
           this.localSt.clear("currentTopic");
         }
   
@@ -86,6 +83,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this._subscriptionTopicChange.unsubscribe();
+    this.leaveRoom(this.label, this.commonService.username);
     this.localSt.clear('currentTopic');
   }
 
@@ -96,6 +94,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.initIoConnection();
+    this.topicService.onProfileJoin();
+    this.topicService.onProfileLeave();
 
     this.route.params.subscribe(params =>
     {
@@ -103,14 +103,14 @@ export class ChatComponent implements OnInit, OnDestroy {
 
         console.log("The previous topic was, ", this.localSt.retrieve('currentTopic'))
         
-        this.leaveRoom(this.localSt.retrieve('currentTopic'))
+        this.leaveRoom(this.localSt.retrieve('currentTopic'), this.profileNonHttp.profile.label)
   
       }
       this.label = params.label;
 
       this.localSt.store('currentTopic', params.label)
 
-      this.joinRoom(this.label)
+      this.joinRoom(this.label, this.commonService.username);
       
       this.getTopic(this.label);
       this.getMessages(this.label);
@@ -120,23 +120,20 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   getRelatedTopics(chatgroup_label) {
-
     this.chatService.getRelatedTopics(chatgroup_label).subscribe(
       data => {
-        this.relatedTopics = data
-        console.log(data)
+        this.relatedTopics = data;
       }
     )
+  };
 
-  }
+  public joinRoom(label, profile_label) {
+    this.socketService.joinRoom(label, profile_label);    
+  };
 
-  public joinRoom(label) {
-    this.socketService.joinRoom(label)    
-  }
-
-  public leaveRoom(label) {
-    this.socketService.leaveRoom(label)
-  }
+  public leaveRoom(label, profile_label) {
+    this.socketService.leaveRoom(label, profile_label);
+  };
 
   getMessages(label) {
     this.chatService.getMessages(label).subscribe(
@@ -144,7 +141,7 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.messages = data
       }
     )
-  }
+  };
 
   editTopic() {
     const dialogRef = this.dialog.open(EditTopicModalComponent, {

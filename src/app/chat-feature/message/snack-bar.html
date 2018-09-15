@@ -1,11 +1,14 @@
 <span *ngIf="text" >{{text}}</span>
-<ul *ngIf="subtopics">
+<div *ngIf="subtopics">
 
   <li *ngFor="let subtopic of subtopics">  
 
-    <a [routerLink]="['/chat', subtopic]">{{subtopic}}</a>
+    <a
+
+    style="color: inherit; text-decoration: inherit "  
+    [routerLink]="['/chat', subtopic]">{{subtopic}}</a>
 
   </li>
 
-</ul>  
+</div>  
 

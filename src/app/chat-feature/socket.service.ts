@@ -35,7 +35,7 @@ export class SocketService {
         return new Observable<Message>(observer => {
             console.log("Receiving the likedMessage on socket io");
             this.socket.on('messageLike', (data: Message) => observer.next(data));
-        })
+        });
     }
 
     // public onNewParticipant() {
@@ -61,20 +61,34 @@ export class SocketService {
         });
     }
 
-    public joinRoom(label) {
+    public joinRoom(label, profile_label) {
 
         this.socket.emit('joinRoom', {
-            label: label
-        })
+            label: label,
+            profile_label: profile_label
+        });
 
     }
 
-    public leaveRoom(label) {
+    public onJoinRoom() {
+        return new Observable(observer => {
+            console.log("Someone joined the room!!!")
+            this.socket.on('joinRoom', (data) => observer.next(data));
+        });
+    }
 
+    public leaveRoom(label, profile_label) {
         this.socket.emit('leaveRoom', {
-            label: label
+            label: label,
+            profile_label: profile_label
         })
+    }
 
+    public onLeaveRoom() {
+        return new Observable(observer => {
+            console.log("Someone left the room!!!")
+            this.socket.on('leaveRoom', (data) => observer.next(data));
+        });
     }
 
     public messageLike(data) {
