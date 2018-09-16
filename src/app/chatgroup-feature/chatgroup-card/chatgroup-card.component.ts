@@ -14,7 +14,7 @@ export class ChatGroupCardComponent {
   @Input() chatgroup: ChatGroup;
   chatgroupChanges: any;
 
-  constructor(private chatGroupNonHttpService: ChatgroupNonHttpService) {
+  constructor(public chatGroupNonHttpService: ChatgroupNonHttpService) {
     this.chatgroupChanges.subscribe(
       data => {
         if(this.chatgroup.id==data.id) {
