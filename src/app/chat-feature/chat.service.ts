@@ -103,6 +103,11 @@ export class ChatService {
 		
 	}
 
+	allMessagesSeen(label) {
+		const allMessagesSeenApi = this.chatApiUrl + label + '/all_messages_seen/';
+		return this.http.get<Topic>(allMessagesSeenApi);
+	}
+
 	getRelatedTopics(chatgroup_label) {
 		const relatedTopicsApi = "https://fractal-django-prod.herokuapp.com/api/chatgroups/" + chatgroup_label + "/topics"
 		return this.http.get<Topic[]>(relatedTopicsApi)

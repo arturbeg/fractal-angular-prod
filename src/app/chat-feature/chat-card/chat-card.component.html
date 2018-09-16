@@ -17,6 +17,7 @@
             {{topic.name}}
     
           </a>
+          <small> {{topic.number_of_unread_messages}} unread </small>
 
         </mat-card-title>
         <mat-card-subtitle
@@ -65,7 +66,7 @@
 
   -->
 
-  <mat-card-actions class="chat-card-actions">
+  <mat-card-actions class="chat-card-actions" *ngIf="showButtons">
     <div class="float-left">
       <button mat-button (click)="topicService.upvote(topic.label)">
       

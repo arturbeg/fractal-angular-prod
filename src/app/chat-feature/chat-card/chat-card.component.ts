@@ -11,8 +11,9 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 export class ChatCardComponent implements OnInit, OnDestroy {
 
   @Input() topic: Topic;
-  _subscription: any;
+  @Input() showButtons: boolean = true;
 
+  _subscription: any;
 
   
   constructor(public topicService: TopicService) {

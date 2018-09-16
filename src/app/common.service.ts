@@ -1,3 +1,4 @@
+import { Subject } from 'rxjs/Subject';
 import { Injectable } from '@angular/core';
 import {LocalStorageService} from "ngx-webstorage";
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -9,6 +10,9 @@ export class CommonService {
   username: string;
   token: string;
   authenticated: boolean;
+
+  usernameChange: Subject<string> = new Subject<string>()
+
 
 
   constructor(private localSt: LocalStorageService, private http: HttpClient) { 
@@ -30,6 +34,7 @@ export class CommonService {
     .subscribe((value) => {
       
       this.username = value;
+      this.usernameChange.next(value);
 
     }); 
 

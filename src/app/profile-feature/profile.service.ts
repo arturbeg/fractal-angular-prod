@@ -56,6 +56,11 @@ export class UserService {
         return this.http.get<Post[]>(profilePostsApiUrl)
     }
 
+    getProfileSavedTopics(username) {
+        const profileSavedTopicsApi = this.rootApiUrl + username + '/saved_topics/';
+        return this.http.get(profileSavedTopicsApi);
+    }
+
     getRecentActivityPosts(username) {
         console.log("Retreiving the recent activity posts of " + username);
         const recentActivityApiUrl = this.rootApiUrl + username + '/activity/'

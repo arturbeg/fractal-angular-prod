@@ -94,7 +94,21 @@
           Log in
           </a>
         </li>    
-        
+
+
+        <!-- Saved Chats -->
+
+
+        <li *ngIf="commonService.authenticated" class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Saved Chats
+            </a>
+            <div style="width: 300px; height: 300px; overflow: scroll;" class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+              <app-saved-topics>  </app-saved-topics>
+            </div>
+          </li>
+          
+          
         
         <!-- Log out, if already logged in -->
         <li  *ngIf="commonService.authenticated" class="nav-item">
@@ -103,7 +117,9 @@
             Log OUT
           
           </button>
-        </li>                
+        </li>   
+        
+
 
         <!-- New Chat Creation List Item -->
         <!-- <li class="nav-item dropdown">

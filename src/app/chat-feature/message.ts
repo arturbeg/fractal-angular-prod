@@ -3,7 +3,6 @@ import { Action } from './action'
 import { Profile } from '../profile-feature/profile'
 
 export interface Message {
-    
     id: number;
     text?: any; // used to be from
     timestamp: string;
@@ -15,6 +14,6 @@ export interface Message {
     timestamp_human: string;
     topic: string;
     subtopics: string[];
-
+    seen: boolean;
 }
 

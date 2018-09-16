@@ -88,14 +88,13 @@
 							 matAutosizeMinRows="1"
 							 matAutosizeMaxRows="5"
 							 #inputMessage
-							 maxLength="140"
 							 [(ngModel)]="messageContent"
 							 (keyup.enter)="sendMessage(messageContent)" 
 							 >
 				
 							</textarea>
 	
-							<mat-hint align="end">{{inputMessage.value.length}}/140</mat-hint>
+							<!-- <mat-hint align="end">{{inputMessage.value.length}}/140</mat-hint> -->
 	
 	
 	

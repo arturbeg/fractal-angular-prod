@@ -20,6 +20,7 @@ import { ChatModule } from '../chat-feature/chat.module';
 import { ActivityComponent } from './activity/activity.component';
 import { NewRootTopicComponent } from './new-root-topic/new-root-topic.component';
 import { NewChatgroupRootComponent } from './new-chatgroup-root/new-chatgroup-root.component';
+import { SavedTopicsComponent } from './saved-topics/saved-topics.component';
 // import { NewTopicComponent } from './new-topic/new-topic.component';
 
 
@@ -46,6 +47,7 @@ import { NewChatgroupRootComponent } from './new-chatgroup-root/new-chatgroup-ro
     ActivityComponent,
     NewRootTopicComponent,
     NewChatgroupRootComponent,
+    SavedTopicsComponent,
     // NewTopicComponent
 
   ],

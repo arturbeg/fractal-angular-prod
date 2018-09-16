@@ -32,6 +32,8 @@ export class TopicService {
       )
   }
 
+
+
   onProfileJoin() {
     this.ioConnectionProfileJoin = this.socketService.onJoinRoom()
       .subscribe(
@@ -50,6 +52,14 @@ export class TopicService {
 
   }
 
+  allMessagesSeen(label) {
+    this.chatService.allMessagesSeen(label).subscribe(
+      data => {
+        this.topicChange.next(data)
+      }
+    )
+  }
+
   upvote(label) {
 
     this.chatService.upvoteTopic(label).subscribe(
@@ -60,6 +70,7 @@ export class TopicService {
     )
 
   }
+
 
   downvote(label) {
 

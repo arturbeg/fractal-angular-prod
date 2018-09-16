@@ -52,6 +52,7 @@ export interface Topic {
 	upvoted: boolean;
 	downvoted: boolean;
 	saved: boolean;
+	number_of_unread_messages: number;
 
 }
 

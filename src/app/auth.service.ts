@@ -55,6 +55,7 @@ export class AuthService {
                                console.log("ERROR IN LOGIN")
                             }
 
+                            // temporary before everything is an Observable
                             this.commonService.refreshValues();
                         },
                     )         

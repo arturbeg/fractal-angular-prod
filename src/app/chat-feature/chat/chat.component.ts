@@ -97,8 +97,11 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.topicService.onProfileJoin();
     this.topicService.onProfileLeave();
 
+
+
     this.route.params.subscribe(params =>
     {
+
       if (this.localSt.retrieve('currentTopic')) {
 
         console.log("The previous topic was, ", this.localSt.retrieve('currentTopic'))
@@ -111,6 +114,7 @@ export class ChatComponent implements OnInit, OnDestroy {
       this.localSt.store('currentTopic', params.label)
 
       this.joinRoom(this.label, this.commonService.username);
+      this.topicService.allMessagesSeen(this.label);
       
       this.getTopic(this.label);
       this.getMessages(this.label);
@@ -204,7 +208,8 @@ export class ChatComponent implements OnInit, OnDestroy {
           likers_count: data['likers_count'],
           shared: false,
           timestamp_human: data['timestamp_human'],
-          subtopics: data['subtopics']
+          subtopics: data['subtopics'],
+          seen: data['seen']
         }, this.label);        
       }
     )
