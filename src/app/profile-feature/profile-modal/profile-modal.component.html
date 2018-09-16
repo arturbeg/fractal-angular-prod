@@ -1,41 +1,9 @@
-<!-- <div class="profile-modal" *ngIf="chatgroups$ && showChatGroups | async as chatgroups">
-	
-	
-	<h2> ChatGroups </h2>
-	<p *ngFor="let chatgroup of chatgroups">  {{chatgroup.id}} : {{chatgroup.name}}  </p>
-
-
-
-</div> -->
-
-
-
-<div>
-	
-	
 	<form [formGroup]="profileForm">
 
-		<!-- <div class="form-group">
-			<label class="center-block">Username:
-				<input class="form-control" formControlName="username">
-			</label>
-		</div> -->
+		<mat-form-field class="example-full-width">
+        <input matInput name="password" formControlName="about" placeholder="About" >
+		</mat-form-field>  
 
-		<div class="form-group">
-			<label class="center-block">About:
-				<input class="form-control" formControlName="about">
-			</label>
-		</div>
-
-
-		<div class="form-buttons">
-			<button class="button button-primary" (click)="submitChanges()">Submit</button>
-		</div>
+		<button mat-raised-button (click)="submitChanges()">Submit</button>
 
 	</form>
-
-
-	<p>Form value: {{ profileForm.value | json }}</p>
-
-
-</div>

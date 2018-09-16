@@ -17,6 +17,7 @@ export class ProfileNonHttpService {
 	username: string;
 	topics: Topic[];
 	saved_topics: Subject<Topic[]> = new Subject<Topic[]>()
+	profileChanges: Subject<Profile> = new Subject<Profile>()
 
 	constructor(private userService: UserService, private dialog: MatDialog,
 							private commonService: CommonService) { 
@@ -63,6 +64,7 @@ export class ProfileNonHttpService {
 		this.userService.follow(username).subscribe(
 			data => {
 				this.profile = data;
+				this.profileChanges.next(data);
 			}
 		);	
   }

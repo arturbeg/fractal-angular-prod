@@ -3,19 +3,43 @@
 <mat-form-field class="example-full-width">
     <input 
     matInput 
-    placeholder="Search" 
+    placeholder="Search"
     name="query" 
     formControlName="query"
     >
 </mat-form-field>  
 
+<button mat-raised-button (click)="submitSearch()" > Search </button>
 
 </form>
 
 
+<mat-tab-group>
+  <mat-tab label="Topics">
+    <div class="Search Results"> 
 
-<div class="Search Results"> 
+    <span *ngIf="topics.length==0" > No topics matching your quey found </span>
 
-    <app-chat-card *ngFor="let topic of (topics | async)?.results" [topic]="topic"> </app-chat-card>
+    <!-- Also have suggestions below; like an explore page -->
 
-</div>    
+    <app-chat-card *ngFor="let topic of topics" [topic]="topic"> </app-chat-card>
+    </div>  
+  </mat-tab>
+  
+  <mat-tab label="ChatGroups">
+
+        <span *ngIf="chatgroups.length==0" > No chatgroups matching your query found </span>
+
+        <app-chatgroup-card *ngFor="let chatgroup of chatgroups" [chatgroup]="chatgroup"> </app-chatgroup-card>
+  
+  </mat-tab>
+
+  <mat-tab label="Users">
+
+    <span *ngIf="profiles.length==0" > No users matching your query found </span>
+
+    <app-user-card *ngFor="let profile of profiles" [profile]="profile"> </app-user-card>
+
+  
+  </mat-tab>
+</mat-tab-group>  

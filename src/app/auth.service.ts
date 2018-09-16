@@ -74,16 +74,15 @@ export class AuthService {
 
     public signup(username:string, email: string, password1: string, password2: string) {
         console.log("Sign Up")
+        
         var signupObject = {
-            username: username,
-            email: email,
-            password1: password1,
-            password2: password2
+            username: "someuser",
+            email: "someemail@shit.com",
+            password1: "somepassword",
+            password2: "somepassword"
         }
-        return this.http.post(this.restAuthUrlSignup, signupObject).pipe(
-                //retry(1), // retry the failed request once
-                catchError(this.handleHttpError('signup'))
-            )
+        console.log("Signup")
+        return this.http.post(this.restAuthUrlSignup, signupObject)
     }
 
     public changePassword(new_password1: string, new_password2: string) {

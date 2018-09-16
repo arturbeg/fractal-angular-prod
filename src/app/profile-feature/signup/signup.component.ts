@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonService } from './../../common.service';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+
 import { AuthService } 		 from '../../auth.service';
 
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -9,24 +12,40 @@ import { AuthService } 		 from '../../auth.service';
 })
 export class SignupComponent implements OnInit {
 
-	// turn into a signup object
-	username: string;
-	email: string;
-	password1: string;
-	password2: string;
 
+	form: FormGroup;
 
-	constructor(private authService: AuthService) { }
+	constructor(private authService: AuthService,
+							private commonService: CommonService,
+							private fb: FormBuilder) {
+
+								this.form = this.fb.group({
+									username: ['asd'],
+									email: ['asd'],
+									password1: ['asd'],
+									password2: ['asd'],
+								});
+
+							}
 
 	ngOnInit() {
 		
 	}
+ 
 
-	onSubmit() {
-
-		this.authService.signup(this.username, this.email, this.password1, this.password2).subscribe(
-			data => console.log(data)
-		)
+	signup() {
+		const val = this.form.value;
+		if(val.username && val.password1 && val.password2) {
+			if(val.password1==val.password2) {
+				this.authService.signup(val.username, val.email, val.password1, val.password2).subscribe(
+					data => {
+						console.log(data);
+					}
+				) 
+			} else {
+				console.log("passwords don't match");
+			}
+		}
 
 	}
 

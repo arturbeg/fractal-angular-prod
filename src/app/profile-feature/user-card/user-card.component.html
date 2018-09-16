@@ -1,32 +1,38 @@
 <div class="user-card">
+	<div [routerLink]="['/profile', profile.label]"
+	style="cursor: pointer"
+	class="non-actions">
+		<!-- Avatar -->
 
-	<!-- Avatar -->
-
-	<img src="https://scontent-frt3-2.xx.fbcdn.net/v/t1.0-9/27544666_1610932332316513_8799680780576811652_n.jpg?oh=4330b0848c4004b64bb29fb68f0715ed&oe=5B30B348" class="rounded-circle float-left">
-
-
-
-	<div class="user-card-info float-left">
-
-		<!-- Username -->
-
-		<h5> arturbegyan </h5>
+		<img src="http://santetotal.com/wp-content/uploads/2014/05/default-user.png" class="rounded-circle float-left">
 
 
-		<!-- User About -->
+		<div class="user-card-info float-left">
 
-		<p>Sometimes I make stupid jokes</p>
+			<!-- Username -->
+
+			<h5> {{profile.label}} </h5>
+
+
+			<!-- User About -->
+
+			<p>{{profile.about}}</p>
 
 
 
+		</div>
 	</div>
-
 
 	<div class="user-card-actions float-left">
 
 		<!-- Actions -->
 
-		<button mat-button>FOLLOW</button>
+		<button *ngIf="commonService.username!=profile.label" mat-button (click)="profileNonHttp.follow(profile.label)">
+			
+			<span *ngIf="profile.followed"> UNFOLLOW </span>
+			<span *ngIf="!profile.followed"> FOLLOW </span>
+
+		</button>
 
 
 

@@ -17,12 +17,18 @@ export class AuthInterceptor implements HttpInterceptor {
 	constructor(private authService:AuthService, private commonService: CommonService) {}
 
 	intercept(req: HttpRequest<any>, next: HttpHandler):Observable<HttpEvent<any>> {
-	
-		const authReq = req.clone({
-			headers: req.headers.append('Authorization', 'JWT ' + this.commonService.token)
-		})
+		
+		if(this.commonService.token) {
 
-		return next.handle(authReq)
+			const authReq = req.clone({
+				headers: req.headers.append('Authorization', 'JWT ' + this.commonService.token)
+			})
+
+			return next.handle(authReq)
+
+		} else {
+			return next.handle(req)
+		}
 
 	}
 }

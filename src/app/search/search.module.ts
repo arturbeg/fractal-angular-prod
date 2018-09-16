@@ -5,6 +5,8 @@ import { NgModule }       			from '@angular/core';
 import { CommonModule }   			from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule }          from '../material.module';
+import { ChatGroupModule } from './../chatgroup-feature/chatgroup.module';
+import { ProfileModule } from './../profile-feature/profile.module';
 
 @NgModule({
   imports: [
@@ -13,7 +15,9 @@ import { MaterialModule }          from '../material.module';
     MaterialModule,
     CommonModule,
     SearchRoutingModule,
-    ChatModule
+    ChatModule,
+    ChatGroupModule,
+    ProfileModule
   ],  
   declarations: [
     SearchComponent

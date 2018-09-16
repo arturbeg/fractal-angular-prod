@@ -95,6 +95,15 @@
           </a>
         </li>    
 
+        <!-- <li  *ngIf="!commonService.authenticated" class="nav-item">
+          <a
+          routerLink="/signup"
+          class="nav-link"
+          href="#">
+          Signup
+          </a>
+        </li>     -->
+
 
         <!-- Saved Chats -->
 
@@ -172,7 +181,7 @@
         <button mat-raised-button color="primary">Search</button>
       </form> -->
 
-      <button mat-button routerLink="/search" color="basic">Search</button>
+      <button *ngIf="commonService.authenticated" mat-button routerLink="/search" color="basic">Search</button>
     </div>
   </div>
 </nav>

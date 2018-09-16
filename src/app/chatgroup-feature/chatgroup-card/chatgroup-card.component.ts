@@ -1,5 +1,7 @@
 import { ChatGroup } from './../chatgroup';
 import { Component, Input } from '@angular/core';
+import { ChatgroupNonHttpService } from './../chatgroup-non-http.service'
+
 
 
 @Component({
@@ -10,7 +12,15 @@ import { Component, Input } from '@angular/core';
 export class ChatGroupCardComponent {
 
   @Input() chatgroup: ChatGroup;
+  chatgroupChanges: any;
 
-  constructor() { }
-
+  constructor(private chatGroupNonHttpService: ChatgroupNonHttpService) {
+    this.chatgroupChanges.subscribe(
+      data => {
+        if(this.chatgroup.id==data.id) {
+        this.chatgroup = data;
+        }
+      }
+    )
+  }
 }

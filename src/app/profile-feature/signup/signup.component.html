@@ -1,67 +1,29 @@
+<form class="form" [formGroup]="form">
 
+<mat-form-field class="example-full-width">
+    <input matInput placeholder="Username" name="username" formControlName="username">
+</mat-form-field>  
 
-<form (ngSubmit)="onSubmit()">
-<!-- Username -->
+<br>
 
-<mat-form-field>
-    
-    <input
-    matInput 
-    placeholder="Username"
-    [(ngModel)]="username" name="username">
-    
+<mat-form-field class="example-full-width">
+        <input matInput name="email" formControlName="email" placeholder="Email">
+</mat-form-field> 
 
-</mat-form-field>
+<br> 
 
+<mat-form-field class="example-full-width">
+        <input matInput name="password1" formControlName="password1" placeholder="Password"  
+        type="password">
+</mat-form-field>  
 
-<!-- Email -->
+<br>
 
-<mat-form-field>
-    
-    <input
-    matInput 
-    placeholder="Email"
-    [(ngModel)]="email" name="email">
-    
+<mat-form-field class="example-full-width">
+        <input matInput name="password2" formControlName="password2" placeholder="Repeat Password"  
+        type="password">
+</mat-form-field> 
 
-</mat-form-field>
+<button mat-raised-button (click)="signup()">Signup</button>
 
-
-<!-- Password1-->	
-
-<mat-form-field>
-
-    <input
-    matInput 
-    placeholder="Password"
-    [(ngModel)]="password1" name="password1">
-
-</mat-form-field>
-
-
-<!-- Password2 -->	
-
-<mat-form-field>
-
-    <input
-    matInput 
-    placeholder="Repeat Password"
-    [(ngModel)]="password2" name="password2">
-
-</mat-form-field>
-
-
-<button type="submit"> Submit </button>
-
-
-<ul>
-		
-	<li>{{username}}</li>
-	<li>{{email}}</li>				
-	<li>{{password1}}</li>		
-	<li>{{password2}}</li>		
-	
-</ul>
-</form>
-
-
+</form>  

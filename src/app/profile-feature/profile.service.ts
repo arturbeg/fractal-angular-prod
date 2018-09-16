@@ -124,4 +124,11 @@ export class UserService {
         return this.http.get<Profile>(followApiUrl)
 
     }
+
+	searchProfile(term:string) {
+		const searchApiUrl = this.rootApiUrl + '?search=' + term;
+		console.log(searchApiUrl);
+		return this.http.get(searchApiUrl);
+	}	
+
 }

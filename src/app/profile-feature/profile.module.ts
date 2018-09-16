@@ -51,6 +51,7 @@ import { ProfileModalComponent } from './profile-modal/profile-modal.component'
 
   exports: [
       // add later
+      UserCardComponent
     ],
 
   entryComponents: [ ProfileModalComponent ]  

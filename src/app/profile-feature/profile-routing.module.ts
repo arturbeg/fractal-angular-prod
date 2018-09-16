@@ -3,15 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ProfileComponent }    from './profile/profile.component';
 import { LoginComponent }    from './login/login.component';
-import { SignupComponent }    from './signup/signup.component';
+import { SignupComponent } from './signup/signup.component';
 import { ChangePasswordComponent }    from './changepassword/changepassword.component';
 
 
 
 const profileRoutes: Routes = [
   { path: 'profile/:username', component: ProfileComponent },
-  { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'changepassword', component: ChangePasswordComponent },
 ];
 

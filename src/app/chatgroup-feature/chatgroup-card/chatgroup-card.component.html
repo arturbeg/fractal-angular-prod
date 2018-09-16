@@ -1,28 +1,40 @@
 <div class="chatgroup-card">
 
-	<!-- Avatar -->
+	<div 
+	style="cursor: pointer"
+	[routerLink]="['/chatgroup', chatgroup.label]" 
+	class="non-action-buttons">
+		<!-- Avatar -->
 
-	<img src="https://image.freepik.com/free-icon/users-group_318-48680.jpg" class="rounded-circle float-left">
+		<img 
+		width="100px"
+		height="100px" src="https://image.freepik.com/free-icon/users-group_318-48680.jpg" class="rounded-circle float-left">
 
 	
-	<div class="chatgroup-card-info float-left">
+		<div class="chatgroup-card-info float-left">
 
-		<!-- ChatGroup Name -->
+			<!-- ChatGroup Name -->
 
-		<h5>{{chatgroup.name}}</h5>
+			<h5>{{chatgroup.name}}</h5>
 
 
-		<!-- ChatGroup About -->
+			<!-- ChatGroup About -->
 
-		<p>{{chatgroup.about}}</p>
+			<p>{{chatgroup.about}}</p>
+
+		</div>
 
 	</div>
-
 	<div class="chatgroup-card-actions float-left">
 
 		<!-- Actions -->
 
-		<button mat-button>FOLLOW</button>
+		<button 
+		mat-button
+		(click)="chatGroupNonHttpService.follow(chatgroup.label)">
+			<span *ngIf="!chatgroup.followed"> FOLLOW </span>
+			<span *ngIf="chatgroup.followed"> UNFOLLOW </span>
+		</button>
 
 	</div>
 
