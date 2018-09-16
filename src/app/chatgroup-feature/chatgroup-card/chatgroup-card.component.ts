@@ -15,10 +15,10 @@ export class ChatGroupCardComponent {
   chatgroupChanges: any;
 
   constructor(public chatGroupNonHttpService: ChatgroupNonHttpService) {
-    this.chatgroupChanges.subscribe(
+    this.chatGroupNonHttpService.chatgroup.subscribe(
       data => {
         if(this.chatgroup.id==data.id) {
-        this.chatgroup = data;
+          this.chatgroup = data;
         }
       }
     )

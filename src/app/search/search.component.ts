@@ -40,11 +40,8 @@ export class SearchComponent implements OnInit {
       // this.topics = this.chatService.searchTopic("");
       // this.chatgroups = this.chatgroupService.searchChatGroup("");
       // this.profiles = this.userService.searchProfile("");
-
-      this.chatGroupSearchResults("");
-
       this.topicSearchResults("");
-
+      this.chatGroupSearchResults("");
       this.profileSearchResults("");
 
       } else {
@@ -65,7 +62,8 @@ export class SearchComponent implements OnInit {
   topicSearchResults(query) { 
     this.chatService.searchTopic(query).subscribe(
       data => {
-        this.topics = data['results']
+        this.topics = data['results'];
+        console.log(this.topics);
       }
     );
   }
@@ -73,7 +71,7 @@ export class SearchComponent implements OnInit {
   profileSearchResults(query) {
     this.profiles = this.userService.searchProfile(query).subscribe(
       data => {
-      this.profiles = data['results']
+        this.profiles = data['results']
       }
     )
   }
@@ -82,9 +80,9 @@ export class SearchComponent implements OnInit {
     const val = this.form.value
     console.log(val)
     if(val.query) {
-      console.log("Updating search results!")
-      this.chatGroupSearchResults(val.query);
+      console.log("Updating search results!");
       this.topicSearchResults(val.query);
+      this.chatGroupSearchResults(val.query);
       this.profileSearchResults(val.query);
     }
   }
