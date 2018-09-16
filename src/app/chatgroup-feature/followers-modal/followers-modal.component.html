@@ -4,8 +4,9 @@
 
     <li *ngFor="let follower of followers">
 
-      {{follower.label}}
-
+      <a  (click)="matDialogRef.close()" [routerLink]="['/profile', follower.label]">
+        {{follower.label}}
+      </a>
     </li>  
 
 

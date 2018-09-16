@@ -1,3 +1,4 @@
+import { CommonModalComponent } from './../common-modal/common-modal.component';
 import { CommonService } from './../common.service';
 import { Subject } from 'rxjs/Subject';
 import { ChatService } from './../chat-feature/chat.service';
@@ -8,6 +9,7 @@ import { UserService } from './profile.service';
 import { Injectable } from '@angular/core';
 import {Profile} from './profile';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
 
 @Injectable()
 export class ProfileNonHttpService {
@@ -86,7 +88,55 @@ export class ProfileNonHttpService {
 				this.profile = result;
 			}
 		});
-  }
+	}
+	
+	public createDialog(data) {
+		const dialogRef = this.dialog.open(CommonModalComponent, {
+			data: data,
+			height: '500px',
+			width: '500px'
+		});
+	}
+
+
+	public showFollowers(username) {
+
+		this.userService.getFollowers(username).subscribe(
+			data => {
+				const dialogData = {
+					profiles: data
+				}
+				this.createDialog(dialogData)
+			}
+		)
+	}
+
+	public showFollowing(username) {
+
+		this.userService.getFollowing(username).subscribe(
+			data => {
+				const dialogData = {
+					profiles: data
+				}
+				this.createDialog(dialogData);
+			}
+		)
+
+	}
+
+
+	public showChatGroups(username) {
+
+		this.userService.getChatGroups(username).subscribe(
+			data => {
+				const dialogData = {
+					chatgroups: data
+				}
+				this.createDialog(dialogData);
+			}
+		)
+		
+	}
 }
   // openDialog() {
 		

@@ -8,7 +8,12 @@
 
 		<div class="col-lg-10 text-center"> 
 			<!-- User Avatar -->
-			<img class="avatar rounded-circle" src="http://santetotal.com/wp-content/uploads/2014/05/default-user.png">
+			<img *ngIf="!profileNonHttp.profile.avatar_url" class="avatar rounded-circle" src="http://santetotal.com/wp-content/uploads/2014/05/default-user.png">
+
+			<img  *ngIf="profileNonHttp.profile.avatar_url" 
+			class="rounded-circle avatar" 
+			[src]="profileNonHttp.profile.avatar_url"
+			>
 
 			<!-- Username -->
 
@@ -51,19 +56,19 @@
 		</button> -->
 
 
-		<button mat-raised-button>
+		<button mat-raised-button (click)="profileNonHttp.showChatGroups(profileNonHttp.profile.label)">
 
 			<span>{{profileNonHttp.profile.chatgroups_count}}</span>
 			<span> chat groups </span>
 
 		</button>
 
-		<button mat-raised-button>
+		<button mat-raised-button (click)="profileNonHttp.showFollowers(profileNonHttp.profile.label)">
 			<span>{{profileNonHttp.profile.followers_count}}</span>
 			<span> followers </span>
 		</button>
 
-		<button mat-raised-button>
+		<button mat-raised-button (click)="profileNonHttp.showFollowing(profileNonHttp.profile.label)">
 			<span>{{profileNonHttp.profile.following_count}}</span>	
 			<span> following </span>
 		</button>

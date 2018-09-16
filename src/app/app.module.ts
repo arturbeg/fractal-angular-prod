@@ -1,3 +1,4 @@
+import { CommonModalComponent } from './common-modal/common-modal.component';
 import { SearchModule } from './search/search.module';
 import { CommonService } from './common.service';
 import { LocalStorageService } from 'ngx-webstorage';
@@ -39,9 +40,11 @@ import { HttpModule } from '@angular/http';
 
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
+
 @NgModule({
   declarations: [
     AppComponent,
+    CommonModalComponent
   ],
   imports: [
     LoadingBarHttpClientModule,
@@ -61,6 +64,7 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
   ],
 
   exports: [
+    CommonModalComponent
   ],
 
   providers: [AuthService,
@@ -72,6 +76,8 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
               ],
   bootstrap: [AppComponent],
 
-  entryComponents: [],
+  entryComponents: [
+    CommonModalComponent
+  ],
 })
 export class AppModule { }

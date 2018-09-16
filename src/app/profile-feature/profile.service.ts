@@ -97,10 +97,15 @@ export class UserService {
 
         console.log("Getting the followers of: " + username)
         const followersApiUrl = this.rootApiUrl + username + '/followers?fromat=json'
-        return this.http.get<User[]>(followersApiUrl)
-                .pipe(
-                    catchError(this.handleHttpError('getProfileFollowers'))
-                )
+        return this.http.get<Profile[]>(followersApiUrl)
+
+    }
+
+    getFollowing(username) {
+
+        console.log("Getting the following of: " + username);
+        const followersApiUrl = this.rootApiUrl + username + '/following?fromat=json';
+        return this.http.get<Profile[]>(followersApiUrl);
 
     }
 

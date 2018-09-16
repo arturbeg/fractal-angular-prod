@@ -1,0 +1,14 @@
+<ul *ngIf="showProfiles">
+  <li *ngFor="let profile of profiles"> 
+   <a (click)="matDialogRef.close()" [routerLink]="['/profile', profile.label]"> {{profile.label}} </a>
+  </li>
+</ul> 
+
+
+<ul *ngIf="showChatGroups">
+  <li *ngFor="let chatgroup of chatgroups"> 
+    <a (click)="matDialogRef.close()" [routerLink]="['/chatgroup', chatgroup.label]">  {{chatgroup.name}} </a>
+  </li>
+</ul> 
+
+

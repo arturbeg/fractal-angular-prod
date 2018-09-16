@@ -11,7 +11,7 @@ export class FollowersModalComponent implements OnInit {
 
   followers: Profile[];
 
-  constructor(private matDialogRef: MatDialogRef<FollowersModalComponent>,
+  constructor(public matDialogRef: MatDialogRef<FollowersModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               
               ) {  
