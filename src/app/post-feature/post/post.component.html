@@ -4,7 +4,14 @@
 	<!-- User Avatar -->
 
 	<a [routerLink]="['/profile', post.message.sender.label]">
-		<img class="float-left rounded-circle" src="http://santetotal.com/wp-content/uploads/2014/05/default-user.png" height="30px" width="30px">
+		<img 
+		*ngIf="!post.message.sender.avatar"
+		class="float-left rounded-circle" src="http://santetotal.com/wp-content/uploads/2014/05/default-user.png" height="30px" width="30px">
+
+		<img 
+		*ngIf="post.message.sender.avatar"
+		class="float-left rounded-circle" 
+		[src]="post.message.sender.avatar" height="30px" width="30px">
 	</a>	
 
 	<!-- Post Content  -->

@@ -22,9 +22,13 @@ export class AuthInterceptor implements HttpInterceptor {
 
 			const authReq = req.clone({
 				headers: req.headers.append('Authorization', 'JWT ' + this.commonService.token)
-			})
+			});
 
-			return next.handle(authReq)
+			const authReqNoContentType = authReq.clone({
+				headers: authReq.headers.delete('Content-Type')
+			});
+
+			return next.handle(authReqNoContentType)
 
 		} else {
 			return next.handle(req)

@@ -4,8 +4,15 @@
 	class="non-actions">
 		<!-- Avatar -->
 
-		<img src="http://santetotal.com/wp-content/uploads/2014/05/default-user.png" class="rounded-circle float-left">
+		<!-- Later try to merge into one img dag using template level conditions -->
+		<img 
+		*ngIf="!profile.avatar"
+		src="http://santetotal.com/wp-content/uploads/2014/05/default-user.png" class="rounded-circle float-left">
 
+		<img 
+		*ngIf="profile.avatar"
+		[src]="profile.avatar"
+		class="rounded-circle float-left">
 
 		<div class="user-card-info float-left">
 

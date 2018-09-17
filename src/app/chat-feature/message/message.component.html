@@ -6,8 +6,18 @@
 
 		<a [routerLink]="['/profile', message.sender.label]">
 			
-			<img class="float-left rounded-circle" src="http://santetotal.com/wp-content/uploads/2014/05/default-user.png" height="40px" width="40px"> 
-		
+			<img 
+			*ngIf="!message.sender.avatar"
+			class="float-left rounded-circle" src="http://santetotal.com/wp-content/uploads/2014/05/default-user.png" height="40px" 
+			width="40px"> 
+
+			<img 
+			*ngIf="message.sender.avatar"
+			class="float-left rounded-circle" 
+			[src]="message.sender.avatar"
+			height="40px" 
+			width="40px"> 
+
 		</a>
 
 		<!-- Message Content -->

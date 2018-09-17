@@ -89,6 +89,25 @@ export class ProfileNonHttpService {
 			}
 		});
 	}
+
+	public editProfileAvatar(event)  {
+		console.log("Editing profile avatar!!");
+		console.log(event);
+
+		const selectedFile = event.target.files[0];
+		console.log(selectedFile); 
+		const fd: FormData = new FormData();
+		fd.append('avatar', selectedFile);
+
+		this.userService.editProfileAvatar(this.profile.label, fd)
+			.subscribe(
+				data => {
+					console.log(data);
+					this.profile = data;
+				}
+			)
+
+	}
 	
 	public createDialog(data) {
 		const dialogRef = this.dialog.open(CommonModalComponent, {

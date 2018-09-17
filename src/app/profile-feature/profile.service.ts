@@ -83,6 +83,12 @@ export class UserService {
 
     }
 
+    editProfileAvatar(username, formData) {
+        // multipart/form-data instead of JSON should be used
+
+        return this.http.patch<Profile>(this.rootApiUrl + username + '/', formData)
+    }
+
     editUserObject(username, newUsername) {
         // edit user object -> need to update commonService
         // change later to account for validation errors

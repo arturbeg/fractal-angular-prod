@@ -19,7 +19,7 @@ export interface Profile {
 	chatgroups_count: number;
 	followed: boolean;
 	user_id: number;
-	avatar_url: string;
+	avatar: string;
 	///user: User;
 	// timestamp, avatar, followers
 }

@@ -11,7 +11,7 @@ import { Profile } from '../profile-feature/profile'
 // 	rating: number;
 // 	chatgroup: ChatGroup;
 // 	participants: Profile[];
-// 	most_recent_message: string;
+// 	most_recent_message_text: string;
 
 
 // 	constructor(
@@ -22,7 +22,7 @@ import { Profile } from '../profile-feature/profile'
 //  		rating: number,
 // 		chatgroup: ChatGroup,
 // 		participants: Profile[],
-// 		most_recent_message: string,
+// 		most_recent_message_text: string,
 
 // 	) {
 // 		this.id = id;
@@ -32,7 +32,7 @@ import { Profile } from '../profile-feature/profile'
 // 		this.rating = rating;
 // 		this.chatgroup = chatgroup;
 // 		this.participants = participants;
-// 		this.most_recent_message = most_recent_message;
+// 		this.most_recent_message_text = most_recent_message_text;
 // 	}
 // }
 
@@ -47,7 +47,8 @@ export interface Topic {
 	chatgroup_object: ChatGroup;
 	chatgroup: string;
 	participants: Profile[];
-	most_recent_message: string;
+	most_recent_message_text: string;
+	most_recent_message_sender_avatar: string;
 	owner: Profile;
 	upvoted: boolean;
 	downvoted: boolean;
@@ -65,7 +66,7 @@ export interface Topic {
 // 	rating: number;
 // 	chatgroup: ChatGroup;
 // 	participants: Profile[];
-// 	most_recent_message: string;
+// 	most_recent_message_text: string;
 // 	// owner
 // 	// chatgroup
 // 	// description

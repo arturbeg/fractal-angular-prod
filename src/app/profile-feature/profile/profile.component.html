@@ -8,13 +8,20 @@
 
 		<div class="col-lg-10 text-center"> 
 			<!-- User Avatar -->
-			<img *ngIf="!profileNonHttp.profile.avatar_url" class="avatar rounded-circle" src="http://santetotal.com/wp-content/uploads/2014/05/default-user.png">
+			<div 
+			[class.pointer]="commonService.username==profileNonHttp.profile.label"
+			matTooltip="Click to change profile pic"
+			class="user-avatar"
+			(click)="fileInput.click()">
 
-			<img  *ngIf="profileNonHttp.profile.avatar_url" 
-			class="rounded-circle avatar" 
-			[src]="profileNonHttp.profile.avatar_url"
-			>
+				<img *ngIf="!profileNonHttp.profile.avatar" class="avatar rounded-circle" src="http://santetotal.com/wp-content/uploads/2014/05/default-user.png">
 
+				<img  *ngIf="profileNonHttp.profile.avatar" 
+				class="rounded-circle avatar" 
+				[src]="profileNonHttp.profile.avatar"
+				>
+
+			</div>
 			<!-- Username -->
 
 			<h2 class="username text-center">
@@ -29,6 +36,16 @@
 
 			<!-- Edit Profile -->
 			<button mat-button *ngIf="commonService.username==profileNonHttp.profile.label" (click)="profileNonHttp.sayHi()">EDIT PROFILE</button>
+
+			<!-- Hidden avatar input triggered by profile click --> 	
+			<input 
+			type="file" 
+			name="avatar" 
+			style="display: none"
+			#fileInput
+			(change)="profileNonHttp.editProfileAvatar($event)"
+			>	
+
 			
 			<!-- Follow -->
 			<button *ngIf="commonService.username!=profileNonHttp.profile.label" mat-button (click)="profileNonHttp.follow(profileNonHttp.profile.label)">
