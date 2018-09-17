@@ -39,6 +39,11 @@ export class ProfileComponent {
 		
 	}
 
+	selectFile() {
+    let element: HTMLElement = document.querySelector('input[type="file"]') as HTMLElement;
+    element.click();
+	}
+
 	getProfileData() {
 			this.route.params.subscribe(params => {
 				this.username = params.username;
