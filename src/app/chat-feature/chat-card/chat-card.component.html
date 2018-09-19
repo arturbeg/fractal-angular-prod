@@ -1,84 +1,78 @@
 <mat-card class="chat-card">
+  <div
+  [routerLink]="['/chat', topic.label]" 
+  class="pointer non-actions">
+    <!-- Card Avtar -->
+    <div class="card-avatar">
+      <img class="img-fluid rounded" src="http://www.free-icons-download.net/images/user-group-icon-74418.png">
+    </div>
 
-  <!-- Card Avtar -->
-  <div class="card-avatar">
-    <img class="img-fluid rounded" src="http://www.free-icons-download.net/images/user-group-icon-74418.png">
-  </div>
+    <!-- Card Content -->
+    <div class="card-content-top">
+      <!-- Card Title -->
+      <div class="card-title">
+        <mat-card-header>
+          <mat-card-title>
+            
+            <a [routerLink]="['/chat', topic.label]">
 
-  <!-- Card Content -->
-  <div class="card-content-top">
-    <!-- Card Title -->
-    <div class="card-title">
-      <mat-card-header>
-        <mat-card-title>
+              {{topic.name}}
+      
+            </a>
+            <small> {{topic.number_of_unread_messages}} unread </small>
+
+          </mat-card-title>
+          <mat-card-subtitle
+          class="card-chatgroup-name">
           
-          <a [routerLink]="['/chat', topic.label]">
+          <a [routerLink]="['/chatgroup', topic.chatgroup_object.label]">
 
-            {{topic.name}}
-    
+            {{topic.chatgroup_object.name}}        
+
           </a>
-          <small> {{topic.number_of_unread_messages}} unread </small>
 
-        </mat-card-title>
-        <mat-card-subtitle
-        class="card-chatgroup-name">
-        
-        <a [routerLink]="['/chatgroup', topic.chatgroup_object.label]">
+          </mat-card-subtitle>
+        </mat-card-header>
+      </div>
 
-          {{topic.chatgroup_object.name}}        
+    <!-- Chat's most recent message -->
+    <div class="card-recent-message">
+      <!-- The avatar of the user who produced the top message -->
+      <div *ngIf="topic.most_recent_message_text" class="card-user-avatar">
 
-        </a>
 
-        </mat-card-subtitle>
-      </mat-card-header>
+        <img 
+        *ngIf="!topic.most_recent_message_sender_avatar"
+        class="img-fluid rounded-circle" src="http://santetotal.com/wp-content/uploads/2014/05/default-user.png">
+
+        <img 
+        *ngIf="topic.most_recent_message_sender_avatar"
+        class="pointer img-fluid rounded-circle"
+        [src]="topic.most_recent_message_sender_avatar">
+
+
+      </div>
+
+      <!-- The content of the top message -->
+      <div class="card-user-message">
+        <span *ngIf="topic.most_recent_message_text">
+          {{topic.most_recent_message_text}} 
+        </span>
+
+        <span *ngIf="!topic.most_recent_message_text"> 
+          This topic is empty, be first to chat 
+        </span>
+      </div>
+
+      <!-- Clearing the effect of floats -->
+      <div style="clear:both"> </div>
+
     </div>
-
-  <!-- Chat's most recent message -->
-  <div class="card-recent-message">
-    <!-- The avatar of the user who produced the top message -->
-    <div *ngIf="topic.most_recent_message_text" class="card-user-avatar">
-
-
-      <img 
-      *ngIf="!topic.most_recent_message_sender_avatar"
-      class="img-fluid rounded-circle" src="http://santetotal.com/wp-content/uploads/2014/05/default-user.png">
-
-      <img 
-      *ngIf="topic.most_recent_message_sender_avatar"
-      class="pointer img-fluid rounded-circle"
-      [src]="topic.most_recent_message_sender_avatar">
-
-
-    </div>
-
-    <!-- The content of the top message -->
-    <div class="card-user-message">
-      <span *ngIf="topic.most_recent_message_text">
-        {{topic.most_recent_message_text}} 
-      </span>
-
-      <span *ngIf="!topic.most_recent_message_text"> 
-        This topic is empty, be first to chat 
-      </span>
     </div>
 
     <!-- Clearing the effect of floats -->
-    <div style="clear:both"> </div>
-
-  </div>
-  </div>
-
-  <!-- Clearing the effect of floats -->
-  <div style="clear:both">  </div>
-
-  <!--
-  <mat-card-actions class="chat-card-footer">
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-
-  -->
-
+    <div style="clear:both">  </div>
+  </div>  
   <mat-card-actions class="chat-card-actions" *ngIf="showButtons">
     <div class="float-left">
       <button mat-button (click)="topicService.upvote(topic.label)">
@@ -102,7 +96,7 @@
           <span *ngIf="!topic.saved"> SAVE </span>
       
       </button>
-      <button mat-button>OPTIONS</button>
+      <!-- <button mat-button>OPTIONS</button> -->
 
       <!-- Menu of potential options -->
       <!--

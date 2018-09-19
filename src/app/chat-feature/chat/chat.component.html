@@ -75,8 +75,6 @@
 					</div>
 				</mat-card>
 	
-	
-	
 				<div class="send-message">
 	
 					<mat-form-field class="float-left message-input">
@@ -89,27 +87,33 @@
 							 matAutosizeMaxRows="5"
 							 #inputMessage
 							 [(ngModel)]="messageContent"
-							 (keyup.enter)="sendMessage(messageContent)" 
+							 (keyup.enter)="sendMessage(messageContent, null)" 
 							 >
 				
 							</textarea>
-	
-							<!-- <mat-hint align="end">{{inputMessage.value.length}}/140</mat-hint> -->
-	
-	
+
+							<!-- Hidden photo input triggered by clicking PHOTO button --> 	
+
+							<input 
+							#photoMessage
+							type="file"
+							style="display:none" 
+							name="photoMessage"
+							(change)="sendPhotoMessage($event)"
+							>
 	
 						</mat-form-field>
 	
 	
 						<div class="float-left send-message-actions">
-	
-						<button mat-button [matMenuTriggerFor]="menu">OPTIONS</button>
+							<button mat-button (click)="photoMessage.click()"> PHOTO </button>
+						<!-- <button mat-button [matMenuTriggerFor]="menu">OPTIONS</button>
 	
 	
 					<mat-menu #menu="matMenu">
 						<button mat-menu-item>Photo</button>
 						<button mat-menu-item>Video</button>
-					</mat-menu>
+					</mat-menu> -->
 	
 						</div>
 	

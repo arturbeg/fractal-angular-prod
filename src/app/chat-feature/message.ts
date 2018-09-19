@@ -15,5 +15,6 @@ export interface Message {
     topic: string;
     subtopics: string[];
     seen: boolean;
+    photo: string;
 }
 

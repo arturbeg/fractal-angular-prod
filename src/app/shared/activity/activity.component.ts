@@ -37,7 +37,7 @@ export class ActivityComponent implements OnInit {
 
     this.userService.getRecentActivityPosts(username).subscribe(
       data => {
-        this.posts = data
+        this.posts = data['results'];
       }
     )
 

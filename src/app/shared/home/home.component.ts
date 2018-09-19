@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
   public getTopics(username) {
     this.chatService.getTopics(username).subscribe(
       data => {
-        this.topics = data
+        this.topics = data['results'];
       }
     )
   }

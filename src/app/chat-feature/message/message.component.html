@@ -44,12 +44,16 @@
 			
 			<!-- Text/Image/Video/Link -->
 			<div (click)="newSubtopic()" class="pointer">
-				<p class="msg-text" 
+				<p 
+				*ngIf="message.text!=null"
+				class="msg-text" 
 				[matTooltipPosition]="tooltipPosition"
 				matTooltip="Click to create a subtopic!"
 				>
 					<span [innerHTML]="message.text | linky"> </span>	
 				</p>
+
+				<img *ngIf="message.photo" [src]="message.photo" width="150px" class="rounded">
 			</div>
 
 			<!-- <span [innerHTML]="yourText | linky"></span> -->

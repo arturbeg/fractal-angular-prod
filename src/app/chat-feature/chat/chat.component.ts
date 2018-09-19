@@ -31,6 +31,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   label: string;
   messageContent: string;
   ioConnection: any;
+  messagePhotoContent: any;
 
   constructor(private socketService: SocketService,
               private userService: UserService,
@@ -134,7 +135,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   getMessages(label) {
     this.chatService.getMessages(label).subscribe(
       data => {
-        this.messages = data
+        this.messages = data['results'];
       }
     )
   };
@@ -178,16 +179,30 @@ export class ChatComponent implements OnInit, OnDestroy {
       });
   }
 
-  public sendMessage(message: string): void {
-    if (!message) {
+  public sendPhotoMessage(event) {
+    console.log(event);
+    const selectedFile = event.target.files[0];
+    this.sendMessage(null, selectedFile);
+  }
+
+  public sendMessage(message: string, photo:any): void {
+    
+    if (!message && !photo) {
       return;
     }
 
-    this.messageService.newMessage(
-      message, 
-      this.topic.label, 
-      this.profileNonHttp.profile.user_id
-      ).subscribe(
+    const fd: FormData = new FormData();
+    fd.append('user', this.profileNonHttp.profile.user_id.toString());
+    fd.append('topic', this.topic.label);
+    
+    if(message) {
+      fd.append('text', message);
+    }
+
+    if(photo) {
+      fd.append('photo', photo);
+    }
+    this.messageService.newMessage(fd).subscribe(
       data => { 
         this.socketService.send({
           id: data['id'],
@@ -201,10 +216,12 @@ export class ChatComponent implements OnInit, OnDestroy {
           shared: false,
           timestamp_human: data['timestamp_human'],
           subtopics: data['subtopics'],
-          seen: data['seen']
+          seen: data['seen'],
+          photo: data['photo']
         }, this.label);        
       }
     )
+
     this.messageContent = null;
   }
 }
