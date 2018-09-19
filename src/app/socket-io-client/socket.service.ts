@@ -6,7 +6,7 @@ import { Observer } from 'rxjs/Observer';
 import * as socketIo from 'socket.io-client';
 
 
-const SERVER_URL = 'localhost:8080';
+const SERVER_URL = 'https://fractal-node.herokuapp.com/';
 
 @Injectable()
 export class SocketService {
