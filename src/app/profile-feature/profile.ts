@@ -20,6 +20,7 @@ export interface Profile {
 	followed: boolean;
 	user_id: number;
 	avatar: string;
+	online: boolean;
 	///user: User;
 	// timestamp, avatar, followers
 }

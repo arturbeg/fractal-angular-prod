@@ -18,7 +18,8 @@
 
 			<!-- Username -->
 
-			<h5> {{profile.label}} </h5>
+			<h5> {{profile.label}} <small *ngIf="profile.online"> online </small> </h5>
+			
 
 
 			<!-- User About -->

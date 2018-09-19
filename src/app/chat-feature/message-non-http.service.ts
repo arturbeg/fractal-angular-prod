@@ -1,4 +1,4 @@
-import { SocketService } from './socket.service';
+import { SocketService } from './../socket-io-client/socket.service';
 import { SnackBar } from './message/snack-bar';
 import { MessageService } from './message.service';
 import { Injectable } from '@angular/core';

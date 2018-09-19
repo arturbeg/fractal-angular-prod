@@ -1,3 +1,4 @@
+import { SocketIoClientModule } from './socket-io-client/socket-io-client.module';
 import { CommonModalComponent } from './common-modal/common-modal.component';
 import { SearchModule } from './search/search.module';
 import { CommonService } from './common.service';
@@ -40,7 +41,6 @@ import { HttpModule } from '@angular/http';
 
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +60,8 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
     AppRoutingModule,
     HttpModule,
     SharedModule,
-    SearchModule
+    SearchModule,
+    SocketIoClientModule // not sure if actually need to import...
   ],
 
   exports: [

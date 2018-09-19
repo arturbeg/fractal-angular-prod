@@ -11,7 +11,7 @@ import { Message } from './message';
 @Injectable()
 export class MessageService {
 
-  private rootApiUrl = 'https://fractal-django-prod.herokuapp.com/api/realtime/messages/';
+  private rootApiUrl = 'http://127.0.0.1:8000/api/realtime/messages/';
   private handleHttpError: HandleError;
 
 

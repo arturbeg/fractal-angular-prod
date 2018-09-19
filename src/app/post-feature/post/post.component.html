@@ -23,7 +23,7 @@
 		<span class="username font-weight-bold">
 			
 			<a [routerLink]="['/profile', post.message.sender.label]"> 	
-				{{post.message.sender.label}}
+				{{post.message.sender.label}} <small *ngIf="post.message.sender.online"> online </small>
 			</a>
 		</span>
 

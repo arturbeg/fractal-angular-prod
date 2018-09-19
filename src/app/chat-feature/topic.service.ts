@@ -1,4 +1,4 @@
-import { SocketService } from './socket.service';
+import { SocketService } from './../socket-io-client/socket.service';
 import { MatSnackBar } from '@angular/material';
 import { SnackBar } from './message/snack-bar';
 import { ChatService } from './chat.service';

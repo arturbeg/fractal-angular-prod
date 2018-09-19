@@ -1,6 +1,6 @@
 <ul *ngIf="showProfiles">
   <li *ngFor="let profile of profiles"> 
-   <a (click)="matDialogRef.close()" [routerLink]="['/profile', profile.label]"> {{profile.label}} </a>
+   <a (click)="matDialogRef.close()" [routerLink]="['/profile', profile.label]"> {{profile.label}} <small *ngIf="profile.online"> online </small></a>
   </li>
 </ul> 
 

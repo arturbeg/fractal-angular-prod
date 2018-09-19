@@ -1,27 +1,19 @@
+import { SocketService } from './../../socket-io-client/socket.service';
 import { LocalStorageService } from 'ngx-webstorage';
 import { ProfileNonHttpService } from './../../profile-feature/profile-non-http.service';
 import { CommonService } from './../../common.service';
 import { TopicService } from './../topic.service';
 import { AuthService } from './../../auth.service';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy} from '@angular/core';
-
 import { Event } from '../event';
 import { Message } from '../message';
 import { Profile } from '../../profile-feature/profile'
-import { SocketService } from '../socket.service';
 import { UserService } from '../../profile-feature/profile.service';
 import { MessageService } from '../message.service';
 import { ChatService } from '../chat.service';
-
 import { Topic } from '../chat'
-
-import { Location } from '@angular/common'
-
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-
 import {EditTopicModalComponent} from '../edit-topic-modal/edit-topic-modal.component'
 
 @Component({
@@ -177,7 +169,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   private initIoConnection(): void {
-    this.socketService.initSocket();
+    // this.socketService.initSocket();
 
     this.ioConnection = this.socketService.onMessage()
       .subscribe((message: Message) => {

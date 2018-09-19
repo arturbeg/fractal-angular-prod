@@ -25,8 +25,8 @@ import { Topic } from '../chat-feature/chat';
 export class UserService {
     
 	private handleHttpError: HandleError;
-	private rootApiUrl = 'https://fractal-django-prod.herokuapp.com/api/profiles/'
-    private rootApiUrlUser = 'https://fractal-django-prod.herokuapp.com/rest-auth/user/'
+	private rootApiUrl = 'http://127.0.0.1:8000/api/profiles/'
+    private rootApiUrlUser = 'http://127.0.0.1:8000/rest-auth/user/'
 
 
     constructor(
@@ -97,7 +97,6 @@ export class UserService {
         // this.localSt.store('username', newUsername);
         // this.commonService.refreshValues();
     }
-
 
     getFollowers(username) {
 

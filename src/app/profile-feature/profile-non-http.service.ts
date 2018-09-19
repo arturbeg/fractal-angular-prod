@@ -18,8 +18,8 @@ export class ProfileNonHttpService {
   posts: Post[];
 	username: string;
 	topics: Topic[];
-	saved_topics: Subject<Topic[]> = new Subject<Topic[]>()
-	profileChanges: Subject<Profile> = new Subject<Profile>()
+	saved_topics: Subject<Topic[]> = new Subject<Topic[]>();
+	profileChanges: Subject<Profile> = new Subject<Profile>();
 
 	constructor(private userService: UserService, private dialog: MatDialog,
 							private commonService: CommonService) { 

@@ -1,16 +1,20 @@
+import { CommonService } from './../common.service';
+import { Message } from './../chat-feature/message';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
-import { Message } from './message';
-import { Event } from './event';
-
 import * as socketIo from 'socket.io-client';
 
-const SERVER_URL = 'https://fractal-node.herokuapp.com/';
+
+const SERVER_URL = 'localhost:8080';
 
 @Injectable()
 export class SocketService {
     private socket;
+
+    constructor(private commonService: CommonService) {
+        this.initSocket();
+    }
 
     public initSocket(): void {
         this.socket = socketIo(SERVER_URL);
@@ -25,6 +29,29 @@ export class SocketService {
         });
     }
 
+    public joinRoom(label, profile_label) {
+
+        this.socket.emit('joinRoom', {
+            label: label,
+            profile_label: profile_label
+        });
+
+    }
+
+    public leaveRoom(label, profile_label) {
+        this.socket.emit('leaveRoom', {
+            label: label,
+            profile_label: profile_label
+        })
+    } 
+    
+    public messageLike(data) {
+        console.log("Emitting the message like to the socket!");
+
+        this.socket.emit('messageLike', data);
+
+    }       
+
     public onMessage(): Observable<Message> {
         return new Observable<Message>(observer => {
             this.socket.on('message', (data: Message) => observer.next(data));
@@ -38,13 +65,10 @@ export class SocketService {
         });
     }
 
-    public joinRoom(label, profile_label) {
-
-        this.socket.emit('joinRoom', {
-            label: label,
-            profile_label: profile_label
-        });
-
+    public onDisconnect(): Observable<any> {
+        return new Observable<string>(observer => {
+            this.socket.on("disconnect", (data: string) => observer.next(data) )
+        })
     }
 
     public onJoinRoom() {
@@ -54,28 +78,11 @@ export class SocketService {
         });
     }
 
-    public leaveRoom(label, profile_label) {
-        this.socket.emit('leaveRoom', {
-            label: label,
-            profile_label: profile_label
-        })
-    }
-
     public onLeaveRoom() {
         return new Observable(observer => {
             console.log("Someone left the room!!!")
             this.socket.on('leaveRoom', (data) => observer.next(data));
         });
     }
-
-    public messageLike(data) {
-        console.log("Emitting the message like to the socket!");
-
-        this.socket.emit('messageLike', data);
-
-    }
-
-
-
-    
+   
 }

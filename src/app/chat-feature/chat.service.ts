@@ -23,7 +23,7 @@ export class ChatService {
 	
 
 
-  chatApiUrl = 'https://fractal-django-prod.herokuapp.com/api/topics/'; // url to web api
+  chatApiUrl = 'http://127.0.0.1:8000/api/topics/'; // url to web api
   private handleHttpError: HandleError;
 
 
@@ -43,13 +43,13 @@ export class ChatService {
 	getTopics(username: string) {
                 
 		console.log("Retriving trendign topics for " + username)
-		const topicsApiUrl = 'https://fractal-django-prod.herokuapp.com/api/profiles/' + username + '/' + 'topics/'
+		const topicsApiUrl = 'http://127.0.0.1:8000/api/profiles/' + username + '/' + 'topics/'
 		
 		return this.http.get<Topic[]>(topicsApiUrl)
 	}
 
 	getMessages(label:string) {
-		const messagesListApiUrl = 'https://fractal-django-prod.herokuapp.com/api/realtime/messages/?ordering=timestamp&topic=' + label
+		const messagesListApiUrl = 'http://127.0.0.1:8000/api/realtime/messages/?ordering=timestamp&topic=' + label
 		return this.http.get<Message[]>(messagesListApiUrl)
 	}
 
@@ -68,7 +68,7 @@ export class ChatService {
 			topic_label: topic_label
 		}
 
-		const newMessageToSubTopicConnectionApiUrl = 'https://fractal-django-prod.herokuapp.com/api/realtime/messages/' + message_id + '/new_subtopic/'
+		const newMessageToSubTopicConnectionApiUrl = 'http://127.0.0.1:8000/api/realtime/messages/' + message_id + '/new_subtopic/'
 
 		return this.http.post<Message>(newMessageToSubTopicConnectionApiUrl, postPayload)
 
@@ -109,7 +109,7 @@ export class ChatService {
 	}
 
 	getRelatedTopics(chatgroup_label) {
-		const relatedTopicsApi = "https://fractal-django-prod.herokuapp.com/api/chatgroups/" + chatgroup_label + "/topics"
+		const relatedTopicsApi = "http://127.0.0.1:8000/api/chatgroups/" + chatgroup_label + "/topics"
 		return this.http.get<Topic[]>(relatedTopicsApi)
 	}
 

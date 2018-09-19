@@ -30,6 +30,7 @@
 				<a [routerLink]="['/profile', message.sender.label]">
 			
 					{{message.sender.label}} 
+					<small *ngIf="message.sender.online"> online </small>
 
 				</a>	 
 			
