@@ -1,3 +1,4 @@
+import { NotificationsService } from './notifications.service';
 import { SocketIoClientModule } from './socket-io-client/socket-io-client.module';
 import { CommonModalComponent } from './common-modal/common-modal.component';
 import { SearchModule } from './search/search.module';
@@ -44,7 +45,7 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 @NgModule({
   declarations: [
     AppComponent,
-    CommonModalComponent
+    CommonModalComponent,
   ],
   imports: [
     LoadingBarHttpClientModule,
@@ -65,7 +66,7 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
   ],
 
   exports: [
-    CommonModalComponent
+    CommonModalComponent,
   ],
 
   providers: [AuthService,
@@ -73,12 +74,13 @@ import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
               MessageService,
               httpInterceptorProviders,
               LocalStorageService,
-              CommonService
+              CommonService,
+              NotificationsService
               ],
   bootstrap: [AppComponent],
 
   entryComponents: [
-    CommonModalComponent
+    CommonModalComponent,
   ],
 })
 export class AppModule { }

@@ -1,3 +1,4 @@
+import { CommonService } from './../../common.service';
 import { Profile } from './../../profile-feature/profile';
 import { ChatCardComponent } from './../../chat-feature/chat-card/chat-card.component';
 import { FollowersModalComponent } from './../followers-modal/followers-modal.component';
@@ -14,7 +15,6 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 
 import { ChatGroupService } from '../chatgroup.service';
-
 
 
 
@@ -36,7 +36,8 @@ export class ChatGroupComponent implements OnInit {
 		private router: Router,
 		private chatGroupService: ChatGroupService,	
 		public chatgroupNonHttpService: ChatgroupNonHttpService,
-		private dialog: MatDialog
+		private dialog: MatDialog,
+		public commonService: CommonService
 	) 
 	{ }
 

@@ -1,6 +1,6 @@
 import { Topic } from './chat';
-import { Action } from './action'
-import { Profile } from '../profile-feature/profile'
+import { Action } from './action';
+import { Profile } from '../profile-feature/profile';
 
 export interface Message {
     id: number;

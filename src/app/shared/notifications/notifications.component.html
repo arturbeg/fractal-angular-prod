@@ -1,0 +1,9 @@
+<ul>
+  <li
+  class="pointer"
+  [routerLink]="notification.text | notificationRedirectUrl:notification" 
+  *ngFor="let notification of notifications"> 
+    <span>{{notification.sender}}  {{notification.text | notificationAction}}</span>
+  </li>
+  <span *ngIf="notifications.length==0">No recent notifications</span>
+</ul>

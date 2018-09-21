@@ -1,0 +1,10 @@
+<ul>
+  <li 
+  class="pointer"
+  *ngFor="let notification of chatgroup_notifications"
+  [routerLink]="notification.text | notificationRedirectUrl:notification"
+  >
+  <span>{{notification.sender}}  {{notification.text | notificationAction}}</span>
+  </li>
+  <span *ngIf="chatgroup_notifications.length==0"> No recent notifications </span>
+</ul>  

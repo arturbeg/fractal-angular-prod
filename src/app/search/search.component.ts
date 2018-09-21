@@ -54,7 +54,7 @@ export class SearchComponent implements OnInit {
 
     this.chatgroupService.searchChatGroup(query).subscribe(
       data => {
-      this.chatgroups = data['results']
+      this.chatgroups = data['results'];
       }
     );
   };
@@ -71,7 +71,7 @@ export class SearchComponent implements OnInit {
   profileSearchResults(query) {
     this.profiles = this.userService.searchProfile(query).subscribe(
       data => {
-        this.profiles = data['results']
+        this.profiles = data['results'];
       }
     )
   }

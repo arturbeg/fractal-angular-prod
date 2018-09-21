@@ -1,3 +1,4 @@
+import { PipesCommonModule } from './../pipes/pipes-common/pipes-common.module';
 import { ChatGroupModule } from './../chatgroup-feature/chatgroup.module';
 import { ProfileModule } from './../profile-feature/profile.module';
 import { RouterModule } from '@angular/router';
@@ -21,8 +22,8 @@ import { ActivityComponent } from './activity/activity.component';
 import { NewRootTopicComponent } from './new-root-topic/new-root-topic.component';
 import { NewChatgroupRootComponent } from './new-chatgroup-root/new-chatgroup-root.component';
 import { SavedTopicsComponent } from './saved-topics/saved-topics.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 // import { NewTopicComponent } from './new-topic/new-topic.component';
-
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { SavedTopicsComponent } from './saved-topics/saved-topics.component';
     PostModule,
     RouterModule,
     ProfileModule,
-    ChatGroupModule
+    ChatGroupModule,
+    PipesCommonModule
   ],
   declarations: [
 
@@ -48,6 +50,7 @@ import { SavedTopicsComponent } from './saved-topics/saved-topics.component';
     NewRootTopicComponent,
     NewChatgroupRootComponent,
     SavedTopicsComponent,
+    NotificationsComponent,
     // NewTopicComponent
 
   ],

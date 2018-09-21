@@ -1,3 +1,4 @@
+import { PipesCommonModule } from './../pipes/pipes-common/pipes-common.module';
 import { ProfileModule } from './../profile-feature/profile.module';
 import { ChatModule } from './../chat-feature/chat.module';
 import { ChatgroupNonHttpService } from './chatgroup-non-http.service';
@@ -16,7 +17,7 @@ import { ChatGroupRoutingModule }	from './chatgroup-routing.module';
 //import { AppModule }            from '../app.module';
 import { MaterialModule }          from '../material.module';
 import { FollowersModalComponent } from './followers-modal/followers-modal.component';
-
+import { ChatgroupNotificationsComponent } from './chatgroup-notifications/chatgroup-notifications.component';
 
 @NgModule({
   imports: [
@@ -25,12 +26,14 @@ import { FollowersModalComponent } from './followers-modal/followers-modal.compo
     ChatGroupRoutingModule,
     MaterialModule,
     ChatModule,
-    ProfileModule
+    ProfileModule,
+    PipesCommonModule
   ],
   declarations: [
     ChatGroupComponent,
     ChatGroupCardComponent,
-    FollowersModalComponent
+    FollowersModalComponent,
+    ChatgroupNotificationsComponent
   ],
   providers: [ ChatGroupService, ChatgroupNonHttpService ],
 

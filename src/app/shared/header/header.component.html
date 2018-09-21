@@ -11,30 +11,6 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
 
-        <!-- Chats List Item -->
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            CHATS
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a
-            class="dropdown-item" routerLink="/" routerLinkActive="active">Trending
-            </a>
-
-            <a
-            class="dropdown-item"
-            href="#">
-            New
-            </a>
-
-            <a
-            class="dropdown-item"
-            href="#">
-            Top
-            </a>
-          </div>
-        </li> -->
-
         
         <!-- Trending Topics Item -->
         <li class="nav-item">
@@ -42,38 +18,43 @@
             routerLink="/" routerLinkActive="active"
             class="nav-link"
             href="#">
-            TRENDING
+            <mat-icon>whatshot</mat-icon>
             </a>
         </li>
 
         <!-- Recent Activity List Item -->
         <li class="nav-item">
           <a
-          routerLink="/activity" routerLinkActive="active"
+          routerLink="/activity" 
+          routerLinkActive="active"
           class="nav-link"
           href="#">
-          ACTIVITY
+          <mat-icon>group</mat-icon>
           </a>
         </li>
-
-
-        <li class="nav-item">
-          <a
-          routerLink="/new-topic" routerLinkActive="active"
-          class="nav-link"
-          href="#">
-          NEW TOPIC
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a
-          routerLink="/new-chatgroup" routerLinkActive="active"
-          class="nav-link"
-          href="#">
-          NEW CHATGROUP
-          </a>
-        </li>        
+        
+        <li class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <mat-icon>add</mat-icon>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a
+              routerLink="/new-chatgroup" routerLinkActive="active"
+              class="nav-link"
+              href="#">
+              NEW CHATGROUP
+              </a>
+  
+              <a
+              routerLink="/new-topic" 
+              routerLinkActive="active"
+              class="nav-link"
+              href="#">
+              NEW TOPIC
+              </a>
+  
+            </div>
+          </li>
 
         <!-- Profile, if logged in  -->
         <li *ngIf="commonService.authenticated" class="nav-item">
@@ -110,12 +91,24 @@
 
         <li *ngIf="commonService.authenticated" class="nav-item dropdown">
             <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Saved Chats
+                <mat-icon>bookmark</mat-icon>
             </a>
             <div style="width: 300px; height: 300px; overflow: scroll;" class="dropdown-menu" aria-labelledby="navbarDropdown"> 
               <app-saved-topics>  </app-saved-topics>
             </div>
-          </li>
+        </li>
+
+        <!-- Notifications -->
+        <li *ngIf="commonService.authenticated" class="nav-item dropdown">
+            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!-- <mat-icon svgIcon="thumbs-up"> </mat-icon> -->
+                <mat-icon>notifications</mat-icon>
+            </a>
+
+            <div style="width: 300px; height: 300px; overflow: scroll;" class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+                <app-notifications>  </app-notifications>
+            </div>
+        </li>
           
           
         
@@ -181,7 +174,7 @@
         <button mat-raised-button color="primary">Search</button>
       </form> -->
 
-      <button *ngIf="commonService.authenticated" mat-button routerLink="/search" color="basic">Search</button>
+      <button *ngIf="commonService.authenticated" mat-button routerLink="/search" color="basic"><mat-icon>search</mat-icon></button>
     </div>
   </div>
 </nav>
