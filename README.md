@@ -1,5 +1,7 @@
 # FractalAngular
 
+![shot 2](angular_web_app.png?raw=true)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.7.
 
 ## Development server
